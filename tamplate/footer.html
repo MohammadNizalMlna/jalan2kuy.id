@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Jalan2kuy.id</title>
+    <style>
+        /* CSS Footer */
+        :root {
+            /* Variabel Warna */
+            --main-bg-color: #17423c;   /* Hijau gelap */
+            --text-color: #c0f2b2;      /* Teks hijau muda/kehijauan */
+            --logo-color: #ffffff;      /* Teks utama/putih */
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Tambahkan padding-bottom agar footer tidak menempel di tepi bawah viewport saat dicoba */
+            padding-bottom: 0; 
+        }
+
+        /* --- Gaya Dasar Footer --- */
+        .footer {
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            padding: 60px 0 30px;
+            font-family: var(--font-family);
+            width: 100%; /* Memastikan footer mengambil lebar penuh */
+        }
+
+        /* --- Konten Utama (Tiga Kolom) --- */
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* --- Kolom Kiri: Logo dan Deskripsi --- */
+        .footer-section.about {
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section.about .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--logo-color);
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer-section.about .logo img {
+            height: 30px; 
+            margin-right: 10px;
+            /* Filter untuk mengubah ikon (jika ikon aslinya hitam) menjadi putih */
+            filter: brightness(0) invert(1); 
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        /* --- Kolom Tengah & Kanan: Tautan --- */
+        .footer-section.links,
+        .footer-section.social {
+            width: 180px; 
+        }
+
+        .footer-section h4 {
+            color: var(--logo-color);
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95em;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffffff;
+        }
+
+        /* --- Bagian Hak Cipta (Footer Bottom) --- */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            font-size: 0.85em;
+            border-top: 1px solid rgba(192, 242, 178, 0.1); 
+        }
+
+        /* --- Media Query untuk Responsif (Mobile) --- */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 40px;
+            }
+
+            .footer-section {
+                margin-bottom: 40px;
+                width: 100%;
+                max-width: none;
+            }
+
+            .footer-section.about .logo {
+                justify-content: flex-start;
+            }
+
+            .footer-bottom {
+                padding: 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <div class="logo">
+                    <img src="/assets/gambar/icon/logo.png" alt="Jalan2kuy Logo">
+                </div>
+                <p>
+                    jalan2kuy.id adalah platform informasi wisata Indonesia yang menghadirkan inspirasi perjalanan, destinasi alam, budaya, dan ekowisata terbaik dari seluruh nusantara. Temukan rekomendasi tempat wisata, panduan perjalanan, serta event menarik yang siap membuat liburanmu lebih berkesan.
+                </p>
+            </div>
+
+            <div class="footer-section links">
+                <h4>Informasi</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Kebijakan Cookie</a></li>
+                    <li><a href="#">Hubungi kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section social">
+                <h4>Media Sosial</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Youtube</a></li>
+                    <li><a href="#">Tiktok</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 jalan2kuy.id. All rights reserved.
+        </div>
+    </footer>
+    
+</body>
+</html>

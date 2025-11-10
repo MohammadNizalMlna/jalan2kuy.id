@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - destination - histori</title>
+    <link rel="stylesheet" href="/css/destination/destination.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <section class="hero">
+        <h1>HISTORY</h1>
+        <div class="destination-container">
+            <a href="prambanan.html" class="destination prambanan">
+                <span>Candi Prambanan</span>
+            </a>
+            <a href="borobudur.html" class="destination borobudur">
+                <span>Candi Borobudur</span>
+            </a>
+            <a href="monas.html" class="destination monas">
+                <span>Monumen Nasional</span>
+            </a>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+    </script>
+</body>
+</html>

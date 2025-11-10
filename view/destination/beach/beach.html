@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - destination - beachh</title>
+    <link rel="stylesheet" href="/css/destination/destination.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <section class="hero">
+        <h1>BEACH</h1>
+        <div class="destination-container">
+            <a href="pantaiOra.html" class="destination pantaiOra">
+                <span>Pantai Ora</span>
+            </a>
+            <a href="pantaiGatra.html" class="destination pantaiGatra">
+                <span>pantai Gatra</span>
+            </a>
+            <a href="pantaiTanjnugAang.html" class="destination pantaiTanjungAan">
+                <span>Pantai Tanjung Aan</span>
+            </a>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+    </script>
+</body>
+</html>

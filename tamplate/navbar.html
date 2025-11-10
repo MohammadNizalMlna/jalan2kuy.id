@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+
+<style>
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    padding-top: 85px; 
+}
+
+.navbar {
+    background-color: #15514A; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 55px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo{
+    width: 260px;
+}
+
+.logo img{
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 50px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff; 
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.account a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.account a:hover {
+    color: #3498db;
+}
+
+.home, .destinasi, .event, .gallery, .akun {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <a href="/view/homepage.html">
+            <img src="/assets/gambar/icon/logo.png" alt="jalan2kuy.idlogo">
+    </div>
+
+    <div class="nav-links">
+        <a href="/view/homepage.html"><i class="home"></i> Home</a>
+        <a href="/view/destination/destinasi.html"><i class="destinasi"></i> Destination</a>
+        <a href="#event"><i class="event"></i> Event</a>
+        <a href="#gallery"><i class="gallery"></i> Gallery</a>
+    </div>
+
+    <div class="account">
+        <a href="/view/akun/login.html"><i class="akun"></i> Account</a>
+    </div>
+</nav>
+
+</body>
+</html>

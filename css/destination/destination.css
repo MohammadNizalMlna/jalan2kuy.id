@@ -1,0 +1,233 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-image: url(/assets/gambar/bgfix2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero h1{
+    font-size: 80px;
+    font: 'Skranji';
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    margin-bottom: 40px;
+}
+
+.destination-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 40px;
+}
+
+.destination{
+    position: relative;
+    height: 200px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.destination::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.destination span{
+    position: relative;
+    z-index: 2;
+}
+
+.destination:hover{
+    transform: scale(1.08);
+    opacity: 1;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.destination:hover::after {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* kategori NATURE */
+.danauWekuri{
+    background-image: url(/assets/destinasi/nature/weekuri.jpg);
+}
+.gunungRinjani{
+    background-image: url(/assets/destinasi/nature/rinjani.jpg);
+}
+.merese{
+    background-image: url(/assets/destinasi/nature/mandalika.jpg);
+}
+
+/* kategori History */
+.prambanan{
+    background-image: url(/assets/destinasi/history/prambanan.jpg);
+}
+.borobudur{
+    background-image: url(/assets/destinasi/history/borobudur.jpg);
+}
+.monas{
+    background-image: url(/assets/destinasi/history/monas.jpg);
+}
+.lawangSewu{
+    background-image: url(/assets/destinasi/history/lawangSewu.jpg);
+}
+.gedungSate{
+    background-image: url(/assets/destinasi/history/gedungSate.jpg);
+}
+.gunungPadang{
+    background-image: url(/assets/destinasi/history/sgpadang.jpg);
+}
+
+/* kategori ECOUTURISM */
+.tnKomodo{
+    background-image: url(/assets/destinasi/ecouturism/tnKomodo.jpg);
+}
+.tnWaykambas{
+    background-image: url(/assets/destinasi/ecouturism/tnWaskambas.jpg);
+}
+.tnGunungleuser{
+    background-image: url(/assets/destinasi/ecouturism/tnleuser.jpg);
+}
+.tnUjungkulon{
+    background-image: url(/assets/destinasi/ecouturism/tnujungkulon.jpg);
+}
+.tnTanjungPuting{
+    background-image: url(/assets/destinasi/ecouturism/tnTanjungPuting.jpg);
+}
+.tnbali{
+    background-image: url(/assets/destinasi/ecouturism/tnbali.jpg);
+}
+
+/* kategori beach */
+.pantaiOra{
+    background-image: url(/assets/destinasi/beach/pantai_ora.jpg);
+}
+.pantaiGatra{
+    background-image: url(/assets/destinasi/beach/pantai-gatra.jpg);
+}
+.pantaiTanjungAan{
+    background-image: url(/assets/destinasi/beach/Pantai-Tanjung-Aan.jpg);
+}
+.pantaiPapuma{
+    background-image: url(/assets/destinasi/beach/papuma_pantai.jpg);
+}
+.pantaiTrikora{
+    background-image: url(/assets/destinasi/beach/pantai-trikora.jpg);
+}
+.pantaiKarangPandan{
+    background-image: url(/assets/destinasi/beach/pantai-karang-pandan.jpg);
+}
+
+/* kategori culture*/
+.floatingMarket{
+    background-image: url(/assets/destinasi/culture/floating-market-lembang.jpg);
+}
+.puraTanahLot{
+    background-image: url(/assets/destinasi/culture/tanahLot.jpg);
+}
+.kampungCinaJakarta{
+    background-image: url(/assets/destinasi/culture/kampung-cina.jpg);
+}
+.tanaToraja{
+    background-image: url(/assets/destinasi/culture/tana-toraja.jpg);
+}
+.desaAdatRatenggaro{
+    background-image: url(/assets/destinasi/culture/desa-adat-ratenggaro.JPG);
+}
+.desaAdatWaeRebo{
+    background-image: url(/assets/destinasi/culture/desa-adat-wae-rebo.JPG);
+}
+
+/* kategori education */
+.tmii{
+    background-image: url(/assets/destinasi/education/tmii.jpg);
+}
+.tmIsmailMarzuki{
+    background-image: url(/assets/destinasi/education/Taman-Ismail-Marzuki.jpg);
+}
+.museumPki{
+    background-image: url(/assets/destinasi/education/museumPki.jpg);
+}
+.museumKaa{
+    background-image: url(/assets/destinasi/education/museum-kaa.jpg);
+}
+.museumKereta{
+    background-image: url(/assets/destinasi/education/Museum-kereta-api-ambarawa.jpg);
+}
+.tamanPintarYk{
+    background-image: url(/assets/destinasi/education/taman-pintar-.jpg);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.destination {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@media (max-width: 900px) {
+    .destination-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .destination {
+        height: 130px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .destination-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .destination-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+}

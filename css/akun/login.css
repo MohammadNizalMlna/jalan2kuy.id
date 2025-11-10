@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f6f7;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #0b585b;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 40px 0 30px;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 20px;
+    top: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.back-btn img {
+    width: 28px;
+    height: 28px;
+    filter: invert(1); 
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon img {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 8px;
+    filter: brightness(100%);
+}
+
+h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+.login-box {
+    background-color: #e9ecef;
+    margin-top: 40px;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    width: 60%;
+    max-width: 700px;
+    min-width: 350px;
+    min-height: 520px;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 22px; /* jarak antar input */
+    border: none;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    font-size: 15px;
+    transition: box-shadow 0.2s ease;
+}
+
+.login-box input:focus {
+    outline: none;
+    box-shadow: 0 0 4px #187b92;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background-color: #187b92;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+    margin-bottom: 20px; /* jarak bawah tombol */
+}
+
+.btn-primary:hover {
+    background-color: #0f5c6a;
+}
+
+.forgot {
+    display: block;
+    font-size: 13px;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 25px; /* jarak sebelum garis */
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 25px 0;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 15px;
+    background-color: #c8c4c4;
+    color: #2d2d2d;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #b3b1b1;
+}
+
+.note {
+    font-size: 12px;
+    margin-top: 15px;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .login-box {
+        width: 85%;
+        padding: 40px 25px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .icon img {
+        width: 55px;
+        height: 55px;
+    }
+}

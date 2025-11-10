@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - destination</title>
+    <link rel="stylesheet" href="/css/destination/destinasi.css">
+</head>
+<body>
+
+    <div id="navbar"></div>
+    
+    <section class="hero">
+        <div class="search">
+            <input type="text" placeholder="Searching....">
+            <button><img src="/assets/gambar/icon/search.png" alt="search"></button>
+        </div>
+
+        <div class="categori-container">
+            <a href="/view/destination/nature/nature.html" class="categori nature">
+                <span>Nature</span>
+            </a>
+            <a href="/view/destination/history/history.html" class="categori history">
+                <span>History</span>
+            </a>
+            <a href="/view/destination/ecotourism/ecotourism.html" class="categori ecotourism">
+                <span>Ecotourism</span>
+            </a>
+            <a href="/view/destination/beach/beach.html" class="categori beach">
+                <span>Beach</span>
+            </a>
+            <a href="/view/destination/culture/culture.html" class="categori culture">
+                <span>Culture</span>
+            </a>
+            <a href="/view/destination/education/education.html" class="categori education">
+                <span>Education</span>
+            </a>
+        </div>
+    </section>
+    <div id="footer"></div> 
+    <script>
+        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - destination - ecouturism</title>
+    <link rel="stylesheet" href="/css/destination/destination.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <section class="hero">
+        <h1>ECOTOURISM</h1>
+        <div class="destination-container">
+            <a href="tnKomodo.html" class="destination tnKomodo">
+                <span>Taman Nasional Komodo</span>
+            </a>
+            <a href="tnWayKambas.html" class="destination tnWaykambas">
+                <span>Taman Nasional Way Kambas</span>
+            </a>
+            <a href="tnLeuser.html" class="destination tnGunungleuser">
+                <span>Taman Nasional Gunung Leuser</span>
+            </a>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+    </script>
+</body>
+</html>
