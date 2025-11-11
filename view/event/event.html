@@ -1,11 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jalan2kuy.id - Event</title>
+
+  <!-- Font Awesome & CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/css/event/event.css">
 </head>
 <body>
-    tulalit
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- EVENT SECTION -->
+  <section class="event-section">
+
+    <!-- Date Event -->
+    <div class="event-header">
+      <h2>Date Event</h2>
+      <div class="date-inputs">
+        <input type="text" id="startDate" class="date-field" placeholder="00-00-0000" 
+               onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+        <span class="dash">-</span>
+        <input type="text" id="endDate" class="date-field" placeholder="00-00-0000" 
+               onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+      </div>
+    </div>
+
+    <!-- Event Cards -->
+    <div class="event-cards">
+
+      <!-- Card 1 -->
+      <div class="event-card">
+        <div class="event-image-container">
+          <img src="/assets/destinasi/candi.jpg" alt="Borobudur" class="event-img">
+          <div class="event-date-tag">22 Agst - 28 Des 2025</div>
+        </div>
+        <div class="event-body">
+          <h3>Sambut energi positif di tengah keagungan Candi Borobudur</h3>
+          <p class="event-location">
+            <i class="fa-solid fa-location-dot"></i> Borobudur Cultural Center, Candi Borobudur
+          </p>
+          <p class="event-desc">
+            Program meditasi dan penyembuhan di Borobudur Cultural Center.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="event-card">
+        <div class="event-image-container">
+          <img src="/assets/destinasi/komodo.png" alt="Ramayana" class="event-img">
+          <div class="event-date-tag">1 Nov - 30 Des 2025</div>
+        </div>
+        <div class="event-body">
+          <h3>Sendratari Ramayana Prambanan</h3>
+          <p class="event-location">
+            <i class="fa-solid fa-location-dot"></i> Gedung Trimurti, Candi Prambanan
+          </p>
+          <p class="event-desc">
+            Pertunjukan rutin yang diadakan di Gedung Trimurti (Indoor) setiap hari Selasa, Kamis, dan Sabtu pukul 19.30–21.00 WIB.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="event-card">
+        <div class="event-image-container">
+          <img src="/assets/destinasi/pantai.jpg" alt="Sorak Sorai Fest" class="event-img">
+          <div class="event-date-tag">30 Des - 1 Jan 2026</div>
+        </div>
+        <div class="event-body">
+          <h3>Sorak Sorai Fest (Coming soon)</h3>
+          <p class="event-location">
+            <i class="fa-solid fa-location-dot"></i> Taman Mini Indonesia Indah
+          </p>
+          <p class="event-desc">
+            Serangkaian acara perayaan tahun baru seperti konser atau festival.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script>
+    fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+    fetch('/tamplate/footer.html').then(res => res.text()).then(data => {
+      document.getElementById('footer').innerHTML = data;
+    });
+  </script>
+
 </body>
 </html>
