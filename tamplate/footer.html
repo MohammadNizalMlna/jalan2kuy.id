@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer Jalan2kuy.id</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* CSS Footer */
         :root {
-            /* Variabel Warna */
-            --main-bg-color: #17423c;   /* Hijau gelap */
-            --text-color: #c0f2b2;      /* Teks hijau muda/kehijauan */
-            --logo-color: #ffffff;      /* Teks utama/putih */
+            --main-bg-color: #17423c;  
+            --text-color: #c0f2b2;     
+            --logo-color: #ffffff;     
             --font-family: 'Arial', sans-serif;
         }
 
         body {
             margin: 0;
             padding: 0;
-            /* Tambahkan padding-bottom agar footer tidak menempel di tepi bawah viewport saat dicoba */
             padding-bottom: 0; 
         }
 
@@ -27,13 +25,14 @@
             color: var(--text-color);
             padding: 60px 0 30px;
             font-family: var(--font-family);
-            width: 100%; /* Memastikan footer mengambil lebar penuh */
+            width: 100%; 
         }
 
-        /* --- Konten Utama (Tiga Kolom) --- */
+        /* --- Konten Utama (Dua Kolom) --- */
         .footer-content {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             max-width: 1200px;
             margin: auto;
             padding: 0 20px;
@@ -41,7 +40,8 @@
 
         /* --- Kolom Kiri: Logo dan Deskripsi --- */
         .footer-section.about {
-            max-width: 400px;
+            max-width: 50%; 
+            padding-right: 40px; 
             display: flex;
             flex-direction: column;
         }
@@ -49,7 +49,7 @@
         .footer-section.about .logo {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: var(--logo-color);
             font-size: 1.5em;
             font-weight: bold;
@@ -58,78 +58,77 @@
         .footer-section.about .logo img {
             height: 30px; 
             margin-right: 10px;
-            /* Filter untuk mengubah ikon (jika ikon aslinya hitam) menjadi putih */
+            /* Invert filter membuat ikon putih */
             filter: brightness(0) invert(1); 
         }
 
-        .footer-section p {
-            line-height: 1.6;
+        .footer-section .frame-150 {
             font-size: 0.9em;
+            line-height: 1.8;
+            color: #ffffff; 
+            margin: 0;
         }
 
-        /* --- Kolom Tengah & Kanan: Tautan --- */
-        .footer-section.links,
-        .footer-section.social {
-            width: 180px; 
+        /* --- Kolom Kanan: Kontak --- */
+        .footer-section.contact {
+            max-width: 45%; 
+            margin-top: 5px; 
         }
 
         .footer-section h4 {
             color: var(--logo-color);
-            font-size: 1.1em;
-            margin-bottom: 25px;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-weight: bold;
         }
 
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section ul li a {
-            text-decoration: none;
-            color: var(--text-color);
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
             font-size: 0.95em;
-            transition: color 0.3s;
-            display: inline-block;
+            line-height: 1.5;
         }
 
-        .footer-section ul li a:hover {
-            color: #ffffff;
+        .contact-item i {
+            font-size: 18px; 
+            color: var(--logo-color);
+            margin-right: 15px;
+            margin-top: 3px; 
+            width: 18px;
+            text-align: center;
         }
 
-        /* --- Bagian Hak Cipta (Footer Bottom) --- */
+        .contact-item span {
+            color: var(--text-color);
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             margin-top: 40px;
             font-size: 0.85em;
             border-top: 1px solid rgba(192, 242, 178, 0.1); 
+            color: #ffffff;
         }
 
-        /* --- Media Query untuk Responsif (Mobile) --- */
-        @media (max-width: 768px) {
+        /* --- Responsiveness --- */
+        @media (max-width: 900px) {
             .footer-content {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 0 40px;
             }
 
-            .footer-section {
+            .footer-section.about,
+            .footer-section.contact {
+                max-width: 100%;
+                padding-right: 0;
                 margin-bottom: 40px;
-                width: 100%;
-                max-width: none;
             }
 
             .footer-section.about .logo {
                 justify-content: flex-start;
-            }
-
-            .footer-bottom {
-                padding: 20px 40px;
             }
         }
     </style>
@@ -142,31 +141,30 @@
                 <div class="logo">
                     <img src="/assets/gambar/icon/logo.png" alt="Jalan2kuy Logo">
                 </div>
-                <p>
+                <p class="frame-150">
                     jalan2kuy.id adalah platform informasi wisata Indonesia yang menghadirkan inspirasi perjalanan, destinasi alam, budaya, dan ekowisata terbaik dari seluruh nusantara. Temukan rekomendasi tempat wisata, panduan perjalanan, serta event menarik yang siap membuat liburanmu lebih berkesan.
                 </p>
             </div>
 
-            <div class="footer-section links">
-                <h4>Informasi</h4>
-                <ul>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                    <li><a href="#">Syarat & Ketentuan</a></li>
-                    <li><a href="#">Kebijakan Cookie</a></li>
-                    <li><a href="#">Hubungi kami</a></li>
-                </ul>
-            </div>
+            <div class="footer-section contact">
+                <h4>Kontak</h4>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span>
+                        Jl. DI Panjaitan No.128, Karangreja, Purwokerto Kidul, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53147
+                    </span>
+                </div>
 
-            <div class="footer-section social">
-                <h4>Media Sosial</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Youtube</a></li>
-                    <li><a href="#">Tiktok</a></li>
-                </ul>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(0281) 641 629</span>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@telkomuniversity.ac.id</span>
+                </div>
             </div>
         </div>
 

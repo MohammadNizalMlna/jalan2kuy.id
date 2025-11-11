@@ -12,13 +12,13 @@
             <img src="/assets/gambar/icon/logo.png" alt="Logo jalan2kuy.id">
         </div>
         <button class="back-btn" id="backButton">
-                <img src="/assets/gambar/icon/return.png" alt="kembali">
+            <img src="/assets/gambar/icon/return.png" alt="kembali">
         </button>
     </header>
 
     <div class="form-container">
         <h1>Buat Akun Baru</h1>
-        <form>
+        <form id="registerForm"> 
             <input type="email" placeholder="Email" required>
             <input type="text" placeholder="Username" required>
             <input type="password" placeholder="Kata Sandi" required>
@@ -29,11 +29,20 @@
 
     <script>
         document.getElementById('backButton').addEventListener('click', function() {
-        if (document.referrer) {
-            window.history.back();
-        } else {
-            window.location.href = "#"; 
-        }
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = "#"; 
+            }
+        });
+
+        const form = document.getElementById('registerForm');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const halamanTujuan = "/view/akun/login.html"; 
+            
+            window.location.href = halamanTujuan;
         });
     </script>
 </body>

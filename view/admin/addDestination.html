@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - destination - Admin - nature - add destination</title>
+    <link rel="stylesheet" href="/css/admin/addDestinasi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="admin-page-header">
+        <button class="icon-btn back-btn" onclick="history.back()">
+            <i class="fas fa-undo"></i> 
+        </button>
+        
+        <h1 class="page-title">Add Destination</h1>
+        
+        <div class="admin-info">
+            <span class="admin-label">Admin Only</span>
+            <div class="admin-icon-circle">
+                <i class="fas fa-user"></i> 
+            </div>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <form class="destination-form">
+            
+            <div class="form-item item-thumbnail">
+                <i class="fas fa-plus"></i> Add Thumbnail Image
+                <input type="file" name="thumbnail" accept="image/*" class="file-input">
+            </div>
+
+            <div class="form-item item-deskripsi">
+                Deskripsi
+                <textarea name="description" placeholder="Masukkan deskripsi panjang destinasi..."></textarea>
+            </div>
+
+            <div class="form-item item-add-image">
+                <i class="fas fa-plus"></i> Add Image
+                <input type="file" name="image" accept="image/*" multiple class="file-input">
+            </div>
+
+            <div class="form-item item-info">
+                <span>Lokasi Tempat</span>
+                <span>Jam Operasional</span>
+                <span>Harga Tiket Masuk</span>
+            </div>
+
+            <div class="form-item item-event">
+                Event
+            </div>
+
+            <button type="submit" class="submit-button">
+                Tambah
+            </button>
+            
+        </form>
+    </div>
+    
+    <div id="footer"></div> 
+    
+    <script>
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+        
+        document.querySelectorAll('.form-item[data-input]').forEach(item => {
+            item.addEventListener('click', () => {
+                const inputId = item.getAttribute('data-input');
+                document.getElementById(inputId).click();
+            });
+        });
+    </script>
+
+</body>
+</html>

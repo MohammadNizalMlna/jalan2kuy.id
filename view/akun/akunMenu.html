@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - jalan2kuy.id</title>
+    <link rel="stylesheet" href="/css/akun/akunmenu.css"> 
+</head>
+<body>
+
+    <header class="header-bar">
+        
+        <button class="icon-btn back-btn" id="backButton">
+            <img src="/assets/gambar/icon/return.png" alt="Kembali"> 
+        </button>
+        
+        <div class="header-content-inner">
+            <div class="title-container">
+                <div class="account-icon">
+                    <img src="/assets/gambar/icon/acount.png" alt="Ikon Akun"> 
+                </div>
+                <h1>Account</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper-content"> 
+        <div class="content-area">
+            <div class="profile-card">
+                <div class="info-item">Name</div>
+                <div class="info-item">username</div>
+                <div class="info-item">email</div>
+                <div class="info-item">Jenis Kelamin</div>
+                <button class="action-btn edit-btn">Edit Profile</button>
+                <button class="action-btn logout-btn" id="logoutButton">Logout</button>
+                <button class="action-btn delete-btn" id="deleteButton">Delete Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Apakah anda yakin untuk logout Akun?</p>
+            <div class="modal-actions">
+                <button id="confirmLogoutYes" class="modal-btn yes-btn">Yes</button>
+                <button id="confirmLogoutNo" class="modal-btn no-btn">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Apakah anda yakin ingin menghapus Akun anda secara permanen?</p>
+            <div class="modal-actions">
+                <button id="confirmDeleteYes" class="modal-btn yes-btn">Yes</button>
+                <button id="confirmDeleteNo" class="modal-btn no-btn">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.getElementById('backButton');
+            
+            const logoutButton = document.getElementById('logoutButton');
+            const logoutModal = document.getElementById('logoutModal');
+            const confirmLogoutYes = document.getElementById('confirmLogoutYes');
+            const confirmLogoutNo = document.getElementById('confirmLogoutNo');
+
+            const deleteButton = document.getElementById('deleteButton');
+            const deleteModal = document.getElementById('deleteModal');
+            const confirmDeleteYes = document.getElementById('confirmDeleteYes');
+            const confirmDeleteNo = document.getElementById('confirmDeleteNo');
+
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    if (document.referrer) {
+                        window.history.back();
+                    } else {
+                        window.location.href = "/view/admin/homepageAdmin.html"; 
+                    }
+                });
+            }
+
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function() {
+                    logoutModal.style.display = 'block';
+                });
+            }
+
+            confirmLogoutNo.addEventListener('click', function() {
+                logoutModal.style.display = 'none';
+            });
+
+            confirmLogoutYes.addEventListener('click', function() {
+                alert('Anda berhasil Logout!'); 
+                window.location.href = "/view/homepage.html"; 
+            });
+
+            if (deleteButton) {
+                deleteButton.addEventListener('click', function() {
+                    deleteModal.style.display = 'block';
+                });
+            }
+
+            confirmDeleteNo.addEventListener('click', function() {
+                deleteModal.style.display = 'none';
+            });
+
+            confirmDeleteYes.addEventListener('click', function() {
+                alert('Akun anda telah dihapus secara permanen.'); 
+                window.location.href = "/view/homepage.html"; 
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == logoutModal) {
+                    logoutModal.style.display = 'none';
+                }
+                if (event.target == deleteModal) {
+                    deleteModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
