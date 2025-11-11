@@ -11,21 +11,21 @@
 
     <header class="admin-page-header">
         <button class="icon-btn back-btn" onclick="history.back()">
-            <i class="fas fa-undo"></i> 
+            <i class="fas fa-undo"></i>
         </button>
-        
+
         <h1 class="page-title">Add Destination</h1>
-        
+
         <div class="admin-info">
             <span class="admin-label">Admin Only</span>
             <div class="admin-icon-circle">
-                <i class="fas fa-user"></i> 
+                <i class="fas fa-user"></i>
             </div>
         </div>
     </header>
 
     <div class="form-container">
-        <form class="destination-form">
+        <form class="destination-form" id="destinationForm">
             
             <div class="form-item item-thumbnail">
                 <i class="fas fa-plus"></i> Add Thumbnail Image
@@ -33,8 +33,8 @@
             </div>
 
             <div class="form-item item-deskripsi">
-                Deskripsi
-                <textarea name="description" placeholder="Masukkan deskripsi panjang destinasi..."></textarea>
+                <label for="description">Deskripsi</label>
+                <textarea id="description" name="description" placeholder="Masukkan deskripsi panjang destinasi..."></textarea>
             </div>
 
             <div class="form-item item-add-image">
@@ -43,9 +43,24 @@
             </div>
 
             <div class="form-item item-info">
-                <span>Lokasi Tempat</span>
-                <span>Jam Operasional</span>
-                <span>Harga Tiket Masuk</span>
+                <div class="info-row">
+                    <label for="lokasi">Lokasi Tempat</label>
+                    <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan lokasi destinasi..." required>
+                </div>
+
+                <div class="info-row">
+                    <label for="jam-buka">Jam Operasional</label>
+                    <div class="jam-operasional">
+                        <input type="time" id="jam-buka" name="jam_buka" required>
+                        <span>-</span>
+                        <input type="time" id="jam-tutup" name="jam_tutup" required>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <label for="harga">Harga Tiket Masuk (Rp)</label>
+                    <input type="number" id="harga" name="harga" placeholder="contoh: 25000" min="0" required>
+                </div>
             </div>
 
             <div class="form-item item-event">
@@ -55,20 +70,20 @@
             <button type="submit" class="submit-button">
                 Tambah
             </button>
-            
+
         </form>
     </div>
-    
-    <div id="footer"></div> 
-    
+
+    <div id="footer"></div>
+
     <script>
+        // Load footer dari template eksternal
         fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
-        
-        document.querySelectorAll('.form-item[data-input]').forEach(item => {
-            item.addEventListener('click', () => {
-                const inputId = item.getAttribute('data-input');
-                document.getElementById(inputId).click();
-            });
+
+        // Tampilkan alert saat tombol Tambah ditekan
+        document.getElementById('destinationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Destinasi telah ditambahkan!");
         });
     </script>
 
