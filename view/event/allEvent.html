@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jalan2kuy.id - Deskripsi Event</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/css/event/allEvent.css">
+  <script src="/js/eventData.js"></script>
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <section class="event-detail" id="eventDetail"></section>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/tamplate/navbar.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+
+    fetch('/tamplate/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get("id");
+
+    const container = document.getElementById("eventDetail");
+    const event = events.find(e => e.id === eventId);
+
+    if (event) {
+      container.innerHTML = `
+        <div class="event-box">
+          <h2 class="event-title">Deskripsi Event</h2>
+          <div class="event-content">
+            <div class="event-text">
+              <p>${event.fullDescription || event.description}</p>
+            </div>
+            <div class="event-side">
+              <img src="${event.image}" alt="${event.title}">
+              <div class="event-info">
+                <ul>
+                  <li><strong>${event.date}</strong></li>
+                  <li>${event.sideInfo || ""}</li>
+                </ul>
+                <p><i class="fa-solid fa-location-dot"></i> ${event.location}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `<p style="color: white; text-align:center;">Event tidak ditemukan.</p>`;
+    }
+  </script>
+
+</body>
+</html>

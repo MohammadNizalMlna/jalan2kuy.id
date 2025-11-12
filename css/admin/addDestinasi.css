@@ -86,15 +86,17 @@ html, body {
     align-items: center;
 }
 
-/* Wrapper transparan */
+/* ===== GRID FORM ===== */
 .destination-form {
     background: transparent;
     padding: 30px;
     width: 100%;
     max-width: 900px;
     display: grid;
-    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto auto auto;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 /* ===== FORM ITEM ===== */
@@ -112,6 +114,8 @@ html, body {
     padding: 20px;
     position: relative;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-item i {
@@ -144,9 +148,9 @@ html, body {
 }
 
 .item-add-image {
-    grid-row: 2 / span 2;
+    grid-row: 2 / span 3;
     grid-column: 1;
-    min-height: 400px;
+    min-height: 520px;
 }
 
 .item-deskripsi {
@@ -156,7 +160,6 @@ html, body {
     justify-content: flex-start;
     text-align: left;
     color: #000000;
-    width: 100%;
 }
 
 .item-deskripsi label {
@@ -241,6 +244,11 @@ html, body {
     grid-column: 2;
     min-height: 120px;
     color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ===== SUBMIT BUTTON ===== */
@@ -264,48 +272,10 @@ html, body {
     transform: scale(1.03);
 }
 
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .admin-page-header {
-        padding: 15px;
-    }
-
-    .page-title {
-        font-size: 1.5em;
-    }
-
     .destination-form {
         grid-template-columns: 1fr;
-        max-width: 500px;
-        padding: 20px;
-    }
-
-    .item-add-image,
-    .item-deskripsi {
-        grid-row: auto;
-        min-height: 200px;
-    }
-
-    .item-thumbnail,
-    .item-event,
-    .item-info {
-        grid-row: auto;
-        grid-column: auto;
-        min-height: 100px;
-    }
-
-    .info-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .info-row label {
-        width: 100%;
-    }
-
-    .jam-operasional {
-        flex-direction: row;
-        width: 100%;
+        grid-template-rows: auto;
     }
 }
