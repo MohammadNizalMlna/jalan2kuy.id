@@ -37,7 +37,7 @@ body {
 .date-inputs {
   display: flex;
   align-items: center;
-  background-color: #1e7e69;
+  background-color: #1c5e53;
   padding: 6px 12px;
   border-radius: 8px;
 }
@@ -106,7 +106,7 @@ body {
   position: absolute;
   bottom: 10px;
   left: 15px;
-  background-color: #1b7a63;
+  background-color: #1c5e53;
   color: #fff;
   font-size: 13px;
   padding: 6px 12px;
