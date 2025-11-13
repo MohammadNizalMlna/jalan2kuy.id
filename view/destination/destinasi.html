@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - destination</title>
+    <title>jalan2kuy.id - Destination</title>
     <link rel="stylesheet" href="/css/destination/destinasi.css">
 </head>
 <body>
@@ -37,10 +37,13 @@
             </a>
         </div>
     </section>
-    <div id="footer"></div> 
+
+    <div id="footer"></div>
+
     <script>
-        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
-        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+        fetch('/tamplate/navbar.html').then(res => res.text()).then(data => { document.getElementById('navbar').innerHTML = data });
+
+        fetch('/tamplate/footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data });
     </script>
 
 </body>

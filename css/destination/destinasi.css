@@ -1,41 +1,50 @@
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    height: 90px;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
 .hero {
+    margin-top: 90px;
+    min-height: calc(100vh - 90px);
     width: 100%;
-    height: 100vh;
-    background-image: url(/assets/gambar/bgfix2.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/gambar/bgfix2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    text-align: center;
-    color: white;
-    padding: 0 20px;
+    padding-top: 40px;
+    padding-bottom: 120px; 
+    box-sizing: border-box;
 }
 
-.search{
+.search {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 60px;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: transparent;
     border-radius: 17px;
     padding: 15px 25px;
     backdrop-filter: blur(6px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 60%;
     max-width: 700px;
+    margin-bottom: 60px;
 }
 
-.search input{
+.search input {
     width: 100%;
     background: transparent;
     border: none;
@@ -44,31 +53,30 @@ body {
     color: white;
 }
 
-.search input::placeholder{
+.search input::placeholder {
     color: rgba(255, 255, 255, 0.85);
 }
 
-.search button{
+.search button {
     background: none;
     border: none;
     cursor: pointer;
 }
 
-.search img{
+.search img {
     width: 28px;
     filter: invert(1);
 }
 
-.categori-container{
+.categori-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     width: 90%;
     max-width: 1200px;
-    margin-top: 40px;
 }
 
-.categori{
+.categori {
     position: relative;
     height: 200px;
     border-radius: 15px;
@@ -86,7 +94,7 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.categori::after{
+.categori::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -94,60 +102,38 @@ body {
     border-radius: 15px;
 }
 
-.categori span{
+.categori span {
     position: relative;
     z-index: 2;
 }
 
-.categori:hover{
+.categori:hover {
     transform: scale(1.02);
     opacity: 0.9;
 }
 
-.nature{
+.nature {
     background-image: url(/assets/destinasi/hutan.png);
 }
 
-.history{
+.history {
     background-image: url(/assets/destinasi/candi.jpg);
 }
 
-.ecotourism{
+.ecotourism {
     background-image: url(/assets/destinasi/komodo.png);
 }
 
-.beach{
+.beach {
     background-image: url(/assets/destinasi/pantai.jpg);
 }
 
-.culture{
+.culture {
     background-image: url(/assets/destinasi/culture.jpeg.jpg);
 }
 
-.education{
+.education {
     background-image: url(/assets/destinasi/aquarium.jpg);
-}
-@media (max-width: 768px) {
-    .search-container input {
-        width: 250px;
-        font-size: 16px;
-    }
-
-    .category {
-        height: 130px;
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .category-container {
-        grid-template-columns: 1fr;
-        width: 90%;
-    }
-
-    .search-container {
-        padding: 8px 15px;
-    }
 }
 
 @media (max-width: 900px) {
@@ -159,5 +145,10 @@ body {
 @media (max-width: 600px) {
     .categori-container {
         grid-template-columns: 1fr;
+    }
+
+    .search {
+        width: 80%;
+        padding: 12px 20px;
     }
 }
