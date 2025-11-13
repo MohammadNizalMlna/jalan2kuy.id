@@ -7,45 +7,44 @@ const addBtn = document.getElementById("addBtn");
 
 const destinations = {
   nature: [
-    { name: "Danau Weekuri", img: "/assets/destinasi/nature/weekuri.jpg" },
-    { name: "Gunung Rinjani", img: "/assets/destinasi/nature/rinjani.jpg" },
-    { name: "Bukit Merese", img: "/assets/destinasi/nature/mandalika.jpg" }
+    { id: "weekuri", name: "Danau Weekuri", img: "/assets/destinasi/nature/weekuri.jpg" },
+    { id: "rinjani", name: "Gunung Rinjani", img: "/assets/destinasi/nature/rinjani.jpg" },
+    { id: "merese",name: "Bukit Merese", img: "/assets/destinasi/nature/mandalika.jpg" }
   ],
   history: [
-    { name: "Candi Prambanan", img: "/assets/destinasi/history/prambanan.jpg" },
-    { name: "Candi Borobudur", img: "/assets/destinasi/history/borobudur.jpg" },
-    { name: "Monumen Nasional (Monas)", img: "/assets/destinasi/history/monas.jpg" }
+    { id: "prambanan", name: "Candi Prambanan", img: "/assets/destinasi/history/prambanan.jpg" },
+    { id: "borobudur", id: "borobudur",name: "Candi Borobudur", img: "/assets/destinasi/history/borobudur.jpg" },
+    { id: "monas", name: "Monumen Nasional (Monas)", img: "/assets/destinasi/history/monas.jpg" }
   ],
   ecotourism: [
-    { name: "Taman Nasional Komodo", img: "/assets/destinasi/ecouturism/tnKomodo.jpg" },
-    { name: "Taman Nasional Way Kambas", img: "/assets/destinasi/ecouturism/tnWaskambas.jpg" },
-    { name: "Taman Nasional Gunung Leuser", img: "/assets/destinasi/ecouturism/tnleuser.jpg" }
+    { id: "tnkomodo", name: "Taman Nasional Komodo", img: "/assets/destinasi/ecouturism/tnKomodo.jpg" },
+    { id: "tnwaykambas", name: "Taman Nasional Way Kambas", img: "/assets/destinasi/ecouturism/tnWaskambas.jpg" },
+    { id: "tnleuser", name: "Taman Nasional Gunung Leuser", img: "/assets/destinasi/ecouturism/tnleuser.jpg" }
   ],
   beach: [
-    { name: "Pantai Ora", img: "/assets/destinasi/beach/pantai_ora.jpg" },
-    { name: "Pantai Gatra", img: "/assets/destinasi/beach/pantai-gatra.jpg" },
-    { name: "Pantai Tanjung Aan", img: "/assets/destinasi/beach/Pantai-Tanjung-Aan.jpg" }
+    { id: "pantaiora", name: "Pantai Ora", img: "/assets/destinasi/beach/pantai_ora.jpg" },
+    { id: "pantaigatra", name: "Pantai Gatra", img: "/assets/destinasi/beach/pantai-gatra.jpg" },
+    { id: "pantaitanjungaan", name: "Pantai Tanjung Aan", img: "/assets/destinasi/beach/Pantai-Tanjung-Aan.jpg" }
   ],
   culture: [
-    { name: "Floating Market Lembang", img: "/assets/destinasi/culture/floating-market-lembang.jpg" },
-    { name: "Pura Tanah Lot", img: "/assets/destinasi/culture/tanahLot.jpg" },
-    { name: "Kampung Cina Jakarta", img: "/assets/destinasi/culture/kampung-cina.jpg" }
+    { id: "floatingmarket", name: "Floating Market Lembang", img: "/assets/destinasi/culture/floating-market-lembang.jpg" },
+    { id: "puratanahlot", name: "Pura Tanah Lot", img: "/assets/destinasi/culture/tanahLot.jpg" },
+    { id: "kcjakarta", name: "Kampung Cina Jakarta", img: "/assets/destinasi/culture/kampung-cina.jpg" }
   ],
   education: [
-    { name: "Taman Mini Indonesia Indah", img: "/assets/destinasi/education/tmii.jpg" },
-    { name: "Taman Ismail Marzuki", img: "/assets/destinasi/education/Taman-Ismail-Marzuki.jpg" },
-    { name: "Museum Pengkhianatan PKI", img: "/assets/destinasi/education/museumPki.jpg" }
+    { id: "tmii", name: "Taman Mini Indonesia Indah", img: "/assets/destinasi/education/tmii.jpg" },
+    { id: "tamanim", name: "Taman Ismail Marzuki", img: "/assets/destinasi/education/Taman-Ismail-Marzuki.jpg" },
+    { id: "museumpki", name: "Museum Pengkhianatan PKI", img: "/assets/destinasi/education/museumPki.jpg" }
   ]
 };
 
 function renderCategory() {
-  // Jika kategori valid
   if (category && destinations[category]) {
     title.textContent = category.toUpperCase();
     list.innerHTML = destinations[category]
       .map(dest => `
         <div class="destination-card" 
-             onclick="window.location.href='/view/destination/destination.html?id=${dest.name.toLowerCase().replace(/\s/g, '')}'">
+            onclick="window.location.href='/view/admin/destinasi/destinationDetail.html?id=${dest.id}&cat=${category}'">
           <div class="card-img" style="background-image: url('${dest.img}')">
             <div class="overlay">${dest.name}</div>
           </div>

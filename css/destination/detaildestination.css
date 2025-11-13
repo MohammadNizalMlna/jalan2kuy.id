@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/gambar/bgfix2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #000;
+  transition: background-image 0.6s ease-in-out;
+}
+
+.hero {
+  text-align: left;
+  padding: 100px 10%;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.action-btn {
+  margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+  border: none;
+  padding: 8px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background-color: #c6e149;
+  color: #000;
+}
+
+.edit-btn:hover {
+  background-color: #a9cb32;
+}
+
+.delete-btn {
+  background-color: #e02626;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c41f1f;
+}
+
+.content-box {
+  background-color: #fff8f8;
+  border-radius: 15px;
+  padding: 30px 40px;
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.description {
+  flex: 2;
+  color: #000;
+}
+
+.description h2 {
+  margin-top: 0;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.description p {
+  text-align: justify;
+  line-height: 1.7;
+}
+
+.image-box {
+  flex: 1;
+  text-align: center;
+  color: #000;
+}
+
+.image-box img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.image-box h3 {
+  margin-top: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .content-box {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .image-box img {
+    max-width: 300px;
+  }
+
+  .hero {
+    padding: 80px 5%;
+  }
+}

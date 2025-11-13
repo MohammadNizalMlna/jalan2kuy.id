@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jalan2kuy.id - Detail Destinasi</title>
+  <link rel="stylesheet" href="/css/destination/detaildestination.css">
+  <script src="/js/destinations.js"></script>
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <section class="hero">
+    <h1 id="title">Nama Destinasi</h1>
+
+    <div class="action-btn">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
+    </div>
+
+    <div class="content-box">
+      <div class="description">
+        <h2>Deskripsi</h2>
+        <p id="desc">Deskripsi destinasi akan muncul di sini...</p>
+      </div>
+
+      <div class="image-box">
+        <img id="img" src="" alt="Gambar destinasi">
+        <p id="loc"></p>
+        <p id="time"></p>
+        <p id="price"></p>
+        <h3>Event</h3>
+        <p id="event"></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script>
+    // Ambil parameter dari URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const cat = params.get("cat");
+
+    let found = null;
+
+    // Cari destinasi berdasar kategori dan id
+    if (cat && destinations[cat]) {
+      found = destinations[cat].find(d => d.id === id);
+    }
+
+    if (found) {
+      document.getElementById("title").textContent = found.name;
+      document.getElementById("desc").textContent = found.desc;
+      document.getElementById("img").src = found.image;
+      document.getElementById("loc").textContent = found.location;
+      document.getElementById("time").textContent = "Jam buka: " + found.open;
+      document.getElementById("price").textContent = "Harga tiket: " + found.price;
+      document.getElementById("event").textContent = found.event;
+
+      // Ganti background halaman
+      document.body.style.backgroundImage = `
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('${found.background || found.image}')
+      `;
+    } else {
+      document.querySelector(".hero").innerHTML = `
+        <h2 style="color:white;text-align:center;">Data destinasi tidak ditemukan</h2>
+      `;
+    }
+
+    // Navbar & Footer
+    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => document.getElementById('navbar').innerHTML = data);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+
+</body>
+</html>
