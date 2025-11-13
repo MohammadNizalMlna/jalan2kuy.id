@@ -8,16 +8,16 @@ html {
 }
 
 body {
-   min-height: 100vh;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #000;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #000;
 }
 
 /* Nature */

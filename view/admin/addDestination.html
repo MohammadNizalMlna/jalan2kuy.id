@@ -77,13 +77,10 @@
     <div id="footer"></div>
 
     <script>
-        // Load footer dari template eksternal
         fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
 
-        // Tampilkan alert saat tombol Tambah ditekan
         document.getElementById('destinationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert("Destinasi telah ditambahkan!");
         });
     </script>
 

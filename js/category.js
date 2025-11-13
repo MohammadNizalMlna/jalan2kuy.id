@@ -44,13 +44,11 @@ function renderCategory() {
     list.innerHTML = destinations[category]
       .map(dest => `
         <div class="destination-card" 
-            onclick="window.location.href='/view/admin/destinasi/destinationDetail.html?id=${dest.id}&cat=${category}'">
+            onclick="window.location.href='/view/admin/destinasi/destinationDetail.html?id=${dest.id}&category=${category}'">
           <div class="card-img" style="background-image: url('${dest.img}')">
             <div class="overlay">${dest.name}</div>
           </div>
-        </div>
-      `)
-      .join('');
+        </div>`).join('');
     if (addBtn) {
       addBtn.onclick = () => {
         window.location.href = `/view/admin/addDestination.html?category=${category}`;

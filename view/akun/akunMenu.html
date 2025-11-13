@@ -37,7 +37,6 @@
         </div>
     </div>
 
-    <!-- Modal Logout -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <p>Apakah anda yakin untuk logout Akun?</p>
@@ -62,7 +61,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const backButton = document.getElementById('backButton');
-            const editProfileButton = document.getElementById('editProfileButton'); // ✅ tombol edit
+            const editProfileButton = document.getElementById('editProfileButton');
             const logoutButton = document.getElementById('logoutButton');
             const logoutModal = document.getElementById('logoutModal');
             const confirmLogoutYes = document.getElementById('confirmLogoutYes');
@@ -100,8 +99,7 @@
                 logoutModal.style.display = 'none';
             });
 
-            confirmLogoutYes.addEventListener('click', function() {
-                alert('Anda berhasil Logout!'); 
+            confirmLogoutYes.addEventListener('click', function() { 
                 window.location.href = "/view/homepage.html"; 
             });
 
@@ -115,8 +113,7 @@
                 deleteModal.style.display = 'none';
             });
 
-            confirmDeleteYes.addEventListener('click', function() {
-                alert('Akun anda telah dihapus secara permanen.'); 
+            confirmDeleteYes.addEventListener('click', function() { 
                 window.location.href = "/view/homepage.html"; 
             });
 

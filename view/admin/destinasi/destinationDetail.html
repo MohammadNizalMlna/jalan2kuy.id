@@ -42,7 +42,7 @@
     // Ambil parameter dari URL
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-    const cat = params.get("cat");
+    const cat = params.get("category");
 
     let found = null;
 
@@ -53,7 +53,7 @@
 
     if (found) {
       document.getElementById("title").textContent = found.name;
-      document.getElementById("desc").textContent = found.desc;
+      document.getElementById("desc").innerHTML = found.desc;
       document.getElementById("img").src = found.image;
       document.getElementById("loc").textContent = found.location;
       document.getElementById("time").textContent = "Jam buka: " + found.open;
