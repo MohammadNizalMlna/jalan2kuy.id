@@ -142,11 +142,13 @@ body {
 }
 
 .add-btn {
+    text-decoration: none;     
+    color: white;              
+    font-weight: bold;
     position: absolute;
     top: 120px;
     right: 60px;
     background-color: #00bfa5;
-    color: white;
     border: none;
     padding: 12px 25px;
     border-radius: 8px;

@@ -4,17 +4,20 @@ body {
   background-color: #e5e5e5;
 }
 
-/* ===== EVENT SECTION ===== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .event-section {
   padding: 120px 60px 60px;
-  background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('/assets/gambar/bgfix2.jpg');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/gambar/bgfix2.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
   min-height: 100vh;
 }
 
-/* ===== HEADER DATE EVENT ===== */
 .event-header {
   display: flex;
   flex-direction: column;
@@ -33,7 +36,6 @@ body {
   font-weight: 600;
 }
 
-/* === DATE INPUTS === */
 .date-inputs {
   display: flex;
   align-items: center;
@@ -66,7 +68,6 @@ body {
   font-size: 18px;
 }
 
-/* ===== EVENT CARDS ===== */
 .event-cards {
   display: flex;
   flex-wrap: wrap;
@@ -82,6 +83,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .event-card:hover {
@@ -89,7 +91,6 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== IMAGE & DATE TAG ===== */
 .event-image-container {
   position: relative;
 }
@@ -114,7 +115,6 @@ body {
   font-weight: 500;
 }
 
-/* ===== TEXT CONTENT ===== */
 .event-body {
   padding: 15px 18px 20px;
 }
@@ -137,7 +137,6 @@ body {
   color: #222;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .event-section {
     padding: 120px 20px 40px;

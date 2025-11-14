@@ -76,13 +76,21 @@
 
     <div id="footer"></div>
 
-    <script>
-        fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
+<script>
+    fetch('/tamplate/footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 
-        document.getElementById('destinationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-    </script>
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    document.getElementById('destinationForm').addEventListener('submit', function (e) {e.preventDefault();
+
+    if (category) {
+        window.location.href = `/view/admin/destinasi/categori.html?category=${category}`;
+    } else {
+        window.location.href = `/view/admin/destinasi/categori.html`;
+    }
+    });
+</script>
 
 </body>
 </html>
