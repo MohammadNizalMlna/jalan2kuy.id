@@ -30,9 +30,17 @@ body {
   color: #fff;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
 }
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
 .action-btn {
-  margin-top: 10px;
+  margin-top: 0;
+  display: flex;
+  gap: 10px;
 }
 
 .edit-btn, .delete-btn {
@@ -48,7 +56,7 @@ body {
 
 .edit-btn {
   background-color: #c6e149;
-  color: #000;
+  color: white;
 }
 
 .edit-btn:hover {
@@ -109,6 +117,73 @@ body {
   font-size: 1.2em;
   font-weight: bold;
 }
+/* ========== POPUP OVERLAY ========== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* ========== POPUP BOX ========== */
+.popup-box {
+  background: #fff;
+  color: #000;
+  width: 400px;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transform: scale(0.5);
+  opacity: 0;
+  animation: zoomIn 0.3s ease forwards;
+}
+
+/* ========== BUTTONS ========== */
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.popup-buttons button {
+  padding: 10px 30px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.yes-btn {
+  background: #c6e149;
+  color: white;
+  padding: 10px 30px;
+  font-size: 17px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.no-btn {
+  background: #e02626;
+  color: white;
+  padding: 10px 30px;
+  font-size: 17px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 
 @media (max-width: 990px) {
   .content-box {
@@ -124,4 +199,13 @@ body {
   .hero {
     padding: 80px 5%;
   }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }

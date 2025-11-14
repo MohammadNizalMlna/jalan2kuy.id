@@ -14,7 +14,6 @@ html, body {
     flex-direction: column;
 }
 
-/* NAVBAR FIXED */
 #navbar {
     position: fixed;
     top: 0;
@@ -23,19 +22,17 @@ html, body {
     z-index: 999;
 }
 
-/* FOOTER SELALU DI BAWAH */
 #footer {
     margin-top: auto;
 }
 
-/* ================= GALLERY ================= */
 .gallery-container {
-    margin-top: 130px; /* Turunin biar tidak ketutup navbar */
+    margin-top: 130px;
     padding: 20px 40px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 55px 35px;  /* vertical horizontal gap */
+    gap: 55px 35px;  
 
     width: 100%;
     max-width: 1300px;
@@ -64,7 +61,6 @@ html, body {
     object-fit: cover;
 }
 
-/* TEKS (TIDAK MENYATU DENGAN GAMBAR) */
 .gallery-card p {
     margin-top: 12px;
     padding: 10px 25px;

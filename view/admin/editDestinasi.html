@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Destination</title>
+
+<link rel="stylesheet" href="/css/admin/editDestination.css">
+<script src="/js/destinations.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<main>
+<section class="edit-container">
+
+    <h1 class="edit-title">
+        Edit<br>
+        <div class="title-edit-box">
+            <input type="text" id="titleField" class="title-input">
+            <i class="fas fa-pen title-icon"></i>
+        </div>
+    </h1>
+
+    <div class="edit-layout">
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+
+            <!-- THUMBNAIL -->
+            <div class="thumb-box">
+                <img id="thumbPreview" class="thumb-img">
+                <label class="edit-thumb-btn">
+                    <i class="fas fa-pen"></i> Change Thumbnail
+                    <input type="file" id="thumbInput" accept="image/*">
+                </label>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="image-box">
+                <img id="imagePreview" class="main-img">
+                <label class="edit-img-btn">
+                    <i class="fas fa-pen"></i> Change Image
+                    <input type="file" id="imgInput" accept="image/*">
+                </label>
+            </div>
+
+            <button class="save-btn" id="saveBtn">Save</button>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+
+            <div class="desc-box">
+                <label>Deskripsi <i class="fas fa-pen small-icon"></i></label>
+                <textarea id="descField"></textarea>
+            </div>
+
+            <div class="info-box">
+                <label>Lokasi Tempat</label>
+                <input type="text" id="locField">
+
+                <label>Catatan Jam Buka</label>
+                <input type="text" id="openNoteField">
+
+                <label></label>
+                <div class="jam-operasional">
+                    <input type="time" id="openField">
+                    <span>-</span>
+                    <input type="time" id="closeField">
+                </div>
+
+                <label></label>
+                <input type="text" id="timezoneField" placeholder="WIB / WITA / WIT">
+
+                <label>Harga Tiket Masuk (Rp)</label>
+                <input type="number" id="priceField">
+            </div>
+
+            <div class="event-box">
+                <label>Event</label>
+                <textarea id="eventField"></textarea>
+            </div>
+        </div>
+
+    </div>
+</section>
+</main>
+
+<div id="footer"></div>
+
+<script>
+fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(d => navbar.innerHTML = d);
+fetch('/tamplate/footer.html').then(r => r.text()).then(d => footer.innerHTML = d);
+
+const p = new URLSearchParams(window.location.search);
+const id = p.get("id");
+const cat = p.get("category");
+
+let found = null;
+
+if (cat && allDestinations[cat]) {
+    found = allDestinations[cat].find(d => d.id === id);
+}
+
+if (!found) { alert("Data tidak ditemukan!"); }
+
+titleField.value = found.name;
+thumbPreview.src = found.thumbnail;
+imagePreview.src = found.image;
+descField.value = found.desc;
+locField.value = found.location;
+openNoteField.value = found.openNote || "";
+openField.value = found.openStart || "";
+closeField.value = found.openEnd || "";
+timezoneField.value = found.openTimezone || "";
+priceField.value = found.price.replace(/\D/g, "");
+eventField.value = found.event;
+
+thumbInput.onchange = () => thumbPreview.src = URL.createObjectURL(thumbInput.files[0]);
+imgInput.onchange = () => imagePreview.src = URL.createObjectURL(imgInput.files[0]);
+
+saveBtn.onclick = () => {
+
+    const updated = {
+        name: titleField.value,
+        desc: descField.value,
+        location: locField.value,
+        openNote: openNoteField.value,
+        openStart: openField.value,
+        openEnd: closeField.value,
+        openTimezone: timezoneField.value,
+        price: "Rp" + priceField.value,
+        event: eventField.value,
+        image: found.image,
+        thumbnail: found.thumbnail
+    };
+
+    console.log("Updated Data:", updated);
+    alert("Data berhasil diupdate (simulasi)");
+
+    window.location.href =
+        `/view/admin/destinasi/destinationDetail.html?id=${id}&category=${cat}`;
+};
+</script>
+
+</body>
+</html>

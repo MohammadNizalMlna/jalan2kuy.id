@@ -23,11 +23,17 @@
 
   <div id="footer"></div>
 
+  <script src="/js/destinations.js"></script>
   <script src="/js/category.js"></script>
+  
   <script>
-    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => document.getElementById('navbar').innerHTML = data);
+    fetch('/tamplate/navbarAdmin.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
 
-    fetch('/tamplate/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+    fetch('/tamplate/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
   </script>
 
 </body>

@@ -1,12 +1,16 @@
-const destinations = {
+const allDestinations = {
   nature: [
     {
       id: "weekuri",
       name: "Danau Weekuri",
+      thumbnail : "/assets/destinasi/nature/weekuri.jpg",
       image: "/assets/destinasi/nature/wisata/danau-wekuri.jpg",
       background: "/assets/destinasi/nature/wisata/danau-wekuri.jpg",
       location: "Kabupaten Sumba Barat Daya, Nusa Tenggara Timur",
-      open: " Setiap hari, 08.00 – 17.00 WITA",
+      openNote: "Setiap Hari",
+      openStart: "08:00",
+      openEnd: "17:00",
+      openTimezone: "WITA",
       price: "Rp10.000/orang",
       desc: `   Danau Weekuri adalah sebuah danau unik yang terletak di Desa Kelapa Lima, Kecamatan Kodi Utara, Kabupaten Sumba Barat Daya, Nusa Tenggara Timur (NTT). 
                 Dikenal juga dengan sebutan Danau Air Asin Weekuri, tempat ini merupakan salah satu keajaiban alam paling menakjubkan di Pulau Sumba. 
@@ -28,10 +32,14 @@ const destinations = {
     {
       id: "rinjani",
       name: "Gunung Rinjani",
+      thumbnail : "/assets/destinasi/nature/rinjani.jpg",
       image: "/assets/destinasi/nature/wisata/gunungRinjani.jpg",
       background: "/assets/destinasi/nature/wisata/gunungRinjani.jpg",
       location: "Pulau Lombok, Nusa Tenggara Barat",
-      open: "setiap Hari, 07.00 - 17.00 WITA",
+      openNote: "Setiap Hari",
+      openStart: "07:00",
+      openEnd: "17:00",
+      openTimezone: "WITA",
       price: "Rp150.000/orang ( wisatawan domestik)",
       desc: `Gunung Rinjani adalah salah satu gunung berapi tertinggi di Indonesia yang terletak di Pulau Lombok, Nusa Tenggara Barat, dengan ketinggian mencapai 3.726 meter di atas permukaan laut. 
                 Gunung ini merupakan bagian dari Taman Nasional Gunung Rinjani yang memiliki luas sekitar 41.330 hektare dan menjadi salah satu destinasi wisata alam paling populer di Indonesia maupun dunia. 
@@ -57,10 +65,14 @@ const destinations = {
     {
       id: "merese",
       name: "Bukit Merese",
+      thumbnail : "/assets/destinasi/nature/mandalika.jpg",
       image: "/assets/destinasi/nature/mandalika.jpg",
       background: "/assets/destinasi/nature/mandalika.jpg",
       location: "Kabupaten Lombok Tengah, Nusa Tenggara Barat",
-      open: "Setiap Hari, 05-00 - 19.00 WITA",
+      openNote: "Setiap Hari",
+      openStart: "05:00",
+      openEnd: "19:00",
+      openTimezone: "WITA",
       price: "Rp10.000/orang",
       desc: `Bukit Merese adalah salah satu destinasi wisata alam paling terkenal di Pulau Lombok, Nusa Tenggara Barat. Terletak di kawasan Pantai Tanjung Aan, Kecamatan Pujut, Kabupaten Lombok Tengah, Bukit Merese menjadi tempat favorit bagi wisatawan lokal maupun mancanegara untuk menikmati keindahan panorama alam dari ketinggian.
                 Bukit ini menawarkan pemandangan yang luar biasa indah, berupa hamparan laut biru yang berpadu dengan perbukitan hijau serta garis pantai yang memanjang di sepanjang pesisir selatan Lombok.
@@ -81,10 +93,14 @@ const destinations = {
     {
       id: "borobudur",
       name: "Candi Borobudur",
+      thumbnail : "/assets/destinasi/history/borobudur.jpg",
       image: "/assets/destinasi/history/wisata/borobudur.jpg",
       background: "/assets/destinasi/history/wisata/borobudur.jpg",
       location: "Magelang, Jawa Tengah",
-      open: "Setiap hari, 06.00 – 17.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "06:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp50.000/orang",
       desc: `Candi Borobudur adalah salah satu warisan budaya dan sejarah paling megah di dunia yang terletak di Magelang, Jawa Tengah, Indonesia. Candi ini merupakan candi Buddha terbesar di dunia dan menjadi salah satu simbol kejayaan peradaban Nusantara pada masa lampau. Dibangun pada masa Dinasti Syailendra sekitar abad ke-8 hingga ke-9 Masehi, Borobudur menggambarkan kebesaran arsitektur dan spiritualitas umat Buddha di masa itu.
                 Struktur candi ini berbentuk piramida berundak yang terdiri dari sembilan tingkat, yakni enam teras berbentuk bujur sangkar di bagian bawah dan tiga teras melingkar di bagian atas. Di puncaknya terdapat satu stupa besar yang menjadi pusat dari keseluruhan bangunan. Secara keseluruhan, Borobudur memiliki 2.672 panel relief dan 504 arca Buddha, yang semuanya dipahat dengan detail luar biasa menggunakan batu andesit.
@@ -99,10 +115,14 @@ const destinations = {
     {
       id: "prambanan",
       name: "Candi Prambanan",
+      thumbnail : "/assets/destinasi/history/prambanan.jpg",
       image: "/assets/destinasi/history/wisata/prambanan.jpg",
       background: "/assets/destinasi/history/wisata/prambanan.jpg",
       location: "Sleman, Yogyakarta",
-      open: "Setiap hari, 06.00 - 17-00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "06:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp150.000/orang",
       desc: `Candi Prambanan adalah kompleks candi Hindu terbesar dan termegah di Indonesia yang terletak di perbatasan antara Kabupaten Sleman, Daerah Istimewa Yogyakarta, dan Kabupaten Klaten, Jawa Tengah. Candi ini dibangun sekitar abad ke-9 Masehi oleh Rakai Pikatan dari Wangsa Sanjaya sebagai persembahan untuk Trimurti, yaitu tiga dewa utama dalam agama Hindu: Brahma (Sang Pencipta), Wisnu (Sang Pemelihara), dan Siwa (Sang Pelebur).
                 Karena itu, Prambanan juga dikenal dengan nama Candi Rara Jonggrang, yang berasal dari legenda rakyat tentang Putri Rara Jonggrang dan Bandung Bondowoso. Kompleks Candi Prambanan terdiri dari lebih dari 240 candi, meskipun kini sebagian besar hanya tersisa reruntuhannya akibat gempa dan waktu. Bangunan utamanya terdapat tiga candi besar di bagian tengah, yaitu Candi Siwa setinggi 47 meter sebagai candi utama, diapit oleh Candi Brahma dan Candi Wisnu di sisi kiri dan kanan.
@@ -117,10 +137,14 @@ const destinations = {
     {
       id: "monas",
       name: "Monumen Nasional (Monas)",
+      thumbnail : "/assets/destinasi/history/monas.jpg",
       image: "/assets/destinasi/history/wisata/monas.jpg",
       background: "/assets/destinasi/history/wisata/monas.jpg",
       location: "Jakarta Pusat, DKI Jakarta",
-      open: "Setiap Hari, 08.00 - 17.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "08:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp30.000/orang",
       desc: `Monumen Nasional (Monas) adalah ikon kebanggaan bangsa Indonesia yang terletak di pusat Kota Jakarta, tepatnya di Lapangan Medan Merdeka. Monas dibangun sebagai simbol perjuangan rakyat Indonesia dalam merebut kemerdekaan dari penjajahan, sekaligus menjadi pengingat semangat nasionalisme dan cinta tanah air. Pembangunan monumen ini dimulai pada 17 Agustus 1961 atas prakarsa Presiden Soekarno, dan diresmikan untuk umum pada 12 Juli 1975.
                 Monas memiliki tinggi sekitar 132 meter dan dirancang oleh arsitek Friedrich Silaban serta R.M. Soedarsono, dengan gaya arsitektur yang sarat makna filosofis. Bangunan utama berbentuk obelis menjulang ke langit, berdiri di atas pelataran persegi yang melambangkan semangat kokoh rakyat Indonesia. Di puncaknya terdapat lidah api yang terbuat dari perunggu seberat 14,5 ton, dilapisi emas murni seberat 50 kilogram.
@@ -138,10 +162,14 @@ const destinations = {
     {
       id: "tnkomodo",
       name: "Taman Nasional Komodo",
+      thumbnail : "/assets/destinasi/ecouturism/tnKomodo.jpg",
       image: "/assets/destinasi/ecouturism/wisata/taman-nasional-komodo.jpg",
       background: "/assets/destinasi/ecouturism/wisata/taman-nasional-komodo.jpg",
       location: "Manggarai Barat, Nusa Tenggara Timur",
-      open: "Setiap hari, 06.00 - 18.00 WITA",
+      openNote: "Setiap Hari",
+      openStart: "06:00",
+      openEnd: "18:00",
+      openTimezone: "WITA",
       price: "Rp50.000/orang",
       desc: `Taman Nasional Komodo adalah salah satu destinasi wisata paling terkenal di Indonesia dan dunia, terletak di Kepulauan Nusa Tenggara, tepatnya di antara Pulau Sumbawa dan Pulau Flores. Kawasan ini terdiri dari tiga pulau besar — Pulau Komodo, Pulau Rinca, dan Pulau Padar — serta beberapa pulau kecil lainnya yang semuanya memiliki keindahan alam yang luar biasa. Didirikan pada tahun 1980 dan diakui sebagai Warisan Dunia UNESCO pada tahun 1991, Taman Nasional Komodo awalnya dibentuk untuk melindungi hewan purba langka Komodo (Varanus komodoensis), 
                 spesies kadal terbesar di dunia yang hanya hidup secara alami di kawasan ini.Komodo dapat tumbuh hingga lebih dari tiga meter dan memiliki gigitan beracun yang mematikan bagi mangsanya, menjadikannya predator puncak di ekosistem pulau. Selain keberadaan komodo, taman nasional ini juga memiliki keanekaragaman hayati yang menakjubkan, baik di darat maupun di bawah laut.
@@ -156,10 +184,14 @@ const destinations = {
     {
       id: "tnwaykambas",
       name: "Taman Nasional Way Kambas",
+      thumbnail : "/assets/destinasi/ecouturism/tnWaskambas.jpg",
       image: "/assets/destinasi/ecouturism/wisata/taman-nasional-waykambas.jpg",
       background: "/assets/destinasi/ecouturism/wisata/taman-nasional-waykambas.jpg",
       location: "Lampung Timur, Lampung",
-      open: "Setiap hari, 07.00 - 18.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "07:00",
+      openEnd: "18:00",
+      openTimezone: "WIB",
       price: "Rp25.000/orang",
       desc: `Taman Nasional Way Kambas adalah salah satu taman nasional tertua di Indonesia yang terletak di Provinsi Lampung, tepatnya di bagian timur Pulau Sumatra. Kawasan ini memiliki luas sekitar 125.000 hektare dan dikenal sebagai pusat konservasi gajah Sumatra (Elephas maximus sumatranus), salah satu spesies gajah endemik Indonesia yang kini terancam punah. Didirikan pada tahun 1985, taman nasional ini menjadi simbol upaya pelestarian satwa langka dan ekosistem hutan dataran rendah Sumatra.
                 Lanskap Way Kambas didominasi oleh padang rumput, hutan rawa, dan hutan sekunder yang menjadi habitat ideal bagi berbagai satwa liar. Selain gajah, kawasan ini juga menjadi rumah bagi spesies langka lainnya seperti badak Sumatra, harimau Sumatra, tapir, rusa sambar, beruang madu, serta lebih dari 400 jenis burung.
@@ -175,10 +207,14 @@ const destinations = {
     {
       id: "tnleuser",
       name: "Taman Nasional Gunung Leuser",
+      thumbnail : "/assets/destinasi/ecouturism/tnleuser.jpg",
       image: "/assets/destinasi/ecouturism/wisata/taman-nasional-gunung-leuser.jpg",
       background: "/assets/destinasi/ecouturism/wisata/taman-nasional-gunung-leuser.jpg",
       location: "Aceh, Sumatra Utara",
-      open: "Setiap hari, 07.00 - 17.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "07:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp20.000/orang",
       desc: `Taman Nasional Gunung Leuser adalah salah satu kawasan konservasi paling penting dan megah di Indonesia yang terletak di Provinsi Aceh dan Sumatera Utara. Kawasan ini memiliki luas lebih dari 1,09 juta hektare dan merupakan bagian dari Warisan Hutan Hujan Tropis Sumatera (Tropical Rainforest Heritage of Sumatra) yang diakui sebagai Warisan Dunia UNESCO sejak tahun 2004.
                 Taman Nasional Gunung Leuser dikenal sebagai rumah bagi keanekaragaman hayati tertinggi di Asia Tenggara, dengan ribuan spesies flora dan fauna yang hidup di dalamnya. Salah satu daya tarik utamanya adalah keberadaan empat satwa besar yang terancam punah, yaitu orangutan Sumatra, gajah Sumatra, harimau Sumatra, dan badak Sumatra — menjadikannya satu-satunya tempat di dunia di mana keempat spesies langka ini masih dapat hidup berdampingan secara alami.
@@ -198,10 +234,15 @@ const destinations = {
     {
       id: "pantaiora",
       name: "Pantai Ora",
+      thumbnail : "/assets/destinasi/beach/pantai_ora.jpg",
       image: "/assets/destinasi/beach/wisata/Pantai Ora, Maluku Tengah.jpeg",
       background: "/assets/destinasi/beach/wisata/Pantai Ora, Maluku Tengah.jpeg",
       location: "Pulau Seram, Maluku Tengah",
       open: "Setiap Hari, 24 jam",
+      openNote: "Setiap hari, 24 Jam",
+      openStart: "",
+      openEnd: "",
+      openTimezone: "WITA",
       price: "Rp25.000/orang",
       desc: `Pantai Ora adalah salah satu surga tersembunyi di Indonesia yang terletak di Desa Saleman, Kecamatan Seram Utara, Kabupaten Maluku Tengah, Provinsi Maluku. Pantai ini dikenal luas karena keindahannya yang sering disebut sebanding bahkan menyaingi destinasi tropis dunia seperti Maladewa atau Bora-Bora.
                 Pantai Ora memiliki pesona luar biasa dengan air laut yang jernih sebening kaca, pasir putih halus, serta latar belakang perbukitan hijau yang menyejukkan mata. Air lautnya yang tenang memantulkan gradasi warna biru dan toska yang menawan, menciptakan panorama yang sangat fotogenik. Salah satu daya tarik utama Pantai Ora adalah kehidupan bawah lautnya yang mempesona, di mana wisatawan dapat langsung melihat terumbu karang dan ikan-ikan tropis berwarna-warni hanya dengan snorkeling di tepi pantai.
@@ -217,10 +258,15 @@ const destinations = {
     {
       id: "pantaigatra",
       name: "Pantai Gatra",
+      thumbnail : "/assets/destinasi/beach/pantai-gatra.jpg",
       image: "/assets/destinasi/beach/pantai-gatra.jpg",
       background: "/assets/destinasi/beach/pantai-gatra.jpg",
       location: "Malang, Jawa Timur",
       open: "Setiap hari, 07.00 - 17.00 WIB ",
+      openNote: "Setiap Hari",
+      openStart: "07:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp10.000/orang",
       desc: `Pantai Gatra adalah salah satu destinasi wisata alam yang menawan di Kabupaten Malang, Provinsi Jawa Timur, tepatnya berada di kawasan Desa Sendang Biru, Kecamatan Sitiarjo. Pantai ini merupakan bagian dari Kawasan Konservasi Mangrove dan Pesisir Clungup Mangrove Conservation (CMC Tiga Warna), yang dikelola oleh masyarakat setempat dengan konsep ekowisata berkelanjutan.
                 Pantai Gatra terkenal karena keindahannya yang masih sangat alami dan bersih, jauh dari hiruk pikuk keramaian kota. Berbeda dengan pantai-pantai wisata pada umumnya, jumlah pengunjung di sini dibatasi setiap harinya agar kelestarian alam tetap terjaga. Garis pantainya dihiasi pasir putih lembut dengan air laut berwarna biru kehijauan yang tenang karena terlindung oleh gugusan pulau-pulau kecil di depannya.
@@ -237,10 +283,14 @@ const destinations = {
     {
       id: "pantaitanjungaan",
       name: "Pantai Tanjung Aan",
+      thumbnail : "/assets/destinasi/beach/Pantai-Tanjung-Aan.jpg",
       image: "/assets/destinasi/beach/wisata/Tanjung-Aan-Best-Dream-Beach-South-Lombok.jpg",
       background: "/assets/destinasi/beach/wisata/Tanjung-Aan-Best-Dream-Beach-South-Lombok.jpg",
       location: "Lombok Tengah, Nusa Tenggara Barat",
-      open: "Setiap hari, 06.00 - 18.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "06:00",
+      openEnd: "18:00",
+      openTimezone: "WITA",
       price: "Rp10.000/orang",
       desc: `Pantai Tanjung Aan adalah salah satu pantai terindah di Pulau Lombok, Nusa Tenggara Barat, yang terletak di Desa Sengkol, Kecamatan Pujut, Kabupaten Lombok Tengah, tidak jauh dari kawasan wisata Mandalika. Pantai ini terkenal karena keunikan pasirnya yang memiliki dua tekstur berbeda — di satu sisi butirannya halus seperti tepung, sementara di sisi lainnya berbentuk bulat-bulat kecil menyerupai biji merica, sehingga sering disebut juga sebagai “Pantai Merica” oleh masyarakat setempat.
                 Garis pantainya yang panjang membentuk lengkungan indah seperti teluk, dengan air laut berwarna biru toska yang jernih dan ombak yang lembut, menciptakan suasana tenang dan menenangkan. Dikelilingi oleh perbukitan hijau seperti Bukit Merese di sebelah barat dan Bukit Batu Payung di sisi timur, Pantai Tanjung Aan menawarkan pemandangan alam yang menakjubkan dari berbagai sudut.
@@ -259,10 +309,14 @@ const destinations = {
     {
       id: "floatingmarket",
       name: "Floating Market Lembang",
+      thumbnail : "/assets/destinasi/culture/floating-market-lembang.jpg",
       image: "/assets/destinasi/culture/wisata/Floating-Market-Lembang-1280x720.jpg",
       background: "/assets/destinasi/culture/wisata/Floating-Market-Lembang-1280x720.jpg",
       location: "Lembang, Kabupaten Bandung Barat",
-      open: "Setiap hari, 09.00 - 18.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "09:00",
+      openEnd: "18:00",
+      openTimezone: "WIB",
       price: "Rp35.000/orang",
       desc: `Floating Market Lembang adalah salah satu destinasi wisata unik dan populer di Lembang, Kabupaten Bandung Barat, Provinsi Jawa Barat, yang menawarkan pengalaman berbelanja dan bersantap di atas air dengan suasana sejuk khas pegunungan. Berlokasi di kawasan dataran tinggi yang dikelilingi perbukitan hijau dan udara segar, Floating Market Lembang menghadirkan konsep wisata kuliner dan rekreasi keluarga yang berpadu dengan keindahan alam.
                 Seperti namanya, tempat ini mengusung konsep pasar terapung, di mana para pedagang menjajakan makanan dan minuman khas Nusantara menggunakan perahu kayu yang mengapung di atas danau alami. Pengunjung dapat membeli aneka kuliner seperti batagor, sate kelinci, nasi liwet, jagung bakar, hingga minuman tradisional dengan menggunakan koin khusus yang ditukar di loket utama. Konsep ini tidak hanya menghadirkan sensasi kuliner yang berbeda, tetapi juga memperkuat nuansa tradisional yang khas dan ramah keluarga.
@@ -277,10 +331,14 @@ const destinations = {
     {
       id: "puratanahlot",
       name: "Pura Tanah Lot",
+      thumbnail : "/assets/destinasi/culture/tanahLot.jpg",
       image: "/assets/destinasi/culture/wisata/pura-tanah-lot.jpg",
       background: "/assets/destinasi/culture/wisata/pura-tanah-lot.jpg",
       location: "Tabanan, Bali",
-      open: "Setiap hari, 06.00 - 19.00 WITA",
+      openNote: "Setiap Hari",
+      openStart: "06:00",
+      openEnd: "19:00",
+      openTimezone: "WITA",
       price: "Rp30.000/orang",
       desc: `Pura Tanah Lot adalah salah satu ikon wisata paling terkenal di Pulau Bali dan menjadi simbol keindahan serta kekayaan budaya spiritual masyarakat Hindu Bali. Terletak di Desa Beraban, Kecamatan Kediri, Kabupaten Tabanan, sekitar 20 kilometer dari Kota Denpasar, Pura Tanah Lot berdiri megah di atas batu karang besar di tengah laut yang hanya dapat diakses ketika air laut surut. Nama “Tanah Lot” berasal dari kata “tanah” yang berarti daratan dan “lot” atau “lod” yang berarti laut, yang secara harfiah menggambarkan lokasinya sebagai “daratan di tengah laut.”
                 Pura ini dibangun pada abad ke-16 oleh Dang Hyang Nirartha, seorang pendeta suci dari Majapahit yang menyebarkan ajaran Hindu di Bali. Ia memilih lokasi ini karena keindahan dan kekuatan spiritualnya, lalu mendirikan pura sebagai tempat pemujaan dewa laut atau Dewa Baruna. Hingga kini, Pura Tanah Lot tetap menjadi salah satu pura laut (sad kahyangan) yang menjaga keseimbangan spiritual di Pulau Bali.
@@ -295,10 +353,14 @@ const destinations = {
     {
       id: "kcjakarta",
       name: "Kampung Cina Jakarta",
+      thumbnail : "/assets/destinasi/culture/kampung-cina.jpg",
       image: "/assets/destinasi/culture/wisata/kampungcina.jpg",
       background: "/assets/destinasi/culture/wisata/kampungcina.jpg",
       location: "Cibubur, Jakarta Timur, DKI Jakarta",
-      open: "Setiap hari, 09.00 - 18.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "09:00",
+      openEnd: "18:00",
+      openTimezone: "WIB",
       price: "Rp25.000/orang",
       desc: `Kampung Cina Jakarta adalah salah satu kawasan wisata tematik yang menghadirkan suasana khas negeri Tiongkok di tengah hiruk-pikuk ibu kota Indonesia. Terletak di perumahan Kota Wisata, Cibubur, Jakarta Timur, kawasan ini dikenal sebagai destinasi wisata budaya dan kuliner yang menampilkan arsitektur oriental yang memukau serta suasana yang kental dengan nuansa tradisional Tionghoa.
                 Didirikan pada awal tahun 2000-an, Kampung Cina dibangun dengan konsep miniatur kota bergaya oriental yang memadukan keindahan arsitektur klasik Tiongkok, ornamen merah keemasan, lampion gantung, hingga jembatan melengkung di atas danau buatan yang indah. Saat memasuki area ini, pengunjung seolah dibawa ke suasana kota-kota tua di China seperti Beijing atau Shanghai versi klasik.
@@ -317,10 +379,14 @@ const destinations = {
     {
       id: "tamanim",
       name: "Taman Ismail Marzuki",
+      thumbnail : "/assets/destinasi/education/Taman-Ismail-Marzuki.jpg",
       image: "/assets/destinasi/education/wisata/marsuki.jpg",
       background: "/assets/destinasi/education/wisata/marsuki.jpg",
       location: "Cikini, Jakarta Pusat, DKI Jakarta",
-      open: "Setiap hari, 09.00 - 21.00",
+      openNote: "Setiap Hari",
+      openStart: "09:00",
+      openEnd: "21:00",
+      openTimezone: "WIB",
       price: "Gratis (beberapa acara berbayar)",
       desc: `Taman Ismail Marzuki (TIM) adalah pusat seni dan kebudayaan ternama yang terletak di Jalan Cikini Raya No. 73, Jakarta Pusat, dan menjadi salah satu ikon penting dalam perkembangan dunia seni Indonesia. Diresmikan pada 10 November 1968, taman budaya ini dinamai untuk mengenang Ismail Marzuki, komponis besar Indonesia yang telah menciptakan ratusan lagu perjuangan dan nasional yang melegenda, seperti Rayuan Pulau Kelapa dan Halo-Halo Bandung.
                 Sejak berdirinya, TIM telah menjadi wadah ekspresi dan kreativitas seniman dari berbagai bidang — mulai dari seni pertunjukan, musik, tari, teater, film, hingga seni rupa. Kawasan ini dulunya merupakan lokasi Kebun Binatang Cikini sebelum kemudian dialihfungsikan menjadi kompleks seni. Kini, setelah proses revitalisasi besar-besaran yang rampung pada tahun 2022, Taman Ismail Marzuki tampil dengan wajah baru yang lebih modern namun tetap mempertahankan ruh kebudayaan yang kuat.
@@ -335,10 +401,14 @@ const destinations = {
     {
       id: "tmii",
       name: "Taman Mini Indonesia Indah",
+      thumbnail : "/assets/destinasi/education/tmii.jpg",
       image: "/assets/destinasi/education/wisata/tmii.jpg",
       background: "/assets/destinasi/education/wisata/tmii.jpg",
       location: "Jakarta Timur, DKI Jakarta",
-      open: "Setiap hari, 07.00 - 17.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "07:00",
+      openEnd: "17:00",
+      openTimezone: "WIB",
       price: "Rp25.000/orang",
       desc: `Taman Mini Indonesia Indah (TMII) adalah salah satu destinasi wisata budaya dan edukasi paling ikonik di Indonesia, terletak di Jakarta Timur, di atas lahan seluas sekitar 150 hektare. Diresmikan pada tahun 1975 oleh Ibu Tien Soeharto, TMII dibangun dengan tujuan memperkenalkan dan melestarikan keberagaman budaya, adat, serta kekayaan alam Indonesia dalam satu kawasan miniatur yang indah.
                 Konsep utama Taman Mini Indonesia Indah adalah menghadirkan gambaran lengkap tentang Indonesia dari Sabang hingga Merauke, melalui replika rumah adat, pakaian tradisional, seni pertunjukan, hingga keragaman bahasa dan tradisi dari 38 provinsi di Tanah Air. Di kawasan ini terdapat Anjungan Daerah yang menampilkan arsitektur khas masing-masing provinsi lengkap dengan artefak, kerajinan tangan, dan pertunjukan seni tradisionalnya.
@@ -354,10 +424,14 @@ const destinations = {
     {
       id: "museumpki",
       name: "Museum Penghianatan Partai Komunis Indonesia (PKI)",
+      thumbnail : "/assets/destinasi/education/museumPki.jpg",
       image: "/assets/destinasi/education/wisata/Museum-PKI.jpg",
       background: "/assets/destinasi/education/wisata/Museum-PKI.jpg",
       location: "Lubang Buaya, Jakarta Timur, DKI Jakarta",
-      open: "Setiap hari, 08.00 - 16.00 WIB",
+      openNote: "Setiap Hari",
+      openStart: "08:00",
+      openEnd: "16:00",
+      openTimezone: "WIB",
       price: "Rp10.000/orang",
       desc: `Museum Pengkhianatan PKI atau dikenal juga sebagai Museum Pengkhianatan Partai Komunis Indonesia (PKI) adalah salah satu museum bersejarah yang terletak di Kompleks Monumen Pancasila Sakti, Lubang Buaya, Jakarta Timur. Museum ini dibangun untuk mengenang peristiwa kelam Gerakan 30 September 1965 (G30S/PKI), yaitu usaha kudeta yang dilakukan oleh Partai Komunis Indonesia terhadap pemerintahan Republik Indonesia.
                 Diresmikan pada tahun 1992, museum ini menjadi saksi sejarah sekaligus sarana edukasi bagi masyarakat tentang pentingnya menjaga keutuhan bangsa dan ideologi Pancasila. Bangunan museum berdiri megah di kawasan yang juga menjadi lokasi ditemukannya Lubang Buaya, tempat di mana tujuh perwira tinggi TNI Angkatan Darat menjadi korban penculikan dan pembunuhan.

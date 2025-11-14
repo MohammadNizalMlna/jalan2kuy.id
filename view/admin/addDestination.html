@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - destination - Admin - nature - add destination</title>
+    <title>jalan2kuy.id - Add Destination (Admin)</title>
+
     <link rel="stylesheet" href="/css/admin/addDestinasi.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
+    <!-- HEADER ADMIN -->
     <header class="admin-page-header">
         <button class="icon-btn back-btn" onclick="history.back()">
             <i class="fas fa-undo"></i>
@@ -24,71 +26,116 @@
         </div>
     </header>
 
+    <!-- FORM CONTAINER -->
     <div class="form-container">
         <form class="destination-form" id="destinationForm">
-            
+
+            <!-- THUMBNAIL -->
             <div class="form-item item-thumbnail">
                 <i class="fas fa-plus"></i> Add Thumbnail Image
-                <input type="file" name="thumbnail" accept="image/*" class="file-input">
+                <input type="file" id="thumbnail" accept="image/*" class="file-input">
             </div>
 
+            <!-- DESKRIPSI -->
             <div class="form-item item-deskripsi">
                 <label for="description">Deskripsi</label>
-                <textarea id="description" name="description" placeholder="Masukkan deskripsi panjang destinasi..."></textarea>
+                <textarea id="description" placeholder="Masukkan deskripsi panjang destinasi..."></textarea>
             </div>
 
+            <!-- GALERI GAMBAR -->
             <div class="form-item item-add-image">
                 <i class="fas fa-plus"></i> Add Image
-                <input type="file" name="image" accept="image/*" multiple class="file-input">
+                <input type="file" id="galleryImg" accept="image/*" multiple class="file-input">
             </div>
 
+            <!-- INFORMASI -->
             <div class="form-item item-info">
+
+                <!-- Lokasi -->
                 <div class="info-row">
                     <label for="lokasi">Lokasi Tempat</label>
-                    <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan lokasi destinasi..." required>
+                    <input type="text" id="lokasi" placeholder="Masukkan lokasi destinasi..." required>
                 </div>
 
+                <!-- Catatan Operasional -->
                 <div class="info-row">
-                    <label for="jam-buka">Jam Operasional</label>
+                    <label for="note">jam buka</label>
+                    <input type="text" id="note" placeholder="Contoh: Setiap Hari, 24 Jam, Tutup Hari Jumat">
+                </div>
+
+                <!-- Jam Operasional -->
+                <div class="info-row">
+                    <label for="jam-buka"></label>
                     <div class="jam-operasional">
-                        <input type="time" id="jam-buka" name="jam_buka" required>
+                        <input type="time" id="jam-buka">
                         <span>-</span>
-                        <input type="time" id="jam-tutup" name="jam_tutup" required>
+                        <input type="time" id="jam-tutup">
                     </div>
                 </div>
 
+                <!-- Zona Waktu -->
+                <div class="info-row">
+                    <label for="timezone"></label>
+                    <input type="text" id="timezone" placeholder="Contoh: WIB / WITA / WIT">
+                </div>
+
+                <!-- Harga -->
                 <div class="info-row">
                     <label for="harga">Harga Tiket Masuk (Rp)</label>
-                    <input type="number" id="harga" name="harga" placeholder="contoh: 25000" min="0" required>
+                    <input type="number" id="harga" placeholder="contoh: 25000" min="0" required>
                 </div>
             </div>
 
+            <!-- EVENT -->
             <div class="form-item item-event">
-                Event
+                <label for="event">Event</label>
+                <textarea id="event" placeholder="Masukkan deskripsi event (opsional)..."></textarea>
             </div>
 
+            <!-- SUBMIT -->
             <button type="submit" class="submit-button">
                 Tambah
             </button>
-
         </form>
     </div>
 
     <div id="footer"></div>
 
 <script>
+    
     fetch('/tamplate/footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 
     const params = new URLSearchParams(window.location.search);
     const category = params.get("category");
 
-    document.getElementById('destinationForm').addEventListener('submit', function (e) {e.preventDefault();
+    document.getElementById("destinationForm").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    if (category) {
-        window.location.href = `/view/admin/destinasi/categori.html?category=${category}`;
-    } else {
-        window.location.href = `/view/admin/destinasi/categori.html`;
-    }
+        // Kumpulkan data baru
+        const newData = {
+            id: "dest" + Date.now(),
+            name: "New Destination",
+            thumbnail: "",
+            image: "",                   
+            background: "",
+            desc: document.getElementById("description").value,
+            location: document.getElementById("lokasi").value,
+            openNote: document.getElementById("note").value,
+            openStart: document.getElementById("jam-buka").value,
+            openEnd: document.getElementById("jam-tutup").value,
+            openTimezone: document.getElementById("timezone").value,
+            price: "Rp" + document.getElementById("harga").value,
+            event: document.getElementById("event").value
+        };
+
+        console.log("DATA BARU:", newData);
+        alert("Destinasi berhasil ditambahkan! (simulasi)");
+
+        if (category) {
+            window.location.href = `/view/admin/destinasi/categori.html?category=${category}`;
+        } else {
+            window.location.href = `/view/admin/destinasi/categori.html`;
+        }
     });
 </script>
 
