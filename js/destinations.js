@@ -27,7 +27,7 @@ const allDestinations = {
                 Warga setempat turut menjaga kebersihan serta kelestariannya agar keindahan Weekuri tetap terpelihara untuk generasi berikutnya. Akses menuju Danau Weekuri kini semakin mudah dengan adanya jalan beraspal dari Tambolaka, ibu kota Kabupaten Sumba Barat Daya, yang dapat ditempuh sekitar 1–1,5 jam perjalanan.
                 Di sekitar kawasan danau juga sudah tersedia fasilitas sederhana seperti area parkir, tempat istirahat, gazebo bambu, serta tangga menuju air. Namun, suasana alami dan kesederhanaan inilah yang menjadi daya tarik utama Weekuri, membuat siapa pun yang datang merasa dekat dengan alam.
                 Dengan pesona warna air yang luar biasa, udara yang segar, serta keramahan masyarakat lokal, Danau Weekuri adalah surga tersembunyi di Sumba Barat Daya — tempat di mana keindahan alam, ketenangan jiwa, dan keaslian budaya berpadu menjadi satu pengalaman tak terlupakan.`,
-      event: "Tidak ada event di wisata ini"
+      event: ""
     },
     {
       id: "rinjani",
@@ -60,7 +60,7 @@ const allDestinations = {
                 Di balik pesonanya, Gunung Rinjani juga menjadi simbol keseimbangan antara manusia dan alam. 
                 Pemerintah bersama masyarakat sekitar terus berupaya menjaga kelestarian lingkungan gunung ini agar tetap lestari dan berkelanjutan.
                 Oleh karena itu, Gunung Rinjani bukan hanya sekadar objek wisata, tetapi juga warisan alam dan budaya Indonesia yang harus dijaga, dihormati, dan dilestarikan. Dengan pesonanya yang memikat, Rinjani menjadi bukti nyata keindahan dan kekayaan alam Nusantara yang tak ternilai harganya.`,
-      event: "Tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "merese",
@@ -85,7 +85,7 @@ const allDestinations = {
                 Bukit Merese juga sering menjadi lokasi acara pariwisata seperti Festival Bau Nyale, tradisi tahunan masyarakat Sasak yang mencari cacing laut sebagai simbol legenda Putri Mandalika. Akses menuju Bukit Merese sangat mudah — hanya sekitar 30 menit dari Bandara Internasional Lombok, dan sekitar 10 menit dari kawasan wisata Mandalika yang kini menjadi salah satu destinasi super prioritas nasional.
                 Fasilitas di sekitar area juga cukup memadai, dengan tersedianya area parkir, warung makan sederhana, serta pemandu lokal yang siap membantu pengunjung. Meskipun begitu, keaslian alam dan suasana tenangnya tetap terjaga, menjadikan Bukit Merese tempat sempurna untuk melepas penat dan menikmati keindahan alam Lombok dalam ketenangan.
                 Dengan perpaduan pesona laut, langit, dan padang hijau, Bukit Merese merupakan surga kecil di selatan Lombok — sebuah tempat di mana keindahan alam berpadu dengan budaya lokal, menghadirkan pengalaman wisata yang tak hanya indah dipandang mata, tetapi juga menenangkan hati.`,
-      event: "Tidak ada event diwisata ini"
+      event: ""
     }
   ],
 
@@ -110,7 +110,7 @@ const allDestinations = {
                 Candi ini sempat terlupakan selama berabad-abad setelah tertimbun abu vulkanik dan semak belukar, hingga akhirnya ditemukan kembali pada tahun 1814 oleh Thomas Stamford Raffles, Gubernur Jenderal Inggris di Jawa saat itu. Sejak saat itu, Borobudur mengalami beberapa tahap pemugaran besar, termasuk yang paling monumental dilakukan oleh pemerintah Indonesia dan UNESCO pada tahun 1975–1982.
                 Kini, Borobudur telah ditetapkan sebagai Situs Warisan Dunia oleh UNESCO sejak tahun 1991 karena nilai sejarah, budaya, dan arsitekturnya yang luar biasa. Selain menjadi objek wisata unggulan Indonesia, Borobudur juga berfungsi sebagai tempat ibadah dan perayaan keagamaan, terutama pada Hari Raya Waisak, yang setiap tahunnya menarik ribuan umat Buddha dari seluruh dunia.
                 Dengan kemegahan arsitektur, nilai spiritual, dan keindahan alam di sekitarnya, Candi Borobudur tidak hanya menjadi kebanggaan Indonesia, tetapi juga simbol perdamaian dan pencerahan bagi umat manusia. Keberadaannya menjadi bukti nyata bahwa peradaban Nusantara pernah mencapai tingkat kebudayaan tinggi yang sarat dengan filosofi, seni, dan kebijaksanaan spiritual yang tak lekang oleh waktu.`,
-      event: "Samadha Pranic Healing & Meditation 23-24 November 2025"
+      event: "yogaBorobudur"
     },
     {
       id: "prambanan",
@@ -132,7 +132,7 @@ const allDestinations = {
                 Di dalam Candi Siwa, misalnya, terdapat arca Siwa Mahadewa yang berdiri megah, melambangkan kekuatan dan kebijaksanaan tertinggi dalam ajaran Hindu. Keindahan arsitektur Prambanan tidak hanya terlihat pada bangunannya, tetapi juga pada penataan ruangnya yang simetris dan harmonis, mencerminkan tatanan kosmos menurut kepercayaan Hindu.
                 Setelah sempat mengalami kerusakan akibat gempa besar di masa lampau, Prambanan mulai dipugar secara bertahap sejak tahun 1930-an dan terus dilestarikan hingga kini. Pada tahun 1991, Candi Prambanan resmi ditetapkan sebagai Situs Warisan Dunia oleh UNESCO, bersama dengan Candi Borobudur. Kini, Prambanan menjadi salah satu destinasi wisata budaya paling populer di Indonesia dan dunia.
                 Setiap tahun, ribuan wisatawan datang untuk mengagumi kemegahannya, terutama saat digelar pertunjukan Sendratari Ramayana, sebuah pementasan seni yang menggabungkan tari, musik, dan kisah klasik Hindu di pelataran candi dengan latar megah bangunan kuno yang diterangi cahaya malam. Dengan pesona sejarah, nilai spiritual, dan keindahan arsitektur yang luar biasa, Candi Prambanan bukan hanya warisan budaya bangsa, tetapi juga lambang harmoni antara manusia, seni, dan keagungan Sang Pencipta — sebuah mahakarya yang membuktikan kejayaan peradaban Hindu di tanah Jawa.`,
-      event: "Sendratari Ramayana - Setiap Sabtu Malam"
+      event: "ramayana"
     },
     {
       id: "monas",
@@ -154,7 +154,7 @@ const allDestinations = {
                 Lebih dari sekadar bangunan monumental, Monas memiliki nilai simbolis, sejarah, dan edukatif yang sangat tinggi. Bentuk keseluruhan monumen mencerminkan filosofi “lingga dan yoni”, simbol kesuburan dan keseimbangan antara unsur laki-laki dan perempuan dalam budaya Indonesia, yang sekaligus melambangkan keberlangsungan hidup bangsa. Kawasan di sekeliling Monas kini menjadi taman kota terbuka yang asri dan menjadi ruang publik favorit warga Jakarta untuk berolahraga, bersantai, hingga menikmati suasana kota.
                 Di area sekitar monumen juga sering digelar berbagai acara nasional, seperti upacara peringatan Hari Kemerdekaan, festival budaya, dan konser rakyat. Monas tidak hanya menjadi daya tarik wisata sejarah, tetapi juga pusat edukasi dan identitas nasional yang mengingatkan generasi muda akan perjuangan dan pengorbanan para pahlawan. Lokasinya yang strategis membuat Monas mudah dijangkau dari berbagai arah, baik menggunakan kendaraan pribadi maupun transportasi umum seperti TransJakarta dan MRT.
                 Sebagai salah satu landmark paling terkenal di Indonesia, Monas menjadi destinasi wajib bagi wisatawan yang berkunjung ke Jakarta. Dengan kemegahan arsitektur, keindahan taman di sekitarnya, serta nilai historis yang mendalam, Monumen Nasional (Monas) bukan hanya sekadar monumen, tetapi simbol keabadian semangat kemerdekaan dan kebanggaan bangsa Indonesia yang terus menyala di hati setiap warga negara.`,
-      event: "Tidak ada event di wisata ini"
+      event: ""
     }
   ],
 
@@ -179,7 +179,7 @@ const allDestinations = {
                 Aktivitas populer di sini antara lain trekking di Pulau Rinca dan Pulau Komodo untuk mengamati komodo di alam liar, menikmati panorama spektakuler dari Puncak Pulau Padar, hingga menyelam di lokasi-lokasi kelas dunia seperti Manta Point dan Batu Bolong, yang dikenal dengan arus lautnya yang kuat namun penuh kehidupan laut.
                 Di sekitar kawasan taman nasional, terdapat pula desa-desa tradisional seperti Desa Komodo dan Desa Rinca, tempat wisatawan dapat melihat langsung kehidupan masyarakat setempat yang masih mempertahankan budaya dan tradisi mereka. Dengan segala pesonanya, Taman Nasional Komodo bukan hanya kebanggaan Indonesia, tetapi juga ikon pariwisata internasional yang menegaskan pentingnya menjaga hubungan harmonis antara manusia dan alam.
                 Setiap langkah di kawasan ini menghadirkan pengalaman tak terlupakan — dari menyaksikan langsung komodo yang gagah, menyelam bersama ikan pari manta, hingga menikmati senja di atas kapal pinisi yang berlayar di antara pulau-pulau eksotis — menjadikan Taman Nasional Komodo benar-benar layak disebut sebagai salah satu keajaiban alam dunia yang hidup.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "tnwaykambas",
@@ -202,7 +202,7 @@ const allDestinations = {
                 Selain Pusat Konservasi Gajah, di dalam taman nasional juga terdapat Pusat Konservasi Badak Sumatra (Sumatran Rhino Sanctuary), yang berfokus pada penyelamatan dan pengembangbiakan badak Sumatra — salah satu mamalia paling langka di dunia. Wisatawan yang datang ke Way Kambas dapat merasakan pengalaman unik menyusuri hutan menggunakan kendaraan terbuka atau perahu kecil di sungai Way Kanan untuk mengamati flora dan fauna secara langsung.
                 Tak hanya itu, kegiatan edukasi dan ekowisata di kawasan ini juga melibatkan masyarakat sekitar, sehingga memberikan manfaat ekonomi sekaligus menumbuhkan kesadaran pentingnya menjaga alam. Dengan perpaduan antara keindahan alam liar, nilai konservasi, dan edukasi lingkungan, Taman Nasional Way Kambas menjadi destinasi wisata yang tidak hanya memanjakan mata, tetapi juga menginspirasi tentang arti pentingnya pelestarian satwa dan alam Indonesia.
                 Setiap langkah di taman ini memberikan pengalaman mendalam tentang bagaimana manusia dapat hidup selaras dengan alam, menjadikan Way Kambas bukan sekadar tempat wisata, melainkan warisan alam berharga yang mencerminkan semangat konservasi Indonesia.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "tnleuser",
@@ -226,7 +226,7 @@ const allDestinations = {
                 Wisata di taman nasional ini dikembangkan dengan prinsip ekowisata berkelanjutan, di mana pengunjung diajak tidak hanya menikmati keindahan alam, tetapi juga memahami pentingnya menjaga lingkungan dan mendukung kehidupan masyarakat sekitar. Kawasan Bukit Lawang dan Tangkahan menjadi dua gerbang utama wisatawan untuk menjelajahi taman ini.
                 Di Bukit Lawang, wisatawan dapat melihat pusat rehabilitasi orangutan dan menjelajahi hutan tropis yang masih perawan, sedangkan di Tangkahan, pengunjung bisa berinteraksi dengan gajah jinak dan menikmati pemandian alami di sungai jernih di tengah hutan.
                 Dengan kombinasi antara keindahan alam yang megah, kekayaan biodiversitas, dan nilai konservasi yang tinggi, Taman Nasional Gunung Leuser adalah salah satu permata alam Indonesia yang tak ternilai — tempat di mana manusia bisa belajar tentang keseimbangan, keanekaragaman, dan kekuatan alam yang sesungguhnya.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     }
   ],
 
@@ -253,7 +253,7 @@ const allDestinations = {
                 Aktivitas wisata di sini berfokus pada ekowisata dan konservasi laut, di mana pengunjung diajak untuk menikmati keindahan alam tanpa merusaknya. Selain snorkeling dan diving, wisatawan juga dapat menjelajahi kawasan sekitar seperti Taman Nasional Manusela, yang menawarkan keanekaragaman flora dan fauna endemik, serta Gua Laut Lisar Bahari yang menakjubkan.
                 Pantai Ora bukan sekadar tempat wisata, melainkan juga simbol keindahan dan ketenangan Maluku, tempat di mana laut, langit, dan gunung berpadu dalam harmoni sempurna. Setiap detik yang dihabiskan di sini menghadirkan pengalaman spiritual tersendiri — suara ombak yang lembut, angin laut yang sejuk, serta panorama alam yang tiada duanya menjadikan Pantai Ora bagaikan potongan kecil surga di timur Indonesia.
                 Keindahan dan keaslian Pantai Ora tidak hanya menjadi kebanggaan Maluku, tetapi juga salah satu bukti nyata betapa kaya dan menakjubkannya alam Indonesia yang patut dijaga dan dilestarikan.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "pantaigatra",
@@ -278,7 +278,7 @@ const allDestinations = {
                 Pihak pengelola lokal juga menyediakan fasilitas sederhana seperti area parkir, pos registrasi, tempat istirahat, dan area camping yang nyaman. Keberhasilan pengelolaan Pantai Gatra menjadi contoh nyata bagaimana pariwisata dapat berjalan seiring dengan pelestarian lingkungan. Wisatawan tidak hanya diajak menikmati keindahan alam, tetapi juga belajar untuk menghargai dan menjaga ekosistem pesisir.
                 Selain itu, masyarakat sekitar ikut diberdayakan dalam kegiatan wisata ini, mulai dari menjadi pemandu, penjaga kawasan, hingga penyedia jasa logistik bagi pengunjung. Dengan perpaduan antara keindahan alam, kesadaran lingkungan, dan keterlibatan masyarakat, Pantai Gatra bukan hanya sekadar tempat rekreasi, tetapi juga simbol keberhasilan ekowisata berbasis komunitas di Indonesia. Suasana tenang, udara segar, 
                 serta pemandangan laut yang mempesona menjadikan Pantai Gatra destinasi sempurna bagi siapa pun yang ingin merasakan keindahan alam sejati sekaligus berkontribusi dalam menjaga kelestarian bumi.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "pantaitanjungaan",
@@ -301,7 +301,7 @@ const allDestinations = {
                 Setiap tahun, ribuan masyarakat dan wisatawan datang ke Tanjung Aan untuk mengikuti ritual pencarian nyale di pesisir pantai, menjadikannya perayaan budaya yang penuh warna dan kebersamaan. Selain nilai budaya, kawasan Tanjung Aan juga berkembang menjadi bagian penting dari destinasi wisata super prioritas Mandalika Resort Area, dengan pembangunan yang tetap memperhatikan kelestarian lingkungan.
                 Akses menuju pantai ini sangat mudah — hanya sekitar 15 menit dari Sirkuit Mandalika dan 30 menit dari Bandara Internasional Lombok Zainuddin Abdul Madjid. Di sekitar pantai telah tersedia fasilitas pendukung seperti area parkir, warung makan, gazebo bambu, serta penyewaan payung pantai dan papan selancar.
                 Meski fasilitasnya semakin lengkap, suasana alami dan kebersihan pantai tetap terjaga berkat kerja sama masyarakat lokal dan pengelola wisata. Dengan kombinasi antara keindahan alam, kekayaan budaya, serta keramahan masyarakatnya, Pantai Tanjung Aan adalah salah satu permata wisata Lombok Selatan — tempat di mana langit biru, laut jernih, dan legenda setempat berpadu menciptakan pengalaman yang tak terlupakan bagi siapa pun yang datang berkunjung.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     }
   ],
 
@@ -326,7 +326,7 @@ const allDestinations = {
                 Di sini, pengunjung juga bisa mencoba berbagai aktivitas seru seperti berperahu mengelilingi danau, memberi makan ikan, atau belajar membuat makanan tradisional di area edukasi anak. Bagi yang ingin menikmati suasana lebih tenang, tersedia gazebo dan tempat duduk di tepi danau, lengkap dengan panorama alam yang menyejukkan mata.
                 Floating Market Lembang juga menjadi tempat favorit untuk acara keluarga, foto prewedding, hingga kunjungan rombongan sekolah karena menggabungkan unsur hiburan, edukasi, dan budaya dalam satu tempat. Lokasinya sangat strategis, hanya sekitar 15 menit dari pusat Kota Lembang dan mudah dijangkau dari Bandung melalui jalur Setiabudi atau Punclut.
                 Dengan konsep wisata yang inovatif dan fasilitas lengkap seperti area parkir luas, mushola, restoran, dan toko oleh-oleh, Floating Market Lembang menjadi ikon wisata modern yang tetap mempertahankan sentuhan tradisional Sunda. Tempat ini tidak hanya menghadirkan pengalaman kuliner di atas air, tetapi juga mengajarkan pentingnya menghargai alam, budaya, dan kebersamaan — menjadikannya salah satu destinasi wisata terbaik yang wajib dikunjungi saat berlibur ke Bandung dan sekitarnya.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "puratanahlot",
@@ -348,7 +348,7 @@ const allDestinations = {
                 Wisatawan dapat menikmati panorama laut lepas, menyaksikan upacara keagamaan, atau sekadar berjalan di sepanjang tebing yang menghadap ke Samudra Hindia. Kawasan ini dikelola dengan baik untuk tetap menjaga kesucian pura sambil memberikan pengalaman berwisata yang nyaman bagi pengunjung. Saat upacara keagamaan berlangsung, suasana Tanah Lot berubah menjadi sangat khusyuk dan sakral, dihiasi sesajen, dupa, dan gamelan Bali yang berpadu dengan deburan ombak — menghadirkan pengalaman spiritual yang mendalam.
                 Keindahan alam, nilai sejarah, serta makna spiritual yang terkandung di dalamnya menjadikan Pura Tanah Lot bukan sekadar destinasi wisata, tetapi juga simbol warisan budaya Bali yang mendunia. Setiap sudutnya mengajarkan tentang keseimbangan hidup antara manusia, alam, dan Tuhan
                 konsep yang dikenal sebagai Tri Hita Karana, yang menjadi filosofi utama kehidupan masyarakat Bali. Dengan segala pesona dan maknanya, Pura Tanah Lot benar-benar layak disebut sebagai permata spiritual di tepi Samudra Hindia yang tidak hanya memanjakan mata, tetapi juga menyentuh jiwa setiap pengunjungnya.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "kcjakarta",
@@ -371,7 +371,7 @@ const allDestinations = {
                 Selain itu, suasana malam hari di Kampung Cina juga sangat memikat, dengan gemerlap lampion merah yang memantulkan cahaya di permukaan air dan menciptakan nuansa romantis yang cocok untuk pasangan maupun keluarga. Lokasinya yang strategis — hanya sekitar 30 menit dari pusat Kota Jakarta — menjadikannya salah satu destinasi favorit warga ibu kota untuk rekreasi singkat di akhir pekan.
                 Lebih dari sekadar tempat wisata, Kampung Cina Jakarta juga menjadi simbol kerukunan dan keberagaman budaya Indonesia, di mana pengunjung dari berbagai latar belakang dapat berkumpul, menikmati kuliner, serta menghargai warisan budaya yang indah dan penuh warna.
                 Dengan keunikan konsepnya yang memadukan budaya, hiburan, dan edukasi, Kampung Cina Jakarta layak disebut sebagai “miniatur Tiongkok di jantung ibu kota” yang memikat hati setiap pengunjungnya.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     }
   ],
 
@@ -396,7 +396,7 @@ const allDestinations = {
                 Suasana di kawasan ini sangat hidup, terutama di malam hari ketika gedung-gedungnya diterangi cahaya lampu yang menambah kesan artistik. Pengunjung dapat berjalan santai di area plaza terbuka sambil menikmati karya instalasi publik atau bersantai di kafe dan ruang kreatif yang tersebar di sekitar kompleks. Revitalisasi TIM juga menghadirkan konsep “Pusat Seni dan Literasi Modern”,
                 di mana teknologi, seni, dan budaya berpadu dalam ruang yang ramah bagi semua kalangan, mulai dari pelajar hingga seniman profesional. Lokasinya yang strategis di pusat kota membuat TIM mudah diakses dengan berbagai moda transportasi publik, seperti TransJakarta dan MRT.
                 Sebagai ikon kebudayaan Jakarta dan Indonesia, Taman Ismail Marzuki bukan hanya tempat untuk menonton seni, tetapi juga ruang untuk menyatu, berdialog, dan berkreasi bersama melalui bahasa universal seni. Dengan nilai sejarah, peran edukatif, dan kontribusinya terhadap dunia budaya nasional, TIM layak disebut sebagai jantung seni Indonesia — tempat di mana ide, ekspresi, dan imajinasi berkembang tanpa batas di tengah denyut kehidupan metropolitan.`,
-      event: "tidak ada event diwisata ini"
+      event: ""
     },
     {
       id: "tmii",
@@ -419,7 +419,7 @@ const allDestinations = {
                 TMII juga menjadi lokasi penyelenggaraan berbagai acara budaya, festival daerah, dan perayaan nasional seperti Hari Kemerdekaan, Pekan Budaya Nusantara, dan Festival Kesenian Tradisional. Suasana taman yang hijau dengan pepohonan rindang, taman bunga, serta area bermain keluarga menjadikannya tempat yang ideal untuk rekreasi sekaligus edukasi
                 Dalam beberapa tahun terakhir, TMII mengalami revitalisasi besar-besaran untuk menghadirkan wajah baru yang lebih modern namun tetap mempertahankan nilai-nilai kebangsaan dan tradisi. Kini, pengunjung dapat menikmati fasilitas modern seperti area digital interaktif, amfiteater budaya, restoran tematik, serta sarana transportasi ramah lingkungan yang memudahkan eksplorasi kawasan.
                 Dengan konsep yang terus berkembang, TMII bukan hanya menjadi ikon wisata Jakarta, tetapi juga simbol persatuan dan kebanggaan bangsa Indonesia, yang menegaskan semboyan “Bhinneka Tunggal Ika” — berbeda-beda tetapi tetap satu jua. Mengunjungi TMII berarti menjelajahi miniatur Indonesia yang sesungguhnya, di mana setiap sudutnya menggambarkan keindahan, keberagaman, dan semangat persaudaraan yang menjadi jati diri bangsa.`,
-      event: "Sorak sorai fest 2026"
+      event: "sorai"
     },
     {
       id: "museumpki",
@@ -442,7 +442,7 @@ const allDestinations = {
                 Melalui berbagai koleksinya, museum ini berusaha menanamkan kesadaran nasionalisme dan semangat cinta tanah air agar peristiwa serupa tidak terulang kembali. Setiap sudut ruangan dirancang dengan narasi yang kuat untuk mengajak pengunjung memahami konteks sejarah secara mendalam — mulai dari latar belakang munculnya PKI, metode perekrutan dan penyebaran ideologi, hingga dampak sosial dan politik yang ditimbulkan.
                 Tak jauh dari bangunan utama, terdapat pula Monumen Pancasila Sakti, Rumah Penyiksaan, Sumur Lubang Buaya, serta patung tujuh pahlawan revolusi yang gugur pada peristiwa tersebut, menjadikan kawasan ini sebagai kompleks peringatan sejarah yang lengkap.
                 Museum ini sering menjadi tujuan kunjungan sekolah, instansi pemerintah, dan wisatawan lokal yang ingin memahami perjalanan bangsa Indonesia dalam mempertahankan ideologi dan kedaulatan negara. Dengan perpaduan antara nilai sejarah, nasionalisme, dan edukasi, Museum Pengkhianatan PKI bukan hanya tempat mengenang masa lalu, tetapi juga ruang pembelajaran tentang pentingnya menjaga persatuan, menolak paham radikal, serta meneguhkan semangat kebangsaan Indonesia yang berlandaskan Pancasila.`,
-      event: "tidak ada event diwisata ini"
-    }
+      event: ""
+    },
   ]
 };

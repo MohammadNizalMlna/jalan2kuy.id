@@ -12,11 +12,14 @@
 
 <div id="navbar"></div>
 
+<button class="add-event-floating" onclick="window.location.href='/view/admin/event/addEvent.html'">
+        <i class="fa-solid fa-plus"></i> Add Event
+</button>
+
 <section class="event-section">
 
   <div class="event-header">
     <h2>Date Event</h2>
-
     <div class="date-inputs">
       <input type="text" id="startDate" class="date-field" placeholder="00/00/0000"
             onfocus="(this.type='date')" 
@@ -40,9 +43,7 @@
 <script src="/js/eventLogic.js"></script>
 
 <script>
-  fetch('/tamplate/navbar.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('navbar').innerHTML = html);
+  fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
 
   fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
 </script>

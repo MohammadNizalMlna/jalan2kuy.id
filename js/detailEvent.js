@@ -1,11 +1,11 @@
 const events = [
   {
-    id: "borobudur",
+    id: "yogaBorobudur",
     title: "Sambut energi positif di tengah keagungan Candi Borobudur",
     location: "Borobudur Cultural Center, Candi Borobudur",
-    date: "22 Agst - 28 Des 2025",
+    date: "22 Agustus 2025 - 28 Desember 2025",
     image: "/assets/destinasi/candi.jpg",
-    description: "Ruang penyembuhan dan mediasi di sekitar Borobudur",
+    description: "Sambut energi positif di tengah keagungan Candi Borobudur",
     fullDescription:`
     Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. 
     "Samadha" (Samadhi) merupakan istilah dalam praktik meditasi yang merujuk pada kondisi konsentrasi penuh dan ketenangan mendalam, sementara Pranic Healing adalah teknik penyembuhan yang menggunakan energi prana atau energi vital. 
@@ -26,9 +26,9 @@ const events = [
     id: "ramayana",
     title: "Sendratari Ramayana Prambanan",
     location: "Gedung Trimurti, Candi Prambanan",
-    date: "1 November 2025 – 31 Desember 2025",
+    date: "1 November 2025 - 31 Desember 2025",
     image: "/assets/destinasi/komodo.png",
-    description: "Pertunjukan budaya spektakuler di kompleks Candi Prambanan.",
+    description: "Sendratari Ramayana Prambanan.",
     fullDescription: `
     Persembahan budaya yang megah, Sendratari Ramayana Prambanan adalah sebuah mahakarya yang menawan.
     Di tengah keagungan Candi Prambanan yang spiritual, epos kuno Ramayana dihidupkan kembali melalui tarian gemulai,
@@ -51,9 +51,9 @@ const events = [
     id: "sorai",
     title: "Sorak Sorai Fest (Coming soon)",
     location: "Taman Mini Indonesia Indah",
-    date: "30 Des 2025 - 1 Jan 2026",
+    date: "30 Desember 2025 - 1 Januari 2026",
     image: "/assets/destinasi/pantai.jpg",
-    description: "Festifal akhir tahun yang biasanya diselenggarakan TMII",
+    description: "Sorak Sorai Fest 2026 (Coming soon)",
     fullDescription:`
     Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. 
     Festival ini biasanya berlangsung di Taman Mini Indonesia Indah (TMII) saat pergantian tahun, menawarkan hiburan untuk pengunjung dari berbagai kalangan. Festival yang biasanya diselenggarakan di Taman Mini Indonesia Indah (TMII) menjelang pergantian tahun. Dengan konsep hiburan keluarga dan pesta rakyat, Sorak Sorai Fest menjadi salah satu agenda tahunan yang paling dinanti oleh masyarakat Jakarta untuk merayakan malam tahun baru dalam suasana penuh warna dan kebersamaan.
