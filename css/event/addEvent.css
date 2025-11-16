@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/gambar/bgfix2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.form-container {
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.event-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 90%;
+    max-width: 1000px;
+}
+
+/* Basic item style */
+.form-item {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Upload Image */
+.item-image {
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+}
+
+.item-image i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Short & Full description */
+.item-short textarea,
+.item-full textarea,
+.item-info textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    resize: vertical;
+}
+
+.item-info input {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+/* Submit Button */
+.submit-btn {
+    grid-column: 1 / -1;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #349c8b;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #2d7f6f;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .event-form {
+        grid-template-columns: 1fr;
+    }
+}
