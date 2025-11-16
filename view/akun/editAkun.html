@@ -1,160 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Account</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #e5e5e5;
-    }
-
-    /* Header */
-    .header {
-      background-color: #185f58;
-      color: white;
-      text-align: center;
-      padding: 30px 0 20px;
-      position: relative;
-    }
-
-    .header .back {
-      position: absolute;
-      left: 20px;
-      top: 25px;
-      font-size: 26px;
-      cursor: pointer;
-      color: white;
-      transition: 0.2s;
-    }
-
-    .header .back:hover {
-      color: #cfe7e4;
-    }
-
-    .header .icon {
-      font-size: 60px;
-      margin-bottom: 10px;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 600;
-    }
-
-    /* Form */
-    .form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 0;
-    }
-
-    .form-box {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      width: 300px;
-    }
-
-    .form-box input[type="text"],
-    .form-box input[type="email"] {
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      text-align: center;
-      background-color: #c9c1c1;
-    }
-
-    /* Jenis Kelamin */
-    .gender-section {
-      background-color: #c9c1c1;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .gender-section label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    .radio-group {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .radio-group label {
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    /* Tombol Save */
-    .save-btn {
-      background-color: #1b7a93;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 0;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .save-btn:hover {
-      background-color: #166a82;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Account</title>
+    <link rel="stylesheet" href="/css/akun/editAkun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-  <header class="header">
+<header class="header">
     <i class="fa-solid fa-arrow-left back" id="backBtn"></i>
     <i class="fa-solid fa-user icon"></i>
     <h1>Edit Account</h1>
-  </header>
+</header>
 
-  <main class="form-container">
+<main class="form-container">
     <form id="editForm" class="form-box">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Masukkan Password" required>
 
-      <div class="gender-section">
-        <label>Jenis Kelamin</label>
-        <div class="radio-group">
-          <label><input type="radio" name="gender" value="Laki-laki" required> Laki-laki</label>
-          <label><input type="radio" name="gender" value="Perempuan" required> Perempuan</label>
+        <div class="gender-section">
+            <label>Jenis Kelamin</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="Laki-laki" required> Laki-laki</label>
+                <label><input type="radio" name="gender" value="Perempuan" required> Perempuan</label>
+            </div>
         </div>
-      </div>
 
-      <button type="submit" class="save-btn">Save</button>
+        <button type="submit" class="save-btn">Save</button>
     </form>
-  </main>
+</main>
 
-  <script>
-    // tombol kembali
-    document.getElementById("backBtn").addEventListener("click", function() {
-      history.back();
-    });
+<script>
+    document.getElementById("backBtn").onclick = () => history.back();
 
-    // tombol save
     document.getElementById("editForm").addEventListener("submit", function(event) {
-      event.preventDefault(); 
-      alert("Profil telah diperbarui!");
-      window.location.href = "/view/admin/homepageAdmin.html"; 
+        event.preventDefault();
+        alert("Profil telah diperbarui!");
+        window.location.href = "/view/admin/homepageAdmin.html";
     });
-  </script>
+</script>
 
 </body>
 </html>

@@ -3,47 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - account - buat akun baru</title>
+    <title>jalan2kuy.id - Buat Akun Baru</title>
     <link rel="stylesheet" href="/css/akun/register.css">
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <img src="/assets/gambar/icon/logo.png" alt="Logo jalan2kuy.id">
-        </div>
-        <button class="back-btn" id="backButton">
-            <img src="/assets/gambar/icon/return.png" alt="kembali">
-        </button>
-    </header>
 
-    <div class="form-container">
-        <h1>Buat Akun Baru</h1>
-        <form id="registerForm"> 
-            <input type="email" placeholder="Email" required>
-            <input type="text" placeholder="Username" required>
-            <input type="password" placeholder="Kata Sandi" required>
-            <input type="password" placeholder="Konfirmasi Kata Sandi" required>
-            <button type="submit">Daftar</button>
-        </form>
+<header class="navbar">
+    <button class="back-btn" id="backButton">
+        <img src="/assets/gambar/icon/return.png" alt="kembali">
+    </button>
+
+    <div class="logo">
+        <img src="/assets/gambar/icon/logo.png" alt="Logo jalan2kuy.id">
     </div>
+</header>
 
-    <script>
-        document.getElementById('backButton').addEventListener('click', function() {
-            if (document.referrer) {
-                window.history.back();
-            } else {
-                window.location.href = "#"; 
-            }
-        });
+<div class="form-container">
+    <h1>Buat Akun Baru</h1>
 
-        const form = document.getElementById('registerForm');
-        
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const halamanTujuan = "/view/akun/login.html"; 
-            
-            window.location.href = halamanTujuan;
-        });
-    </script>
+    <form id="registerForm">
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Kata Sandi" required>
+        <input type="password" placeholder="Konfirmasi Kata Sandi" required>
+
+        <button type="submit">Daftar</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('backButton').addEventListener('click', function () {
+        if (document.referrer) {
+            window.history.back();
+        } else {
+            window.location.href = "/view/akun/login.html";
+        }
+    });
+
+    const form = document.getElementById('registerForm');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        window.location.href = "/view/akun/login.html";
+    });
+</script>
+
 </body>
 </html>

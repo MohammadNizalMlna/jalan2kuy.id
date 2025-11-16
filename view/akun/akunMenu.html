@@ -8,124 +8,93 @@
 </head>
 <body>
 
-    <header class="header-bar">
-        <button class="icon-btn back-btn" id="backButton">
-            <img src="/assets/gambar/icon/return.png" alt="Kembali"> 
-        </button>
-        
-        <div class="header-content-inner">
-            <div class="title-container">
-                <div class="account-icon">
-                    <img src="/assets/gambar/icon/acount.png" alt="Ikon Akun"> 
-                </div>
-                <h1>Account</h1>
-            </div>
-        </div>
-    </header>
+<header class="header-bar">
+    <button class="icon-btn back-btn" id="backButton">
+        <img src="/assets/gambar/icon/return.png" alt="Kembali">
+    </button>
 
-    <div class="main-wrapper-content"> 
-        <div class="content-area">
-            <div class="profile-card">
-                <div class="info-item">Name</div>
-                <div class="info-item">username</div>
-                <div class="info-item">email</div>
-                <div class="info-item">Jenis Kelamin</div>
-                <button class="action-btn edit-btn" id="editProfileButton">Edit Profile</button>
-                <button class="action-btn logout-btn" id="logoutButton">Logout</button>
-                <button class="action-btn delete-btn" id="deleteButton">Delete Account</button>
+    <div class="header-content-inner">
+        <div class="title-container">
+            <div class="account-icon">
+                <img src="/assets/gambar/icon/acount.png" alt="Ikon Akun">
             </div>
+            <h1>Account</h1>
         </div>
     </div>
+</header>
 
-    <div id="logoutModal" class="modal">
-        <div class="modal-content">
-            <p>Apakah anda yakin untuk logout Akun?</p>
-            <div class="modal-actions">
-                <button id="confirmLogoutYes" class="modal-btn yes-btn">Yes</button>
-                <button id="confirmLogoutNo" class="modal-btn no-btn">NO</button>
-            </div>
+<div class="main-wrapper-content">
+    <div class="content-area">
+        <div class="profile-card">
+            <div class="info-item">Name</div>
+            <div class="info-item">Username</div>
+            <div class="info-item">Email</div>
+            <div class="info-item">Password</div>
+            <div class="info-item">Jenis Kelamin</div>
+
+            <button class="action-btn edit-btn" id="editProfileButton">Edit Profile</button>
+            <button class="action-btn logout-btn" id="logoutButton">Logout</button>
+            <button class="action-btn delete-btn" id="deleteButton">Delete Account</button>
         </div>
     </div>
+</div>
 
-    <!-- Modal Delete -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <p>Apakah anda yakin ingin menghapus Akun anda secara permanen?</p>
-            <div class="modal-actions">
-                <button id="confirmDeleteYes" class="modal-btn yes-btn">Yes</button>
-                <button id="confirmDeleteNo" class="modal-btn no-btn">NO</button>
-            </div>
+<!-- Modal Logout -->
+<div id="logoutModal" class="modal">
+    <div class="modal-content">
+        <p>Apakah anda yakin untuk logout Akun?</p>
+        <div class="modal-actions">
+            <button id="confirmLogoutYes" class="modal-btn yes-btn">Yes</button>
+            <button id="confirmLogoutNo" class="modal-btn no-btn">NO</button>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const backButton = document.getElementById('backButton');
-            const editProfileButton = document.getElementById('editProfileButton');
-            const logoutButton = document.getElementById('logoutButton');
-            const logoutModal = document.getElementById('logoutModal');
-            const confirmLogoutYes = document.getElementById('confirmLogoutYes');
-            const confirmLogoutNo = document.getElementById('confirmLogoutNo');
-            const deleteButton = document.getElementById('deleteButton');
-            const deleteModal = document.getElementById('deleteModal');
-            const confirmDeleteYes = document.getElementById('confirmDeleteYes');
-            const confirmDeleteNo = document.getElementById('confirmDeleteNo');
+<!-- Modal Delete -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p>Apakah anda yakin ingin menghapus akun anda?</p>
+        <div class="modal-actions">
+            <button id="confirmDeleteYes" class="modal-btn yes-btn">Yes</button>
+            <button id="confirmDeleteNo" class="modal-btn no-btn">NO</button>
+        </div>
+    </div>
+</div>
 
-            // Tombol Kembali
-            if (backButton) {
-                backButton.addEventListener('click', function() {
-                    if (document.referrer) {
-                        window.history.back();
-                    } else {
-                        window.location.href = "/view/admin/homepageAdmin.html"; 
-                    }
-                });
-            }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
-            // ✅ Tombol Edit Profile
-            if (editProfileButton) {
-                editProfileButton.addEventListener('click', function() {
-                    window.location.href = "/view/akun/editAkun.html"; 
-                });
-            }
+    const backButton = document.getElementById('backButton');
+    const editProfileButton = document.getElementById('editProfileButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const logoutModal = document.getElementById('logoutModal');
+    const confirmLogoutYes = document.getElementById('confirmLogoutYes');
+    const confirmLogoutNo = document.getElementById('confirmLogoutNo');
+    const deleteButton = document.getElementById('deleteButton');
+    const deleteModal = document.getElementById('deleteModal');
+    const confirmDeleteYes = document.getElementById('confirmDeleteYes');
+    const confirmDeleteNo = document.getElementById('confirmDeleteNo');
 
-            if (logoutButton) {
-                logoutButton.addEventListener('click', function() {
-                    logoutModal.style.display = 'block';
-                });
-            }
+    backButton.onclick = () => window.history.back();
 
-            confirmLogoutNo.addEventListener('click', function() {
-                logoutModal.style.display = 'none';
-            });
+    editProfileButton.onclick = () => {
+        window.location.href = "/view/akun/editAkun.html";
+    };
 
-            confirmLogoutYes.addEventListener('click', function() { 
-                window.location.href = "/view/homepage.html"; 
-            });
+    logoutButton.onclick = () => logoutModal.style.display = "block";
+    confirmLogoutNo.onclick = () => logoutModal.style.display = "none";
+    confirmLogoutYes.onclick = () => window.location.href = "/view/homepage.html";
 
-            if (deleteButton) {
-                deleteButton.addEventListener('click', function() {
-                    deleteModal.style.display = 'block';
-                });
-            }
+    deleteButton.onclick = () => deleteModal.style.display = "block";
+    confirmDeleteNo.onclick = () => deleteModal.style.display = "none";
+    confirmDeleteYes.onclick = () => window.location.href = "/view/homepage.html";
 
-            confirmDeleteNo.addEventListener('click', function() {
-                deleteModal.style.display = 'none';
-            });
+    window.onclick = function(event) {
+        if (event.target === logoutModal) logoutModal.style.display = "none";
+        if (event.target === deleteModal) deleteModal.style.display = "none";
+    }
+});
+</script>
 
-            confirmDeleteYes.addEventListener('click', function() { 
-                window.location.href = "/view/homepage.html"; 
-            });
-
-            window.addEventListener('click', function(event) {
-                if (event.target == logoutModal) {
-                    logoutModal.style.display = 'none';
-                }
-                if (event.target == deleteModal) {
-                    deleteModal.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

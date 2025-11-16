@@ -1,55 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - account</title>
+    <title>jalan2kuy.id - Account</title>
     <link rel="stylesheet" href="/css/akun/login.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <button class="back-btn" id="backButton">
-                <img src="/assets/gambar/icon/return.png" alt="kembali">
-            </button>
 
-            <div class="icon">
-                <img src="/assets/gambar/icon/acount.png" alt="akun">
-                <h1>ACCOUNT</h1>
-            </div>
-        </header>
+<div class="container">
 
-        <main class="login-box">
-            <input type="text" id="username" placeholder="Email atau Username">
-            <input type="password" id="password" placeholder="Kata Sandi">
-            <button class="btn-primary" id="loginButton">Masuk</button>
-            <hr>
+    <header>
+        <button class="back-btn" id="backButton">
+            <img src="/assets/gambar/icon/return.png" alt="kembali">
+        </button>
 
-            <button class="btn-secondary" id="regisButton">Buat Akun Baru</button>
-            <p class="note">*Login hanya untuk admin jalan2kuy.id</p>
-        </main>
-    </div>
-    <script>
-        document.getElementById('backButton').addEventListener('click', function() {
+        <div class="icon">
+            <img src="/assets/gambar/icon/acount.png" alt="akun">
+            <h1>ACCOUNT</h1>
+        </div>
+    </header>
+
+    <main class="login-box">
+        <input type="text" id="username" placeholder="Email atau Username">
+        <input type="password" id="password" placeholder="Kata Sandi">
+
+        <button class="btn-primary" id="loginButton">Masuk</button>
+
+        <hr>
+
+        <button class="btn-secondary" id="regisButton">Buat Akun Baru</button>
+
+        <p class="note">*Login hanya untuk admin jalan2kuy.id</p>
+    </main>
+
+</div>
+
+<script>
+    document.getElementById('backButton').addEventListener('click', function() {
         if (document.referrer) {
             window.history.back();
         } else {
-            window.location.href = "#"; 
+            window.location.href = "/";
         }
-        });
-        document.getElementById('loginButton').addEventListener('click', function() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+    });
 
-            if (username === "" || password === "") {
-                alert("Silakan isi Email/Username dan Kata Sandi terlebih dahulu.");
-                return;
-            }
-            window.location.href = "/view/admin/homepageAdmin.html";
-        });
-        document.getElementById('regisButton').addEventListener('click', function() {
-            window.location.href = "/view/akun/registrasiAkun.html";
-        });
-    </script>
+    document.getElementById('loginButton').addEventListener('click', function() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (username === "" || password === "") {
+            alert("Silakan isi Email/Username dan Kata Sandi terlebih dahulu.");
+            return;
+        }
+
+        window.location.href = "/view/admin/homepageAdmin.html";
+    });
+
+    document.getElementById('regisButton').addEventListener('click', function() {
+        window.location.href = "/view/akun/registrasiAkun.html";
+    });
+</script>
+
 </body>
 </html>
