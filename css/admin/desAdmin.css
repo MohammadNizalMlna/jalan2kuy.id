@@ -190,11 +190,12 @@ body {
 
 .destination-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 25px;
     width: 90%;
     max-width: 1200px;
     margin: 40px auto 0;
+    justify-items: center; 
 }
 .category-header {
     display: flex;
@@ -213,8 +214,8 @@ body {
     margin-bottom: 10px;
 }
 .destination-card {
-    position: relative;
-    width: 420px;
+    width: 100%;        
+    max-width: 380px;   
     height: 220px;
     border-radius: 12px;
     overflow: hidden;
@@ -251,31 +252,21 @@ body {
 }
 
 @media (max-width: 900px) {
-    .category-header {
-        flex-direction: column;
-    }
-
-    .add-btn {
-        width: fit-content;
-    }
-
-    .destination-card {
-        width: 45%;
-        height: 160px;
+    .destination-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }
 
 @media (max-width: 600px) {
-    .destination-card {
-        width: 90%;
-        height: 150px;
+    .destination-container {
+        grid-template-columns: 1fr;
     }
 
-    .category-header h1 {
-        font-size: 2.2em;
+    .destination-card {
+        height: 200px;
     }
 }
-/* Responsif untuk tablet (2 kolom) */
+
 @media (max-width: 1024px) {
   .destination-container {
     gap: 25px;

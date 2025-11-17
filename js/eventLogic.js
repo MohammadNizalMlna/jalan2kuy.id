@@ -9,8 +9,6 @@ function parseTanggal(str, fallbackYear = null) {
 
   const day = parseInt(p[0]);
   const month = bulan[p[1].toLowerCase()] || 1;
-
-  // bila ada tahun
   if (p.length === 3) {
     return new Date(parseInt(p[2]), month - 1, day);
   }
@@ -21,7 +19,7 @@ function parseTanggal(str, fallbackYear = null) {
 
 function parseEventDate(range) {
 
-  let clean = range.replace("–", "-"); // ganti dash aneh
+  let clean = range.replace("–", "-"); 
   let [startStr, endStr] = clean.split("-").map(s => s.trim());
 
   let endDate = parseTanggal(endStr);

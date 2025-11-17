@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Event - jalan2kuy.id</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/css/event/editEvent.css">
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="form-wrapper">
+  <h1 class="title">Edit Event</h1>
+
+  <div class="event-form">
+
+      <div class="form-item image-box" id="imageBox">
+        <i class="fa-solid fa-plus"></i>
+        <p>Edit Image</p>
+        <input type="file" id="eventImage" class="file-input" accept="image/*">
+      </div>
+
+      <div class="form-item short-desc">
+        <label>Deskripsi Singkat</label>
+        <textarea id="desc"></textarea>
+      </div>
+
+      <div class="form-item full-desc">
+        <label>Deskripsi Lengkap</label>
+        <textarea id="fullDesc"></textarea>
+      </div>
+
+      <div class="form-item info-box">
+        <label>Judul Event</label>
+        <input type="text" id="title">
+
+        <label>Lokasi Event</label>
+        <input type="text" id="location">
+
+        <label>Rentang Tanggal</label>
+        <input type="text" id="date">
+
+        <label>Informasi Tambahan</label>
+        <textarea id="sideInfo"></textarea>
+      </div>
+
+      <button id="saveBtn" class="submit-btn">Simpan Perubahan</button>
+
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="/js/editEvent.js"></script>
+<script>
+  fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(html => navbar.innerHTML = html);
+  fetch('/tamplate/footer.html').then(r => r.text()).then(html => footer.innerHTML = html);
+</script>
+
+</body>
+</html>

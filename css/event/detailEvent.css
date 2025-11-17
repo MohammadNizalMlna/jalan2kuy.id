@@ -1,0 +1,170 @@
+html{
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/gambar/bgfix2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #000;
+}
+
+
+.event-detail {
+  display: flex;
+  justify-content: center;
+  padding: 150px 20px 100px;
+  position: relative;
+}
+
+.event-box {
+  background: white;
+  width: 70%;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  position: relative;
+  margin-top: 40px;
+}
+
+.event-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* TOMBOL EDIT DELETE  */
+
+.event-actions-floating {
+  position: absolute;
+  top: -65px;          
+  right: 0;            
+  display: flex;
+  gap: 12px;
+}
+
+.edit-btn, .delete-btn {
+  border: none;
+  padding: 9px 24px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: 0.25s ease;
+}
+
+.edit-btn { background-color: #c6e149; }
+.edit-btn:hover { background-color: #a4c437; }
+
+.delete-btn { background-color: #e02626; }
+.delete-btn:hover { background-color: #b81e1e; }
+
+
+.event-content {
+  display: flex;
+  gap: 30px;
+}
+
+.event-text {
+  flex: 2;
+  font-size: 1em;
+  line-height: 1.7;
+  color: #333;
+  text-align: justify;
+}
+
+.event-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.event-side img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.event-info {
+  background: #f7f7f7;
+  padding: 15px 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.event-info ul {
+  padding: 0;
+  margin: 0 0 10px 0;
+  list-style: none;
+}
+
+.event-info p {
+  font-weight: bold;
+  margin: 0;
+  color: #2b7a78;
+}
+
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+}
+
+.popup-box {
+  background: white;
+  padding: 25px;
+  width: 350px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.yes-btn, .no-btn {
+  border: none;
+  padding: 10px 25px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.yes-btn { background: #c6e149; }
+.no-btn { background: #e02626; }
+
+
+@media (max-width: 900px) {
+
+  .event-box {
+    width: 90%;
+  }
+
+  .event-content {
+    flex-direction: column;
+  }
+
+  .event-actions-floating {
+    right: 0;
+    top: -55px;
+  }
+}
