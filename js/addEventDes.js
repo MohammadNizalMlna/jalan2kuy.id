@@ -47,7 +47,7 @@ document.getElementById("eventForm").addEventListener("submit", function (e) {
 
         alert("Event berhasil ditambahkan!");
 
-        window.location.href = "/view/admin/eventAdmin/eventAdmin.html";
+        window.location.href = "/view/admin/addDestination.html";
     };
 
     reader.readAsDataURL(file);

@@ -196,6 +196,31 @@ html, body {
     box-sizing: border-box;
 }
 
+.event-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#eventSelect {
+    flex: 1;
+}
+
+.add-event-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-event-btn:active {
+    transform: scale(0.88);
+}
+
 /* ===== SUBMIT BUTTON ===== */
 .submit-button {
     grid-column: 1 / -1;

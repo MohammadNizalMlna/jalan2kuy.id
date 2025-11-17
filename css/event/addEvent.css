@@ -1,9 +1,21 @@
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/gambar/bgfix2.jpg');
     background-size: cover;
     background-attachment: fixed;
+}
+
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-container {
@@ -17,6 +29,7 @@ body {
 .title {
     font-size: 36px;
     font-weight: bold;
+    color: #ffff;
     margin-bottom: 25px;
 }
 

@@ -16,7 +16,7 @@
 <div id="navbar"></div>
 <h1 class="page-title">Add Destination</h1>
 <div class="form-container">
-<form class="destination-form" id="destinationForm">
+    <form class="destination-form" id="destinationForm">
 
     <div class="form-item item-thumbnail">
         <i class="fas fa-plus"></i> Add Thumbnail Image
@@ -66,11 +66,18 @@
     </div>
 
     <div class="form-item item-event">
-        <label for="eventSelect">Event</label>
+    <label for="eventSelect">Event</label>
+
+    <div class="event-row">
         <select id="eventSelect">
             <option value="">Tidak ada Event</option>
         </select>
+        <button type="button" id="addEventBtn" class="add-event-btn">
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
+</div>
+
 
     <button type="submit" class="submit-button">Tambah</button>
 
@@ -92,6 +99,10 @@ events.forEach(ev => {
     opt.value = ev.id;
     opt.textContent = ev.title;
     eventSelect.appendChild(opt);
+});
+
+document.getElementById("addEventBtn").addEventListener("click", function () {
+    window.location.href = "/view/admin/eventAdmin/addEventViaDestination.html";
 });
 
 document.getElementById("destinationForm").addEventListener("submit", function(e) {
@@ -124,6 +135,7 @@ document.getElementById("destinationForm").addEventListener("submit", function(e
     window.location.href = `/view/admin/destinasi/categori.html?category=${category}`;
 });
 </script>
+
 
 </body>
 </html>
