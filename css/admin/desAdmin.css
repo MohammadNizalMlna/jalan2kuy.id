@@ -20,6 +20,25 @@ body {
     position: relative;
 }
 
+.teks {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.teks h1 {
+    font-family: 'Skranji', cursive;
+    font-size: 55px;          
+    font-weight: 700;         
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;      
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);  
+}
+
+
 .categori-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -136,10 +155,15 @@ body {
 }
 
 .category-header h1 {
-    font-size: 3em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-family: 'Skranji', cursive;
+    font-size: 70px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 15px rgba(0,0,0,0.7);
 }
 
 .add-btn {
@@ -165,11 +189,12 @@ body {
 }
 
 .destination-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding: 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto 0;
 }
 .category-header {
     display: flex;

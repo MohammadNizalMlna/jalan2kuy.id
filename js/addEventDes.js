@@ -18,13 +18,31 @@ imageInput.addEventListener("change", function () {
     reader.readAsDataURL(file);
 });
 
+
 document.getElementById("eventForm").addEventListener("submit", function (e) {
     e.preventDefault();
     console.log("submit triggered");
 
     const file = document.getElementById("eventImage").files[0];
+
+    // Jika tidak ada gambar → simpan empty string
     if (!file) {
-        alert("Gambar event wajib diupload!");
+        const newEvent = {
+            id: document.getElementById("title").value.toLowerCase().replace(/\s+/g, ""),
+            title: document.getElementById("title").value,
+            location: document.getElementById("location").value,
+            date: document.getElementById("date").value,
+            image: "", // tidak upload → kosong
+            description: document.getElementById("desc").value,
+            fullDescription: document.getElementById("fullDesc").value.replace(/\n/g, "<br>"),
+            sideInfo: document.getElementById("sideInfo").value.replace(/\n/g, "<br>")
+        };
+
+        storedEvents.push(newEvent);
+        localStorage.setItem("events", JSON.stringify(storedEvents));
+
+        alert("Event berhasil ditambahkan!");
+        window.location.href = "/view/admin/addDestination.html";
         return;
     }
 
@@ -36,7 +54,7 @@ document.getElementById("eventForm").addEventListener("submit", function (e) {
             title: document.getElementById("title").value,
             location: document.getElementById("location").value,
             date: document.getElementById("date").value,
-            image: e.target.result,
+            image: e.target.result,  
             description: document.getElementById("desc").value,
             fullDescription: document.getElementById("fullDesc").value.replace(/\n/g, "<br>"),
             sideInfo: document.getElementById("sideInfo").value.replace(/\n/g, "<br>")
@@ -46,7 +64,6 @@ document.getElementById("eventForm").addEventListener("submit", function (e) {
         localStorage.setItem("events", JSON.stringify(storedEvents));
 
         alert("Event berhasil ditambahkan!");
-
         window.location.href = "/view/admin/addDestination.html";
     };
 

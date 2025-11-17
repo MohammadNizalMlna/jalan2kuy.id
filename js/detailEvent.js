@@ -4,7 +4,7 @@ const events = [
     title: "Sambut energi positif di tengah keagungan Candi Borobudur",
     location: "Borobudur Cultural Center, Candi Borobudur",
     date: "22 Agustus 2025 - 28 Desember 2025",
-    image: "/assets/destinasi/candi.jpg",
+    image: "/assets/event/MEDITATION.jpg",
     description: "Sambut energi positif di tengah keagungan Candi Borobudur",
     fullDescription:`
     Ruang penyembuhan dan ketenangan yang memanfaatkan suasana spiritual Candi Borobudur yang sakral. 
@@ -27,7 +27,7 @@ const events = [
     title: "Sendratari Ramayana Prambanan",
     location: "Gedung Trimurti, Candi Prambanan",
     date: "1 November 2025 - 31 Desember 2025",
-    image: "/assets/destinasi/komodo.png",
+    image: "/assets/event/ramayana.jpg",
     description: "Sendratari Ramayana Prambanan.",
     fullDescription: `
     Persembahan budaya yang megah, Sendratari Ramayana Prambanan adalah sebuah mahakarya yang menawan.
@@ -52,7 +52,7 @@ const events = [
     title: "Sorak Sorai Fest (Coming soon)",
     location: "Taman Mini Indonesia Indah",
     date: "30 Desember 2025 - 1 Januari 2026",
-    image: "/assets/destinasi/pantai.jpg",
+    image: "/assets/event/sorai.jpg",
     description: "Sorak Sorai Fest 2026 (Coming soon)",
     fullDescription:`
     Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. 
