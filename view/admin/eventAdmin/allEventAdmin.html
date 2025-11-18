@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/event/detailEvent.css">
 
   <script src="/js/detailEvent.js"></script>
+  <script src="/js/eventManager.js"></script>
 </head>
 <body>
 
@@ -20,7 +21,6 @@
       <button class="edit-btn" id="editBtn">Edit</button>
       <button class="delete-btn" id="deleteBtn">Delete</button>
     </div>
-
     <h2 class="event-title">Deskripsi Event</h2>
     <div id="eventDetailContent"></div>
 
@@ -76,12 +76,10 @@
     `;
   }
 
-  // Logic Edit
   document.getElementById("editBtn").onclick = () => {
     window.location.href = `/view/admin/eventAdmin/editEvent.html?id=${eventId}`;
   };
 
-  // Popup Delete
   const popup = document.getElementById("popupOverlay");
 
   document.getElementById("deleteBtn").onclick = () => {
@@ -93,8 +91,7 @@
   };
 
   document.getElementById("confirmDelete").onclick = () => {
-    const updated = events.filter(e => e.id !== eventId);
-    localStorage.setItem("events", JSON.stringify(updated));
+    popup.style.display = "none";
     window.location.href = "/view/admin/eventAdmin/eventAdmin.html";
   };
 </script>

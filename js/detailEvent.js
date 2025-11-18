@@ -49,11 +49,11 @@ const events = [
   },
   {
     id: "sorai",
-    title: "Sorak Sorai Fest (Coming soon)",
+    title: "Sorak Sorai Fest 2026",
     location: "Taman Mini Indonesia Indah",
     date: "30 Desember 2025 - 1 Januari 2026",
     image: "/assets/event/sorai.jpg",
-    description: "Sorak Sorai Fest 2026 (Coming soon)",
+    description: "Sorak Sorai Fest 2026 ",
     fullDescription:`
     Sorak Sorai Fest adalah sebuah festival akhir tahun yang menggabungkan konser musik, festival kuliner, dan berbagai kegiatan menarik lainnya. 
     Festival ini biasanya berlangsung di Taman Mini Indonesia Indah (TMII) saat pergantian tahun, menawarkan hiburan untuk pengunjung dari berbagai kalangan. Festival yang biasanya diselenggarakan di Taman Mini Indonesia Indah (TMII) menjelang pergantian tahun. Dengan konsep hiburan keluarga dan pesta rakyat, Sorak Sorai Fest menjadi salah satu agenda tahunan yang paling dinanti oleh masyarakat Jakarta untuk merayakan malam tahun baru dalam suasana penuh warna dan kebersamaan.
