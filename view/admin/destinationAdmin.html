@@ -6,16 +6,16 @@
   <title>jalan2kuy.id - destination - Admin</title>
   <link rel="stylesheet" href="/css/admin/desAdmin.css">
   <link href="https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap" rel="stylesheet">
-  
 </head>
 <body>
 
   <div id="navbar"></div>
-  
+  <!-- hero section utama -->
   <section class="hero">
     <div class="teks"> 
       <h1>KATEGORI DESTINASI</h1>
     </div>
+    <!-- daftar kategori destinasi -->
     <div class="categori-container">
         <a href="/view/admin/destinasi/categori.html?category=nature" class="categori nature"><span>Nature</span></a>
         <a href="/view/admin/destinasi/categori.html?category=history" class="categori history"><span>History</span></a>
@@ -29,6 +29,7 @@
   <div id="footer"></div>
 
   <script>
+    //load navbar + footer
     fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
     fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
   </script>

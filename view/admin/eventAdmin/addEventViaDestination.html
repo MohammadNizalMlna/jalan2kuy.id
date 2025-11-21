@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Event - jalan2kuy.id</title>
-
-  <link rel="stylesheet" href="/css/event/addEvent.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jalan2kuy.id - Add Event</title>
+    <link rel="stylesheet" href="/css/event/addEvent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -14,60 +13,50 @@
 <div class="page-wrapper">
 
     <div id="navbar"></div>
-
+    <!-- form edit event -->
     <section class="form-container">
         <h1 class="title">Add Event</h1>
-
         <form id="eventForm" class="event-form">
-
+            <!-- upload gambar -->
             <div class="form-item item-image">
                 <i class="fas fa-plus"></i>
                 <p>Add Image</p>
                 <input type="file" id="eventImage" accept="image/*" class="file-input">
             </div>
-
+            <!-- deskripsi singkat -->
             <div class="form-item item-short">
                 <label>Deskripsi Singkat</label>
                 <textarea id="desc" placeholder="Masukkan deskripsi singkat event..."></textarea>
             </div>
-
+            <!-- deskripsi lengkap -->
             <div class="form-item item-full">
                 <label>Deskripsi Lengkap</label>
                 <textarea id="fullDesc" placeholder="Masukkan deskripsi lengkap event..."></textarea>
             </div>
-
+            <!-- informasi event -->
             <div class="form-item item-info">
-
                 <label>Judul Event</label>
                 <input type="text" id="title" placeholder="Judul Event">
-
                 <label>Lokasi Event</label>
                 <input type="text" id="location" placeholder="Masukkan lokasi event...">
-
                 <label>Rentang Tanggal</label>
                 <input type="text" id="date" placeholder="Contoh: 22 Agustus 2025 - 28 Desember 2025">
-
                 <label>Informasi Tambahan</label>
                 <textarea id="sideInfo" placeholder="Informasi samping (opsional)..."></textarea>
-
             </div>
-
+            <!-- tombol tambah event -->
             <button class="submit-btn">Tambah Event</button>
-
         </form>
     </section>
-
 </div> 
 
 <div id="footer"></div>
-
+<script src="/js/addEventDes.js"></script>
 <script>
+    //load navbar + footer
     fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(html => document.getElementById('navbar').innerHTML = html);
-
     fetch('/tamplate/footer.html').then(r => r.text()).then(html => document.getElementById('footer').innerHTML = html);
 </script>
-
-<script src="/js/addEventDes.js"></script>
 
 </body>
 </html>

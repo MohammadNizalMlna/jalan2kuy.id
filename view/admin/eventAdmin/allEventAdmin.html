@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jalan2kuy.id - Deskripsi Event</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/css/event/detailEvent.css">
-
   <script src="/js/detailEvent.js"></script>
   <script src="/js/eventManager.js"></script>
 </head>
@@ -17,18 +15,20 @@
 
 <section class="event-detail">
   <div class="event-box" id="eventBox">
+    <!-- tombol edit dan delete -->
     <div class="event-actions-floating">
       <button class="edit-btn" id="editBtn">Edit</button>
       <button class="delete-btn" id="deleteBtn">Delete</button>
     </div>
     <h2 class="event-title">Deskripsi Event</h2>
+    <!-- tempat detail event di render -->
     <div id="eventDetailContent"></div>
-
   </div>
 </section>
 
 <div id="footer"></div>
 
+<!-- popup konfirmasi delete -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-box">
     <p>Apakah Anda yakin ingin menghapus event ini?</p>
@@ -41,18 +41,17 @@
 
 
 <script>
-
+  //load navbar + footer
   fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(html => (document.getElementById('navbar').innerHTML = html));
-
   fetch('/tamplate/footer.html').then(r => r.text()).then(html => (document.getElementById('footer').innerHTML = html));
 
+  //ambil id event dari URL
   const params = new URLSearchParams(window.location.search);
   const eventId = params.get("id");
-
   const eventData = events.find(e => e.id === eventId);
-
   const container = document.getElementById("eventDetailContent");
 
+  //jika event ditemukan maka render detail event
   if (eventData) {
     container.innerHTML = `
       <div class="event-content">
@@ -75,21 +74,20 @@
       </div>
     `;
   }
-
+  //tombol edit untuk pindah ke halaman edit
   document.getElementById("editBtn").onclick = () => {
     window.location.href = `/view/admin/eventAdmin/editEvent.html?id=${eventId}`;
   };
-
+  // popup delete event
   const popup = document.getElementById("popupOverlay");
 
   document.getElementById("deleteBtn").onclick = () => {
     popup.style.display = "flex";
   };
-
   document.getElementById("cancelDelete").onclick = () => {
     popup.style.display = "none";
   };
-
+  //komfirmasi delete maka akan dibawa ke halaman event
   document.getElementById("confirmDelete").onclick = () => {
     popup.style.display = "none";
     window.location.href = "/view/admin/eventAdmin/eventAdmin.html";

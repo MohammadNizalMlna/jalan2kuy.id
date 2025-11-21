@@ -4,28 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jalan2kuy.id - Gallery</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/css/galeri/galery.css">
+  <script src="/js/galeryData.js"></script>
 </head>
-<body>
 
+<body>
   <div id="navbar"></div>
 
+  <!-- Tempat menampilkan semua gambar galeri -->
   <section class="gallery-container" id="gallery"></section>
-
   <div id="footer"></div>
 
-  <script src="/js/galeryData.js"></script>
   <script>
-    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => document.getElementById('navbar').innerHTML = data);
+    /* 
+      load footer + navbar
+    */
+    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
 
-    fetch('/tamplate/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
   </script>
 
   <script>
+    // Referensi ke container galeri
     const container = document.getElementById("gallery");
 
+    /*
+      Fungsi untuk menampilkan data galeri.
+      galleryData berasal dari galeryData.js yang berisi array objek.
+    */
     function renderGallery() {
       container.innerHTML = galleryData
         .map(item => `
@@ -37,8 +43,8 @@
         .join('');
     }
 
+    // Panggil saat halaman dimuat
     renderGallery();
   </script>
-
 </body>
 </html>

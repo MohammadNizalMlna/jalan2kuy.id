@@ -17,37 +17,34 @@
   <h1 class="title">Edit Event</h1>
 
   <div class="event-form">
-
+      <!-- edit foto event -->
       <div class="form-item image-box" id="imageBox">
         <i class="fa-solid fa-plus"></i>
         <p>Edit Image</p>
         <input type="file" id="eventImage" class="file-input" accept="image/*">
       </div>
-
+      <!-- edit deskripsi singkat event -->
       <div class="form-item short-desc">
         <label>Deskripsi Singkat</label>
         <textarea id="desc"></textarea>
       </div>
-
+      <!-- edit deskripsi lengkap event -->
       <div class="form-item full-desc">
         <label>Deskripsi Lengkap</label>
         <textarea id="fullDesc"></textarea>
       </div>
-
+      <!-- edit informasi event -->
       <div class="form-item info-box">
         <label>Judul Event</label>
         <input type="text" id="title">
-
         <label>Lokasi Event</label>
         <input type="text" id="location">
-
         <label>Rentang Tanggal</label>
         <input type="text" id="date">
-
         <label>Informasi Tambahan</label>
         <textarea id="sideInfo"></textarea>
       </div>
-
+      <!-- tombol simpan -->
       <button id="saveBtn" class="submit-btn">Simpan Perubahan</button>
 
   </div>
@@ -57,6 +54,7 @@
 <script src="/js/detailEvent.js"></script>
 <script src="/js/editEvent.js"></script>
 <script>
+  //load navbar + footer
   fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(html => navbar.innerHTML = html);
   fetch('/tamplate/footer.html').then(r => r.text()).then(html => footer.innerHTML = html);
 </script>

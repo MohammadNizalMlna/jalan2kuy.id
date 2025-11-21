@@ -4,58 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jalan2kuy.id - Deskripsi Event</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/css/event/allEvent.css">
+
   <script src="/js/detailEvent.js"></script>
 </head>
+
 <body>
 
   <div id="navbar"></div>
 
+  <!-- Tempat detail event ditampilkan -->
   <section class="event-detail" id="eventDetail"></section>
 
   <div id="footer"></div>
 
   <script>
-    fetch('/tamplate/navbar.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
+    // Load navbar + footer
+    fetch('/tamplate/navbar.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
 
-    fetch('/tamplate/footer.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('footer').innerHTML = data);
-
+    // Ambil ID event dari URL (?id=xx)
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get("id");
 
+    // Elemen container untuk menampilkan detail event
     const container = document.getElementById("eventDetail");
+
+    // Cari event berdasarkan ID
     const event = events.find(e => e.id === eventId);
 
+
+    // Jika data event ditemukan render HTML
     if (event) {
       container.innerHTML = `
         <div class="event-box">
           <h2 class="event-title">Deskripsi Event</h2>
+
           <div class="event-content">
+
             <div class="event-text">
-              <p><strong>${event.description}</strong><p>
+              <p><strong>${event.description}</strong></p>
               <br>
               <p>${event.fullDescription}</p>
             </div>
+
             <div class="event-side">
               <img src="${event.image}" alt="${event.title}">
+
               <div class="event-info">
                 <ul>
                   <li><strong>${event.date}</strong></li>
                   <li>${event.sideInfo || ""}</li>
                 </ul>
-                <p><i class="fa-solid fa-location-dot"></i> ${event.location}</p>
+
+                <p>
+                  <i class="fa-solid fa-location-dot"></i>
+                  ${event.location}
+                </p>
               </div>
             </div>
+
           </div>
         </div>
       `;
+
+    // Jika tidak ditemukan
     } else {
-      container.innerHTML = `<p style="color: white; text-align:center;">Event tidak ditemukan.</p>`;
+      container.innerHTML = `
+        <p style="color: white; text-align:center;">
+          Event tidak ditemukan.
+        </p>
+      `;
     }
   </script>
 

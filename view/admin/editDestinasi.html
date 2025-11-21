@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit Destination</title>
+<title>jalan2kuy.id - edit Destination</title>
 
 <link rel="stylesheet" href="/css/admin/editDestination.css">
 <script src="/js/destinations.js"></script>
@@ -16,7 +16,7 @@
 <div id="navbar"></div>
 
 <main>
-
+<!-- edit judul -->
 <h1 class="edit-title">
     Edit<br>
     <div class="title-edit-box">
@@ -90,62 +90,63 @@
 <div id="footer"></div>
 
 <script>
-fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(d => navbar.innerHTML = d);
-fetch('/tamplate/footer.html').then(r => r.text()).then(d => footer.innerHTML = d);
+    //load navbar + footer
+    fetch('/tamplate/navbarAdmin.html').then(r => r.text()).then(d => navbar.innerHTML = d);
+    fetch('/tamplate/footer.html').then(r => r.text()).then(d => footer.innerHTML = d);
 
-const p = new URLSearchParams(window.location.search);
-const id = p.get("id");
-const cat = p.get("category");
+    const p = new URLSearchParams(window.location.search);
+    const id = p.get("id");
+    const cat = p.get("category");
 
-let found = null;
+    let found = null;
+    //cari data destinasi
+    if (cat && allDestinations[cat]) {
+        found = allDestinations[cat].find(d => d.id === id);
+    }
 
-if (cat && allDestinations[cat]) {
-    found = allDestinations[cat].find(d => d.id === id);
-}
+    if (!found) { alert("Data tidak ditemukan!"); }
 
-if (!found) { alert("Data tidak ditemukan!"); }
+    // isi dropdown event
+    const eventSelect = document.getElementById("eventSelect");
+    events.forEach(ev => {
+        const opt = document.createElement("option");
+        opt.value = ev.id;
+        opt.textContent = ev.title;
+        eventSelect.appendChild(opt);
+    });
 
-// isi dropdown event
-const eventSelect = document.getElementById("eventSelect");
-events.forEach(ev => {
-    const opt = document.createElement("option");
-    opt.value = ev.id;
-    opt.textContent = ev.title;
-    eventSelect.appendChild(opt);
-});
+    // isi field
+    titleField.value = found.name;
+    thumbPreview.src = found.thumbnail;
+    imagePreview.src = found.image;
+    descField.value = found.desc;
+    locField.value = found.location;
+    openNoteField.value = found.openNote || "";
+    openField.value = found.openStart || "";
+    closeField.value = found.openEnd || "";
+    timezoneField.value = found.openTimezone || "";
+    priceField.value = found.price.replace(/\D/g, "");
+    eventSelect.value = found.event || "";
 
-// isi field
-titleField.value = found.name;
-thumbPreview.src = found.thumbnail;
-imagePreview.src = found.image;
-descField.value = found.desc;
-locField.value = found.location;
-openNoteField.value = found.openNote || "";
-openField.value = found.openStart || "";
-closeField.value = found.openEnd || "";
-timezoneField.value = found.openTimezone || "";
-priceField.value = found.price.replace(/\D/g, "");
-eventSelect.value = found.event || "";
+    // preview gambar
+    thumbInput.onchange = () => thumbPreview.src = URL.createObjectURL(thumbInput.files[0]);
+    imgInput.onchange = () => imagePreview.src = URL.createObjectURL(imgInput.files[0]);
 
-// preview
-thumbInput.onchange = () => thumbPreview.src = URL.createObjectURL(thumbInput.files[0]);
-imgInput.onchange = () => imagePreview.src = URL.createObjectURL(imgInput.files[0]);
+    // save
+    saveBtn.onclick = () => {
+        found.name = titleField.value;
+        found.desc = descField.value;
+        found.location = locField.value;
+        found.openNote = openNoteField.value;
+        found.openStart = openField.value;
+        found.openEnd = closeField.value;
+        found.openTimezone = timezoneField.value;
+        found.price = "Rp" + priceField.value;
+        found.event = eventSelect.value;
 
-// save
-saveBtn.onclick = () => {
-    found.name = titleField.value;
-    found.desc = descField.value;
-    found.location = locField.value;
-    found.openNote = openNoteField.value;
-    found.openStart = openField.value;
-    found.openEnd = closeField.value;
-    found.openTimezone = timezoneField.value;
-    found.price = "Rp" + priceField.value;
-    found.event = eventSelect.value;
-
-    alert("Data berhasil diupdate!");
-    window.location.href = `/view/admin/destinasi/destinationDetail.html?id=${id}&category=${cat}`;
-};
+        alert("Data berhasil diupdate!");
+        window.location.href = `/view/admin/destinasi/destinationDetail.html?id=${id}&category=${cat}`;
+    };
 </script>
 
 </body>

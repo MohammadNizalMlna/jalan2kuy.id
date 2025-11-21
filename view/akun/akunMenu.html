@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account - jalan2kuy.id</title>
+    <title>jalan2kuy.id - menu akun</title>
     <link rel="stylesheet" href="/css/akun/akunmenu.css"> 
 </head>
 <body>
-
+    <!-- bagian atas -->
 <header class="header-bar">
     <button class="icon-btn back-btn" id="backButton">
         <img src="/assets/gambar/icon/return.png" alt="Kembali">
     </button>
-
+    <!-- bagian atas tengah -->
     <div class="header-content-inner">
         <div class="title-container">
             <div class="account-icon">
@@ -23,6 +23,7 @@
     </div>
 </header>
 
+<!-- isi utama halaman akun -->
 <div class="main-wrapper-content">
     <div class="content-area">
         <div class="profile-card">
@@ -32,6 +33,7 @@
             <div class="info-item">Password</div>
             <div class="info-item">Jenis Kelamin</div>
 
+            <!-- tombol aksi -->
             <button class="action-btn edit-btn" id="editProfileButton">Edit Profile</button>
             <button class="action-btn logout-btn" id="logoutButton">Logout</button>
             <button class="action-btn delete-btn" id="deleteButton">Delete Account</button>
@@ -63,7 +65,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
+    //tombol elemen modal
     const backButton = document.getElementById('backButton');
     const editProfileButton = document.getElementById('editProfileButton');
     const logoutButton = document.getElementById('logoutButton');
@@ -75,20 +77,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmDeleteYes = document.getElementById('confirmDeleteYes');
     const confirmDeleteNo = document.getElementById('confirmDeleteNo');
 
+    //tombol kembali
     backButton.onclick = () => window.history.back();
 
+    // edit profil
     editProfileButton.onclick = () => {
         window.location.href = "/view/akun/editAkun.html";
     };
 
+    // tombol logout
     logoutButton.onclick = () => logoutModal.style.display = "block";
     confirmLogoutNo.onclick = () => logoutModal.style.display = "none";
     confirmLogoutYes.onclick = () => window.location.href = "/view/homepage.html";
 
+    // tombol delete akun
     deleteButton.onclick = () => deleteModal.style.display = "block";
     confirmDeleteNo.onclick = () => deleteModal.style.display = "none";
     confirmDeleteYes.onclick = () => window.location.href = "/view/homepage.html";
 
+    // Klik area luar → tutup modal
     window.onclick = function(event) {
         if (event.target === logoutModal) logoutModal.style.display = "none";
         if (event.target === deleteModal) deleteModal.style.display = "none";

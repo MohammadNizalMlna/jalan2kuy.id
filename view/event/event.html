@@ -8,60 +8,59 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/css/event/event.css">
 </head>
+
 <body>
 
-<div id="navbar"></div>
+  <div id="navbar"></div>
+  <section class="event-section">
+    <!-- Bagian filter tanggal -->
+    <div class="event-header">
+      <h2>Date Event</h2>
 
-<section class="event-section">
+      <div class="date-inputs">
+        <!-- Input tanggal awal  -->
+        <input 
+          type="text" id="startDate" class="date-field" placeholder="00/00/0000"
+          onfocus="(this.type='date')" 
+          onblur="if(!this.value)this.type='text'">
 
-  <div class="event-header">
-    <h2>Date Event</h2>
+        <span class="dash">-</span>
 
-    <div class="date-inputs">
-      <input type="text" id="startDate" class="date-field" placeholder="00/00/0000"
-            onfocus="(this.type='date')" 
-            onblur="if(!this.value)this.type='text'">
-
-      <span class="dash">-</span>
-
-      <input type="text" id="endDate" class="date-field" placeholder="00/00/0000"
-            onfocus="(this.type='date')" 
-            onblur="if(!this.value)this.type='text'">
+        <!-- Input tanggal akhir -->
+        <input 
+          type="text" id="endDate" class="date-field" placeholder="00/00/0000"
+          onfocus="(this.type='date')" 
+          onblur="if(!this.value)this.type='text'">
+      </div>
     </div>
-  </div>
 
-  <div class="event-cards" id="eventList"></div>
+    <!-- Tempat munculnya card event -->
+    <div class="event-cards" id="eventList"></div>
+  </section>
 
-</section>
+  <div id="footer"></div>
 
-<div id="footer"></div>
+  <script src="/js/detailEvent.js"></script>
+  <script src="/js/eventLogic.js"></script>
 
-<script src="/js/detailEvent.js"></script>
-<script src="/js/eventLogic.js"></script>
+  <script>
+    // load navbar + footer
+    fetch('/tamplate/navbar.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
+  </script>
 
-<script>
-  fetch('/tamplate/navbar.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('navbar').innerHTML = html);
+  <!-- Script untuk render event + filter tanggal -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-  fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
-</script>
+      // Render event otomatis dalam keadaan sudah di-sort
+      renderEvents(getSortedEvents());
 
-<!-- FIXED RENDER -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // render otomatis (sorted)
-    renderEvents(getSortedEvents());
-
-    // event listener filter
-    document.getElementById("startDate").addEventListener("change", () => {
-        applyDateFilter();
+      // Listener perubahan tanggal untuk mem-filter event
+      document.getElementById("startDate").addEventListener("change", applyDateFilter);
+      document.getElementById("endDate").addEventListener("change", applyDateFilter);
     });
-    document.getElementById("endDate").addEventListener("change", () => {
-        applyDateFilter();
-    });
-});
-</script>
+  </script>
 
 </body>
 </html>

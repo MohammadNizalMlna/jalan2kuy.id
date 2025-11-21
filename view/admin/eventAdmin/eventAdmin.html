@@ -11,30 +11,29 @@
 <body>
 
 <div id="navbar"></div>
-
+<!-- tombol add event -->
 <button class="add-event-floating" onclick="window.location.href='/view/admin/eventAdmin/addEvent.html'">
-        <i class="fa-solid fa-plus"></i> Add Event
-</button>
+  <i class="fa-solid fa-plus"></i> Add Event</button>
 
 <section class="event-section">
-
+  <!-- bagian filter tanggal -->
   <div class="event-header">
     <h2>Date Event</h2>
     <div class="date-inputs">
+      <!-- input tanggal awal -->
       <input type="text" id="startDate" class="date-field" placeholder="00/00/0000"
             onfocus="(this.type='date')" 
             onblur="if(!this.value)this.type='text'">
 
       <span class="dash">-</span>
-
+      <!-- input tanggal akhir -->
       <input type="text" id="endDate" class="date-field" placeholder="00/00/0000"
             onfocus="(this.type='date')" 
             onblur="if(!this.value)this.type='text'">
     </div>
   </div>
-
+  <!-- tempat munculna card event -->
   <div class="event-cards" id="eventList"></div>
-
 </section>
 
 <div id="footer"></div>
@@ -43,18 +42,18 @@
 <script src="/js/logicEventAdmin.js"></script>
 
 <script>
+  //load navbar + footer
   fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
-
   fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
 </script>
 
-<!-- FIXED RENDER -->
+<!-- script untuk render event + filter tanggal -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    // render otomatis (sorted)
+    // render otomatis dalam keadaan sudah di sort
     renderEvents(getSortedEvents());
 
-    // event listener filter
+    // listener perubahan tanggal untuk memfilter event
     document.getElementById("startDate").addEventListener("change", () => {
         applyDateFilter();
     });

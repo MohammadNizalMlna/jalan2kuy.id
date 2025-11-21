@@ -11,54 +11,53 @@
 </head>
 <body>
 
-<div id="navbar"></div>
-
-<section class="hero">
-  <div class="hero-top">
-    <h1 id="title">Nama Destinasi</h1>
-
-    <div class="action-btn">
-      <button class="edit-btn">Edit</button>
-      <button class="delete-btn">Delete</button>
-    </div>
-  </div>
-
-  <div class="content-box">
-    <div class="description">
-      <h2>Deskripsi</h2>
-      <p id="desc"></p>
-    </div>
-
-    <div class="image-box">
-      <img id="img" src="">
-      <p id="loc"></p>
-      <p id="time"></p>
-      <p id="price"></p>
-
-      <h3>Event</h3>
-      <div id="eventBox"></div>
-    </div>
-  </div>
-
-  <div id="deletePopup" class="popup-overlay">
-    <div class="popup-box">
-      <p>Apakah anda yakin untuk delete Wisata ini?</p>
-      <div class="popup-buttons">
-        <button id="yesDelete" class="yes-btn">Yes</button>
-        <button id="noDelete" class="no-btn">NO</button>
+  <div id="navbar"></div>
+  <!-- konten utama detail destinasi -->
+  <section class="hero">
+    <div class="hero-top">
+      <h1 id="title">Nama Destinasi</h1>
+      <!-- tombol edit dan delete destinasi -->
+      <div class="action-btn">
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
       </div>
     </div>
-  </div>
+    <!-- Deskripsi destinasi -->
+    <div class="content-box">
+      <div class="description">
+        <h2>Deskripsi</h2>
+        <p id="desc"></p>
+      </div>
+      <!-- Detail gambar + lokasi + jam buka + harga + event -->
+      <div class="image-box">
+        <img id="img" src="">
+        <p id="loc"></p>
+        <p id="time"></p>
+        <p id="price"></p>
+        <h3>Event</h3>
+        <div id="eventBox"></div>
+      </div>
+    </div>
+    <!-- pop up saat memencet delete destinasi -->
+    <div id="deletePopup" class="popup-overlay">
+      <div class="popup-box">
+        <p>Apakah anda yakin untuk delete Wisata ini?</p>
+        <div class="popup-buttons">
+          <button id="yesDelete" class="yes-btn">Yes</button>
+          <button id="noDelete" class="no-btn">NO</button>
+        </div>
+      </div>
+    </div>
 
-</section>
+  </section>
 
-<div id="footer"></div>
+  <div id="footer"></div>
 
 <script>
+  //mengambil parameter id dan category
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
   const cat = params.get("category");
-
   const deleteBtn = document.querySelector(".delete-btn");
   const popup = document.getElementById("deletePopup");
   const yesDelete = document.getElementById("yesDelete");
@@ -66,11 +65,11 @@
   const eventBox = document.getElementById("eventBox");
 
   let found = null;
-
+  //mencari destinasi berdasarkan id dan category
   if (cat && allDestinations[cat]) {
     found = allDestinations[cat].find(d => d.id === id);
   }
-
+  //jika destinasi ditemukan maka dia menampilkan datanya
   if (found) {
     document.getElementById("title").textContent = found.name;
     document.getElementById("desc").innerHTML = found.desc;
@@ -79,6 +78,7 @@
     document.getElementById("time").textContent = `Jam buka: ${found.openNote}, ${found.openStart} - ${found.openEnd} ${found.openTimezone}`;
     document.getElementById("price").textContent = "Harga tiket: " + found.price;
 
+    //merender data
     if (!found.event) {
       eventBox.innerHTML = `<p>Tidak ada event</p>`;
     } else {
@@ -94,15 +94,15 @@
         eventBox.innerHTML = `<p>Event tidak ditemukan</p>`;
       }
     }
-
+    // background halaman
     document.body.style.backgroundImage =
       `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('${found.background || found.image}')`;
-
+    //jika data tidak ditemukan
   } else {
     document.querySelector(".hero").innerHTML =
       `<h2 style="color:white;text-align:center;">Data destinasi tidak ditemukan</h2>`;
   }
-
+  //popup delete
   deleteBtn.addEventListener("click", () => {
     popup.style.display = "flex";
   });
@@ -115,19 +115,20 @@
     deleteDestination(cat, id);
   });
 
+  // Fungsi untuk menghapus destinasi dari localStorage / data awal
   function deleteDestination(category, destId) {
     let stored = JSON.parse(localStorage.getItem("destinations")) || allDestinations;
     stored[category] = stored[category].filter(item => item.id !== destId);
     localStorage.setItem("destinations", JSON.stringify(stored));
     window.location.href = `/view/admin/destinasi/categori.html?category=${category}`;
   }
-
+  //tombol edit
   document.querySelector(".edit-btn").onclick = () => {
     window.location.href = `/view/admin/editDestinasi.html?id=${id}&category=${cat}`;
   };
 
+  //load navbar + footer
   fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => document.getElementById('navbar').innerHTML = data);
-
   fetch('/tamplate/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
 </script>
 

@@ -3,40 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jalan2kuy.id - Account</title>
+    <title>jalan2kuy.id - Login</title>
     <link rel="stylesheet" href="/css/akun/login.css">
 </head>
 <body>
 
 <div class="container">
-
+    <!-- header bagian atas -->
     <header>
         <button class="back-btn" id="backButton">
             <img src="/assets/gambar/icon/return.png" alt="kembali">
         </button>
-
         <div class="icon">
             <img src="/assets/gambar/icon/acount.png" alt="akun">
             <h1>ACCOUNT</h1>
         </div>
     </header>
-
+    <!-- box utama login -->
     <main class="login-box">
         <input type="text" id="username" placeholder="Email atau Username">
         <input type="password" id="password" placeholder="Kata Sandi">
-
         <button class="btn-primary" id="loginButton">Masuk</button>
-
         <hr>
-
         <button class="btn-secondary" id="regisButton">Buat Akun Baru</button>
-
         <p class="note">*Login hanya untuk admin jalan2kuy.id</p>
     </main>
-
 </div>
 
 <script>
+    //tombol kembali
     document.getElementById('backButton').addEventListener('click', function() {
         if (document.referrer) {
             window.history.back();
@@ -44,7 +39,7 @@
             window.location.href = "/";
         }
     });
-
+    //tombol login (simulasi belum ada databasenya)
     document.getElementById('loginButton').addEventListener('click', function() {
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value.trim();
@@ -56,7 +51,7 @@
 
         window.location.href = "/view/admin/homepageAdmin.html";
     });
-
+    //tombol buat akun baru
     document.getElementById('regisButton').addEventListener('click', function() {
         window.location.href = "/view/akun/registrasiAkun.html";
     });

@@ -12,29 +12,26 @@
 
   <div id="navbar"></div>
 
+  <!-- bagian utama kategori  -->
   <section class="hero">
     <div class="category-header">
       <h1 id="category-title">KATEGORI</h1>
-
+      <!-- tombol tambah destinasi -->
       <a id="addBtn" class="add-btn">+ Add Destination</a>
     </div>
 
+    <!-- Daftar destinasi akan dirender dari JS -->
     <div class="destination-container" id="destination-list"></div>
   </section>
-
   <div id="footer"></div>
 
   <script src="/js/destinations.js"></script>
   <script src="/js/category.js"></script>
   
   <script>
-    fetch('/tamplate/navbarAdmin.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
-
-    fetch('/tamplate/footer.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('footer').innerHTML = data);
+    //load navbar + footer
+    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => document.getElementById('navbar').innerHTML = data);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
   </script>
 
 </body>

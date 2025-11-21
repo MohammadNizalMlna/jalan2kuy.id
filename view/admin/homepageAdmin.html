@@ -10,6 +10,7 @@
 
     <div id="navbar"></div> 
     
+    <!-- halaman slide utama 1 -->
     <section class="hero slideshow-container">
         <div class="myslides" style="background-image: url('/assets/gambar/bgfix.jpg');">
             <div class="hero-content">
@@ -19,6 +20,7 @@
             </div>
         </div>
         
+        <!-- halaman slide utama 2 -->
         <div class="myslides" style="background-image: url('/assets/gambar/bgswap.jpg');">
             <div class="hero-content">
                 <h1>Jelajahi Budaya Lewat</h1>
@@ -27,6 +29,7 @@
             </div>
         </div>
         
+        <!-- halaman slide utama 3 -->
         <div class="myslides" style="background-image: url('/assets/gambar/raja-ampat-dikeruk.jpeg');">
             <div class="hero-content">
                 <h1>Ayo Kita Suarakan</h1>
@@ -35,9 +38,11 @@
             </div>
         </div>
 
+        <!-- tombol panah kanan dan kiri -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
+        <!-- indikator titik -->
         <div class="dot-indicator">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
@@ -47,6 +52,7 @@
     <div id="footer"></div> 
 
     <script>
+        // manggil file navbar
         fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(data => {document.getElementById('navbar').innerHTML = data;});
 
         var slideIndex = 1;
@@ -54,16 +60,19 @@
 
         showSlides(slideIndex); 
 
+        // untuk pindah slide ke next atau prev
         function plusSlides(n) {
             clearTimeout(timer); 
             showSlides(slideIndex += n);
         }
         
+        //untuk langsung loncat ke slide tertentu
         function currentSlide(n) {
             clearTimeout(timer);
             showSlides(slideIndex = n);
         }
 
+        //mengatur logika slide entah manual atau otomatis
         function showSlides(n) {
             var i;
             var slides = document.getElementsByClassName("myslides");
@@ -98,6 +107,7 @@
             clearTimeout(timer); 
             timer = setTimeout(showSlides, 5000); 
         }
+        // manggil file footer
         fetch('/tamplate/footer.html').then(res => res.text()).then(data => {document.getElementById('footer').innerHTML = data;});
     </script>
 

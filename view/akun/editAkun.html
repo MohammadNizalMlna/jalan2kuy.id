@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Account</title>
+    <title>jalan2kuyy.id - Edit Account</title>
     <link rel="stylesheet" href="/css/akun/editAkun.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
 <header class="header">
+    <!-- tombol kembali -->
     <i class="fa-solid fa-arrow-left back" id="backBtn"></i>
     <i class="fa-solid fa-user icon"></i>
     <h1>Edit Account</h1>
 </header>
 
+<!-- container utama edit akun -->
 <main class="form-container">
     <form id="editForm" class="form-box">
+        <!-- input  -->
         <input type="text" name="name" placeholder="Name" required>
         <input type="text" name="username" placeholder="Username" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Masukkan Password" required>
 
+        <!-- pilih kelamin -->
         <div class="gender-section">
             <label>Jenis Kelamin</label>
             <div class="radio-group">
@@ -35,8 +39,9 @@
 </main>
 
 <script>
+    //tombol kembali
     document.getElementById("backBtn").onclick = () => history.back();
-
+    //submit form 
     document.getElementById("editForm").addEventListener("submit", function(event) {
         event.preventDefault();
         alert("Profil telah diperbarui!");

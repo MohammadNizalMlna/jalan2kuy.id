@@ -9,18 +9,19 @@
 <body>
 
 <header class="navbar">
+    <!-- tombol kembali -->
     <button class="back-btn" id="backButton">
         <img src="/assets/gambar/icon/return.png" alt="kembali">
     </button>
-
+    <!-- logo -->
     <div class="logo">
         <img src="/assets/gambar/icon/logo.png" alt="Logo jalan2kuy.id">
     </div>
 </header>
 
+<!-- form registrasi -->
 <div class="form-container">
     <h1>Buat Akun Baru</h1>
-
     <form id="registerForm">
         <input type="email" placeholder="Email" required>
         <input type="text" placeholder="Username" required>
@@ -32,6 +33,7 @@
 </div>
 
 <script>
+    //tombol kembali
     document.getElementById('backButton').addEventListener('click', function () {
         if (document.referrer) {
             window.history.back();
@@ -41,7 +43,7 @@
     });
 
     const form = document.getElementById('registerForm');
-
+    //submit form
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         window.location.href = "/view/akun/login.html";

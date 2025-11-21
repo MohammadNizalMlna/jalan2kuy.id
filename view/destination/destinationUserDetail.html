@@ -10,95 +10,89 @@
   <script src="/js/detailEvent.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-<div id="navbar"></div>
-
-<section class="hero">
-
-<div class="hero-top">
-    <h1 id="title">Nama Destinasi</h1>
-</div>
-
-  <div class="content-box">
-    <div class="description">
-      <h2>Deskripsi</h2>
-      <p id="desc"></p>
+  <div id="navbar"></div>
+  <!-- Konten utama detail destinasi -->
+  <section class="hero">
+    <div class="hero-top">
+      <h1 id="title">Nama Destinasi</h1>
     </div>
-
-    <div class="image-box">
-      <img id="img" src="">
-      <p id="loc"></p>
-      <p id="time"></p>
-      <p id="price"></p>
-
-      <h3>Event</h3>
-      <div id="eventBox"></div>
+    <div class="content-box">
+      <!-- Deskripsi destinasi -->
+      <div class="description">
+        <h2>Deskripsi</h2>
+        <p id="desc"></p>
+      </div>
+      <!-- Detail gambar + lokasi + jam buka + harga + event -->
+      <div class="image-box">
+        <img id="img" src="" alt="destination-image">
+        <p id="loc"></p>
+        <p id="time"></p>
+        <p id="price"></p>
+        <h3>Event</h3>
+        <div id="eventBox"></div>
+      </div>
     </div>
-  </div>
+  </section>
+  <div id="footer"></div>
 
-</section>
 
+  <script>
+    // Ambil parameter dari URL (?id=xx&category=yy)
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const cat = params.get("category");
 
-<div id="footer"></div>
+    const eventBox = document.getElementById("eventBox");
+    let found = null;
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  const cat = params.get("category");
-  const eventBox = document.getElementById("eventBox");
-
-  let found = null;
-
-  if (cat && allDestinations[cat]) {
-    found = allDestinations[cat].find(d => d.id === id);
-  }
-
-  if (found) {
-    document.getElementById("title").textContent = found.name;
-    document.getElementById("desc").innerHTML = found.desc;
-    document.getElementById("img").src = found.image;
-    document.getElementById("loc").textContent = found.location;
-    document.getElementById("time").textContent =
-      `Jam buka: ${found.openNote}, ${found.openStart} - ${found.openEnd} ${found.openTimezone}`;
-    document.getElementById("price").textContent = "Harga tiket: " + found.price;
-
-    // ==== Event ====
-    if (!found.event || found.event === "") {
-      eventBox.innerHTML = `<p>Tidak ada event</p>`;
-    } else {
-      const ev = events.find(e => e.id === found.event);
-      if (ev) {
-        eventBox.innerHTML = `
-          <a class="event-link" href="/view/event/allEvent.html?id=${ev.id}">
-            <b>${ev.title}</b><br>
-            <span>${ev.date}</span>
-          </a>
-        `;
-      } else {
-        eventBox.innerHTML = `<p>Event tidak ditemukan</p>`;
-      }
+    // Cari destinasi berdasarkan kategori dan id
+    if (cat && allDestinations[cat]) {
+      found = allDestinations[cat].find(d => d.id === id);
     }
 
-    document.body.style.backgroundImage =
-      `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('${found.background || found.image}')`;
-  } 
-  else {
-    document.querySelector(".hero").innerHTML =
-      `<h2 style="color:white;text-align:center;">Data destinasi tidak ditemukan</h2>`;
-  }
+    // Jika destinasi ditemukan render data
+    if (found) {
+      document.getElementById("title").textContent = found.name;
+      document.getElementById("desc").innerHTML = found.desc;
+      document.getElementById("img").src = found.image;
+      document.getElementById("loc").textContent = found.location;
+      document.getElementById("time").textContent =
+        `Jam buka: ${found.openNote}, ${found.openStart} - ${found.openEnd} ${found.openTimezone}`;
+      document.getElementById("price").textContent = "Harga tiket: " + found.price;
 
-  // === Navbar user ===
-  fetch('/tamplate/navbar.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('navbar').innerHTML = html);
+      // event yang ada di destinasi
+      if (!found.event || found.event === "") {
+        eventBox.innerHTML = `<p>Tidak ada event</p>`;
+      } else {
+        const ev = events.find(e => e.id === found.event);
+        if (ev) {
+          eventBox.innerHTML = `
+            <a class="event-link" href="/view/event/allEvent.html?id=${ev.id}">
+              <b>${ev.title}</b><br>
+              <span>${ev.date}</span>
+            </a>
+          `;
+        } else {
+          eventBox.innerHTML = `<p>Event tidak ditemukan</p>`;
+        }
+      }
+      // Set background halaman (fallback ke image jika background tidak tersedia)
+      document.body.style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${found.background || found.image}')`;
+    }
+    // Jika destinasi tidak ditemukan
+    else {
+      document.querySelector(".hero").innerHTML =
+        `<h2 style="color:white;text-align:center;">Data destinasi tidak ditemukan</h2>`;
+    }
 
-  // === Footer ===
-  fetch('/tamplate/footer.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('footer').innerHTML = html);
 
-</script>
+    // Load navbar + footer
+    fetch('/tamplate/navbar.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
+    fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
+  </script>
 
 </body>
 </html>
