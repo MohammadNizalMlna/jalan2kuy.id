@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #e5e5e5;
 }
-
+/* header atas */
 .header {
     background-color: #185f58;
     color: white;
@@ -37,6 +37,7 @@ body {
     font-weight: 600;
 }
 
+/* form */
 .form-container {
     display: flex;
     justify-content: center;
@@ -95,6 +96,7 @@ body {
     cursor: pointer;
 }
 
+/* tombol simpan */
 .save-btn {
     background-color: #1b7a93;
     color: white;
@@ -110,6 +112,7 @@ body {
     background-color: #166a82;
 }
 
+/* responsif */
 @media (max-width: 480px) {
     .header h1 {
         font-size: 26px;

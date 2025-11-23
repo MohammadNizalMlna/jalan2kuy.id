@@ -4,6 +4,7 @@ body {
     background-color: #f5f6f7;
 }
 
+/* container utama */
 .container {
     display: flex;
     flex-direction: column;
@@ -11,6 +12,7 @@ body {
     min-height: 100vh;
 }
 
+/* header */
 header {
     width: 100%;
     background-color: #0b585b;
@@ -20,6 +22,7 @@ header {
     position: relative;
 }
 
+/* tombol kembali */
 .back-btn {
     position: absolute;
     left: 20px;
@@ -35,6 +38,7 @@ header {
     filter: invert(1);
 }
 
+/* logo akun */
 .icon {
     display: flex;
     flex-direction: column;
@@ -53,18 +57,17 @@ h1 {
     letter-spacing: 1px;
 }
 
+/* login box utama */
 .login-box {
     width: 60%;
     max-width: 700px;
     min-width: 350px;
     min-height: 520px;
-
     background-color: #e9ecef;
     margin-top: 40px;
     padding: 50px 40px;
     border-radius: 15px;
     text-align: center;
-
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     transition: 0.3s ease;
 }
@@ -85,19 +88,18 @@ h1 {
     box-shadow: 0 0 4px #187b92;
 }
 
+/* tombol login */
 .btn-primary {
     width: 100%;
     padding: 15px;
     margin-top: 5px;
     margin-bottom: 20px;
-
     background-color: #187b92;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -114,13 +116,11 @@ hr {
 .btn-secondary {
     width: 100%;
     padding: 15px;
-
     background-color: #c8c4c4;
     color: #2d2d2d;
     border: none;
     border-radius: 8px;
     font-size: 16px;
-
     cursor: pointer;
     transition: 0.3s;
 }
@@ -135,6 +135,7 @@ hr {
     margin-top: 15px;
 }
 
+/* responsif */
 @media (max-width: 600px) {
 
     .login-box {

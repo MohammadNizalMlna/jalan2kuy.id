@@ -1,73 +1,78 @@
+/* navbar */
 #navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 999;
     height: 90px;
+    z-index: 999;
 }
-
+/* global */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/gambar/bgfix2.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('/assets/gambar/bgfix2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
+/* konten utama */
 .hero {
-    margin-top: 90px;
+    margin-top: 90px;      
     min-height: 100vh;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
     padding-top: 40px;
     padding-bottom: 120px;
     box-sizing: border-box;
 }
 
+/* search box utama */
 .search {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
-    border-radius: 17px;
-    padding: 15px 25px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 60%;
     max-width: 700px;
+    padding: 15px 25px;
+    background-color: transparent;
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     margin-bottom: 60px;
 }
 
+/* Input pencarian */
 .search input {
     width: 100%;
+    font-size: 22px;
     background: transparent;
     border: none;
     outline: none;
-    font-size: 22px;
     color: white;
 }
 
 .search input::placeholder {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255,255,255,0.85);
 }
 
+/* Tombol pencarian */
 .search button {
     background: none;
     border: none;
     cursor: pointer;
 }
 
+/* Icon pencarian */
 .search img {
     width: 28px;
     filter: invert(1);
 }
 
+/* grid kategori */
 .categori-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -76,8 +81,10 @@ body {
     max-width: 1200px;
 }
 
+/* kotak kategori */
 .categori {
     position: relative;
+
     height: 200px;
     border-radius: 15px;
     background-size: cover;
@@ -90,23 +97,22 @@ body {
     font-size: 25px;
     font-weight: bold;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+    text-decoration: none;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    text-decoration: none;
 }
 
 .categori::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border-radius: 15px;
 }
 
 .categori span {
     position: relative;
     z-index: 2;
-    text-decoration: none;
 }
 
 .categori:hover {
@@ -114,30 +120,15 @@ body {
     opacity: 0.9;
 }
 
-.nature {
-    background-image: url(/assets/destinasi/hutan.png);
-}
+/* background setiap kategori */
+.nature     { background-image: url(/assets/destinasi/hutan.png); }
+.history    { background-image: url(/assets/destinasi/candi.jpg); }
+.ecotourism { background-image: url(/assets/destinasi/komodo.png); }
+.beach      { background-image: url(/assets/destinasi/pantai.jpg); }
+.culture    { background-image: url(/assets/destinasi/culture.jpeg.jpg); }
+.education  { background-image: url(/assets/destinasi/aquarium.jpg); }
 
-.history {
-    background-image: url(/assets/destinasi/candi.jpg);
-}
-
-.ecotourism {
-    background-image: url(/assets/destinasi/komodo.png);
-}
-
-.beach {
-    background-image: url(/assets/destinasi/pantai.jpg);
-}
-
-.culture {
-    background-image: url(/assets/destinasi/culture.jpeg.jpg);
-}
-
-.education {
-    background-image: url(/assets/destinasi/aquarium.jpg);
-}
-
+/* responsif */
 @media (max-width: 900px) {
     .categori-container {
         grid-template-columns: repeat(2, 1fr);
@@ -148,7 +139,6 @@ body {
     .categori-container {
         grid-template-columns: 1fr;
     }
-
     .search {
         width: 80%;
         padding: 12px 20px;

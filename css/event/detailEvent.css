@@ -1,3 +1,4 @@
+/* global dan layout */
 html{
   height: 100%;
 }
@@ -15,7 +16,7 @@ body {
   color: #000;
 }
 
-
+/* event detail */
 .event-detail {
   display: flex;
   justify-content: center;
@@ -23,6 +24,7 @@ body {
   position: relative;
 }
 
+/* kotak event */
 .event-box {
   background: white;
   width: 70%;
@@ -41,7 +43,6 @@ body {
 }
 
 /* TOMBOL EDIT DELETE  */
-
 .event-actions-floating {
   position: absolute;
   top: -65px;          
@@ -115,7 +116,7 @@ body {
   color: #2b7a78;
 }
 
-
+/* popup */
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -133,6 +134,7 @@ body {
   text-align: center;
 }
 
+/* tombol popup */
 .popup-buttons {
   margin-top: 20px;
   display: flex;
@@ -152,7 +154,7 @@ body {
 .yes-btn { background: #c6e149; }
 .no-btn { background: #e02626; }
 
-
+/* responsif */
 @media (max-width: 900px) {
 
   .event-box {

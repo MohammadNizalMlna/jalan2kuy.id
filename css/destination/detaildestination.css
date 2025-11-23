@@ -1,3 +1,4 @@
+/* global */
 html {
   height: 100%;
   margin: 0;
@@ -17,6 +18,7 @@ body {
   transition: background-image 1.8s ease-in-out;
 }
 
+/* konten utama */
 .hero {
   flex: 1;
   text-align: left;
@@ -55,12 +57,14 @@ body {
   width: 100%;
 }
 
+/* tombol */
 .action-btn {
   margin-top: 0;
   display: flex;
   gap: 10px;
 }
 
+/* tombol edit dan hapus */
 .edit-btn, .delete-btn {
   border: none;
   padding: 8px 25px;
@@ -90,6 +94,7 @@ body {
   background-color: #c41f1f;
 }
 
+/* box konten */
 .content-box {
   background-color: #fff8f8;
   border-radius: 15px;
@@ -100,6 +105,7 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
+/* deskripsi */
 .description {
   flex: 2;
   color: #000;
@@ -116,6 +122,7 @@ body {
   line-height: 1.7;
 }
 
+/* box gambar */
 .image-box {
   flex: 1;
   text-align: center;
@@ -202,7 +209,7 @@ body {
   cursor: pointer;
 }
 
-
+/* responsif */
 @media (max-width: 990px) {
   .content-box {
     flex-direction: column;

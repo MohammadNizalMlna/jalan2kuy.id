@@ -11,7 +11,7 @@ html, body {
     background-position: center;
     background-attachment: fixed;
 }
-
+/* judul */
 .page-title {
     margin-top: 80px; 
     text-align: center;
@@ -22,7 +22,7 @@ html, body {
     margin-bottom: 30px;
 }
 
-/* ===== FORM CONTAINER ===== */
+/* FORM CONTAINER */
 .form-container {
     flex: 1;
     padding: 40px 20px;
@@ -31,7 +31,7 @@ html, body {
     align-items: center;
 }
 
-/* ===== GRID FORM ===== */
+/* GRID FORM  */
 .destination-form {
     background: transparent;
     padding: 30px;
@@ -44,7 +44,7 @@ html, body {
     box-sizing: border-box;
 }
 
-/* ===== FORM ITEM ===== */
+/*FORM ITEM */
 .form-item {
     background-color: #ffffff;
     border-radius: 8px;
@@ -85,7 +85,7 @@ html, body {
     z-index: 5;
 }
 
-/* ===== GRID STRUCTURE ===== */
+/* GRID STRUKTUR */
 .item-thumbnail {
     grid-row: 1;
     grid-column: 1;
@@ -126,7 +126,7 @@ html, body {
     color: #000000;
 }
 
-/* ===== ITEM INFO ===== */
+/*ITEM INFO  */
 .item-info {
     grid-row: 3;
     grid-column: 2;
@@ -221,7 +221,7 @@ html, body {
     transform: scale(0.88);
 }
 
-/* ===== SUBMIT BUTTON ===== */
+/*  SUBMIT BUTTON */
 .submit-button {
     grid-column: 1 / -1;
     background-color: #3aa6a6;

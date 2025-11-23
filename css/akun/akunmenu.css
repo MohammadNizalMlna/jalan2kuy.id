@@ -164,6 +164,7 @@ body {
 .yes-btn:hover { background-color: #5aa000; }
 .no-btn:hover { background-color: #c40000; }
 
+/* responsif */
 @media (max-width: 600px) {
 
     .header-bar h1 {
