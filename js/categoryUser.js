@@ -5,15 +5,15 @@ const title = document.getElementById("category-title");
 const list = document.getElementById("destination-list");
 
 function renderCategoryUser() {
-
+  //cek kategori valid
   if (!category || !allDestinations[category]) {
     title.textContent = "KATEGORI TIDAK DITEMUKAN";
     list.innerHTML = `<p style="color:white;text-align:center;">Data tidak ditemukan.</p>`;
     return;
   }
-
+  //set judul
   title.textContent = category.toUpperCase();
-
+  //render card
   list.innerHTML = allDestinations[category]
     .map(dest => `
       <a class="destination-card"

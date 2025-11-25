@@ -1,35 +1,29 @@
+//mapping nama bulan menjadi angka
 const bulan = {
   januari: 1, februari: 2, maret: 3, april: 4,
   mei: 5, juni: 6, juli: 7, agustus: 8,
   september: 9, oktober: 10, november: 11, desember: 12
 };
-
+//untuk mengubah string mennjadi date
 function parseTanggal(str, fallbackYear = null) {
   const p = str.trim().split(" ");
-
   const day = parseInt(p[0]);
   const month = bulan[p[1].toLowerCase()] || 1;
   if (p.length === 3) {
     return new Date(parseInt(p[2]), month - 1, day);
   }
-
-  // bila tanpa tahun → gunakan fallback
   return new Date(fallbackYear, month - 1, day);
 }
-
+//untuk menerima string rentang tanggal
 function parseEventDate(range) {
-
   let clean = range.replace("–", "-"); 
   let [startStr, endStr] = clean.split("-").map(s => s.trim());
-
   let endDate = parseTanggal(endStr);
   let year = endDate.getFullYear();
-
   let startDate = parseTanggal(startStr, year);
-
   return { start: startDate, end: endDate };
 }
-
+//sorting event berdasarkan tanggal 
 function getSortedEvents() {
   return events.slice().sort((a, b) => {
     const A = parseEventDate(a.date).start;
@@ -37,7 +31,7 @@ function getSortedEvents() {
     return A - B;
   });
 }
-
+//menampilkan daftar event
 function renderEvents(list) {
   const container = document.getElementById("eventList");
 
@@ -50,13 +44,11 @@ function renderEvents(list) {
   }
 
   container.innerHTML = list.map(ev => `
-      <a class="event-card" href="/view/event/allEvent.html?id=${ev.id}">
-        
+      <a class="event-card" href="/view/event/allEvent.html?id=${ev.id}">      
         <div class="event-image-container">
           <img src="${ev.image}" class="event-img">
           <div class="event-date-tag">${ev.date}</div>
         </div>
-
         <div class="event-body">
           <h3>${ev.title}</h3>
           <p class="event-location">
@@ -64,24 +56,19 @@ function renderEvents(list) {
           </p>
           <p class="event-desc">${ev.description}</p>
         </div>
-
       </a>
   `).join("");
 }
+//menjalankan filter tangal
 function applyDateFilter() {
-
   const s = document.getElementById("startDate").value;
   const e = document.getElementById("endDate").value;
-
-
   if (!s && !e) {
     renderEvents(getSortedEvents());
     return;
   }
-
   const start = s ? new Date(s) : new Date("1900-01-01");
   const end   = e ? new Date(e) : new Date("2100-12-31");
-
   const filtered = getSortedEvents().filter(ev => {
     const eventRange = parseEventDate(ev.date);
     return eventRange.end >= start && eventRange.start <= end;

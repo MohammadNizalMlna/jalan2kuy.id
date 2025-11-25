@@ -1,8 +1,10 @@
+//mengambil data events dari localstorage
 let storedEvents = JSON.parse(localStorage.getItem("events")) || [];
 
 const imageInput = document.getElementById("eventImage");
 const imageBox = document.querySelector(".item-image");
 
+//bagian preview gambar sebelum upload
 imageInput.addEventListener("change", function () {
     const file = this.files[0];
     if (!file) return;
@@ -18,21 +20,21 @@ imageInput.addEventListener("change", function () {
     reader.readAsDataURL(file);
 });
 
-
+//event listener saat form disubmit
 document.getElementById("eventForm").addEventListener("submit", function (e) {
     e.preventDefault();
     console.log("submit triggered");
 
     const file = document.getElementById("eventImage").files[0];
 
-    // Jika tidak ada gambar → simpan empty string
+    //kondisi ketika user tidak menginput gambar
     if (!file) {
         const newEvent = {
             id: document.getElementById("title").value.toLowerCase().replace(/\s+/g, ""),
             title: document.getElementById("title").value,
             location: document.getElementById("location").value,
             date: document.getElementById("date").value,
-            image: "", // tidak upload → kosong
+            image: "", 
             description: document.getElementById("desc").value,
             fullDescription: document.getElementById("fullDesc").value.replace(/\n/g, "<br>"),
             sideInfo: document.getElementById("sideInfo").value.replace(/\n/g, "<br>")
@@ -46,6 +48,7 @@ document.getElementById("eventForm").addEventListener("submit", function (e) {
         return;
     }
 
+    //menangani kondisi ketika user mengupload gambar
     const reader = new FileReader();
     reader.onload = function (e) {
 
