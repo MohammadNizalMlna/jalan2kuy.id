@@ -19,7 +19,7 @@
     /* 
       load footer + navbar
     */
-    fetch('/tamplate/navbar.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
+    fetch('/tamplate/navbarAdmin.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
 
     fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
   </script>
