@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #e6e6e6;
+}
+
+/* navbar  */
+.navbar {
+    position: relative;
+    background-color: #0b585b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 0;
+}
+
+/* tombol kembali */
+.back-btn {
+    position: absolute;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.back-btn img {
+    width: 28px;
+    height: 28px;
+    filter: invert(1);
+}
+
+.logo img {
+    height: 65px;
+    width: auto;
+}
+
+/* form otp */
+.container {
+    margin: 60px auto;
+    width: 90%;
+    max-width: 350px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.input-group input {
+    width: 48px;
+    height: 58px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    background-color: #1d8eb8;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* responsif */
+@media (max-width: 430px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .input-group input {
+        width: 42px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .submit-btn {
+        padding: 11px;
+        font-size: 15px;
+    }
+}
+@media (max-width: 360px) {
+    .container {
+        width: 92%;
+        padding: 18px;
+    }
+
+    .logo img {
+        height: 55px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .input-group {
+        gap: 8px;
+    }
+
+    .input-group input {
+        width: 35px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 400px;
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .input-group input {
+        width: 50px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .submit-btn {
+        font-size: 17px;
+        padding: 14px;
+    }
+}

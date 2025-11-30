@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jalan2kuy.id - passkey</title>
+    <link rel="stylesheet" href="/css/akun/passkey.css">
+</head>
+<body>
+
+<header class="navbar">
+    <!-- tombol kembali -->
+    <button class="back-btn" id="backButton">
+        <img src="/assets/gambar/icon/return.png" alt="kembali">
+    </button>
+    <!-- logo -->
+    <div class="logo">
+        <img src="/assets/gambar/icon/logo.png" alt="Logo jalan2kuy.id">
+    </div>
+</header>
+
+<!-- passkey -->
+<div class="container">
+    <h2>Passkey</h2>
+
+    <div class="input-group">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+    </div>
+
+    <button class="submit-btn" id="submitBtn">Verifikasi</button>
+</div>
+
+<script>
+    //tombol kembali
+    document.getElementById('backButton').addEventListener('click', function () {
+        if (document.referrer) {
+            window.history.back();
+        } else {
+            window.location.href = "/view/akun/registrasiAkun.html";
+        }
+    });
+
+    // OTP Input System
+    const inputs = document.querySelectorAll(".input-group input");
+    const submitBtn = document.getElementById("submitBtn");
+
+    // OTP statis
+    const correctPasskey = "527134";
+
+    inputs[0].focus();
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", () => {
+            input.value = input.value.replace(/[^0-9]/g, ""); 
+            if (input.value && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !input.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+
+    submitBtn.addEventListener("click", () => {
+        const code = [...inputs].map(i => i.value).join("");
+
+        if (code.length !== 6) {
+            alert("Kode belum lengkap!");
+            return;
+        }
+
+        if (code === correctPasskey) {
+            submitBtn.innerText = "✔ Verifikasi Berhasil...";
+            submitBtn.style.background = "#4caf50";
+            setTimeout(() => {
+                window.location.href = "/view/admin/homepageAdmin.html";  
+            }, 1200);
+        } else {
+            alert("Passkey salah, coba lagi.");
+            inputs.forEach(input => input.value = "");
+            inputs[0].focus();
+        }
+    });
+</script>
+
+</body>
+</html>
