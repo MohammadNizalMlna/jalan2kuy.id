@@ -1,0 +1,261 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* hero section */
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/assets/gambar/bgfix2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 100px 20px 50px;
+    position: relative;
+}
+
+/* Judul utama */
+.teks {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.teks h1 {
+    font-family: 'Skranji', cursive;
+    font-size: 55px;
+    font-weight: 700;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* categori section */
+.categori-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 40px;
+}
+
+/* Card kategori */
+.categori {
+    position: relative;
+    height: 200px;
+    border-radius: 15px;
+    text-decoration: none !important;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Overlay gelap */
+.categori::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.categori span {
+    position: relative;
+    z-index: 2;
+}
+
+.categori:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* Background per kategori */
+.nature       { background-image: url(/assets/destinasi/hutan.png); }
+.history      { background-image: url(/assets/destinasi/candi.jpg); }
+.ecotourism   { background-image: url(/assets/destinasi/komodo.png); }
+.beach        { background-image: url(/assets/destinasi/pantai.jpg); }
+.culture      { background-image: url(/assets/destinasi/culture.jpeg.jpg); }
+.education    { background-image: url(/assets/destinasi/aquarium.jpg); }
+
+/* category header */
+.category-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0 30px;
+    color: #fff;
+}
+
+.category-header h1 {
+    font-family: 'Skranji', cursive;
+    font-size: 3.8em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 15px rgba(0,0,0,0.7);
+    margin: 0;
+}
+
+/* Tombol tambah */
+.add-btn {
+    position: absolute;
+    top: 120px;
+    right: 60px;
+    background-color: #00bfa5;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #029e8a;
+    transform: scale(1.05);
+}
+
+/* destination container */
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    justify-items: center;
+}
+
+/* Kartu destinasi */
+.destination-card {
+    width: 100%;
+    max-width: 380px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Overlay nama tempat */
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* responsif */
+@media (max-width: 900px) {
+    .categori-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .destination-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .destination-container {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .destination-card {
+        width: 90%;
+        height: 200px;
+    }
+
+    .category-header h1 {
+        font-size: 2.2em;
+    }
+
+    .add-btn {
+        top: 100px;
+        right: 20px;
+        padding: 8px 18px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 600px) {
+    .categori-container {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .destination-container {
+        gap: 25px;
+    }
+
+    .destination-card {
+        width: 340px;
+        height: 190px;
+    }
+
+    .category-header h1 {
+        font-size: 3em;
+    }
+
+    .add-btn {
+        top: 110px;
+        right: 30px;
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}

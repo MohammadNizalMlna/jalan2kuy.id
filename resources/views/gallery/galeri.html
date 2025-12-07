@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jalan2kuy.id - Gallery</title>
+  <link rel="stylesheet" href="/css/galeri/galery.css">
+  <script src="/js/destinations.js"></script>
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <!-- Tempat menampilkan semua gambar galeri -->
+  <section class="gallery-container" id="gallery"></section>
+  <div id="footer"></div>
+
+  <script>
+    /* 
+      load footer + navbar
+    */
+    fetch('/tamplate/navbar.html').then(res => res.text()).then(html => document.getElementById('navbar').innerHTML = html);
+
+    fetch('/tamplate/footer.html').then(res => res.text()).then(html => document.getElementById('footer').innerHTML = html);
+  </script>
+
+  <script>
+    // Referensi ke container galeri
+    const container = document.getElementById("gallery");
+
+    const galleryList = Object.values(allDestinations).flat();
+
+    //biar lokasi yang diambil pendek
+    function getShortLocation(loc) {
+    if (!loc.includes(",")) return loc.trim();
+    return loc.split(",")[0].trim();
+  }
+    /*
+      Fungsi untuk menampilkan data galeri.
+      galleryData berasal dari destinations.js yang berisi array objek.
+    */
+    function renderGallery() {
+      container.innerHTML = galleryList
+        .map(item => `
+          <div class="gallery-card">
+            <img src="${item.image}" alt="${item.name}">
+            <p>${item.name}, ${getShortLocation(item.location)}</p>
+          </div>
+        `)
+        .join('');
+    }
+
+    // Panggil saat halaman dimuat
+    renderGallery();
+  </script>
+</body>
+</html>
