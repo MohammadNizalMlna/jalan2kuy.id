@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jalan2Kuy.id - Admin Event</title>
+  <title>Jalan2Kuy.id - Event</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="{{ asset('css/event/event.css') }}">
@@ -28,18 +28,14 @@
 </head>
 <body>
 
-@include('partials.navbarAdmin')
-
-<button class="add-event-floating" onclick="window.location.href='{{ url('/admin/event/create') }}'">
-  <i class="fa-solid fa-plus"></i> Add Event
-</button>
+@include('partials.navbar')
 
 <section class="event-section">
   
   <div class="event-header">
     <h2>Date Event</h2>
     
-    <form action="{{ url('/admin/Event') }}" method="GET" class="date-inputs">
+    <form action="{{ url('/Event') }}" method="GET" class="date-inputs">
       
       <input type="text" name="start_date" class="date-field" placeholder="DD/MM/YYYY"
              onfocus="(this.type='date')" 
@@ -58,7 +54,7 @@
       </button>
 
       @if(request('start_date'))
-        <a href="{{ url('/admin/Event') }}" style="color: red; margin-left: 5px; font-size: 12px; text-decoration: none;">Reset</a>
+        <a href="{{ url('/Event') }}" style="color: red; margin-left: 5px; font-size: 12px; text-decoration: none;">Reset</a>
       @endif
     </form>
   </div>
@@ -72,7 +68,7 @@
   <div class="event-cards" id="eventList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
       @forelse($events as $event)
         
-        <div class="modern-card" onclick="window.location.href='{{ url('/admin/Event/Detail/' . $event->eventID) }}'">
+        <div class="modern-card" onclick="window.location.href='{{ url('/Event/Detail/' . $event->eventID) }}'">
             
             <div class="card-image-wrapper">
                 <img src="{{ asset('storage/' . $event->imagePath) }}" 

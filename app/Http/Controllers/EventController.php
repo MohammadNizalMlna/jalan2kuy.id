@@ -11,7 +11,43 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
-    public function index(Request $request)
+
+    public function tampilEvent(Request $request)
+    {
+        // Mulai Query
+        $query = Event::query();
+
+        // Logika Filter Tanggal (Jika user mengisi input tanggal)
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereBetween('startDate', [
+                $request->input('start_date'), 
+                $request->input('end_date')
+            ]);
+        }
+
+        // Ambil data (urutkan dari yang terbaru)
+        $events = $query->orderBy('startDate', 'desc')->get();
+
+        // Tampilkan View dengan membawa data events
+        return view('event.event', ['events' => $events]);
+    }
+
+    public function tampilkanDetailEvent($id)
+    { 
+        // Cari event berdasarkan eventID
+        $event = Event::where('eventID', $id)->first();
+
+        // Jika tidak ketemu, kembalikan ke list
+        if (!$event) {
+            return redirect('/Event')->with('error', 'Event tidak ditemukan.');
+        }
+
+        // Tampilkan view detailEvent dengan membawa data $event
+        return view('event.detailEvent', ['event' => $event]);
+    }
+
+    //ADMIN ONLY
+    public function tampilEventAdmin(Request $request)
     {
         // Mulai Query
         $query = Event::query();
@@ -31,7 +67,7 @@ class EventController extends Controller
         return view('admin.eventAdmin.eventAdmin', ['events' => $events]);
     }
 
-    public function tampilkanDetailEvent($id)
+    public function tampilkanDetailEventAdmin($id)
     { 
         // Cari event berdasarkan eventID
         $event = Event::where('eventID', $id)->first();

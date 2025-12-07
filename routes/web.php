@@ -32,6 +32,13 @@ Route::post('/register-proses', [AdminController::class, 'register']);
 // Route untuk memproses data registrasi (POST)
 Route::post('/register-proses', [AdminController::class, 'register']);
 
+// Halaman List Event (GET)
+Route::get('/Event', [EventController::class, 'tampilEvent']);
+
+// Halaman Detail Event (GET)
+// URL: /admin/event/detail/evt001
+Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
+
 
 // Route Group Admin (Hanya bisa diakses jika sudah login)
 Route::prefix('admin')->group(function () {
@@ -57,11 +64,11 @@ Route::prefix('admin')->group(function () {
     Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
 
     // Halaman List Event (GET)
-    Route::get('/Event', [EventController::class, 'index']);
+    Route::get('/Event', [EventController::class, 'tampilEventAdmin']);
 
     // Halaman Detail Event (GET)
     // URL: /admin/event/detail/evt001
-    Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
+    Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEventAdmin']);
 
     // HALAMAN ADD EVENT (GET)
     Route::get('/event/create', [EventController::class, 'addEvent']);
