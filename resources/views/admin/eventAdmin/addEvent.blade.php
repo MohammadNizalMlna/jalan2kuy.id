@@ -65,7 +65,7 @@
             </div>
 
             <div class="form-item item-info">
-                <label>Social Media</label>
+                <label>Social Media (ketikkan tanpa @)</label>
                 <input type="text" name="socialMedia" placeholder="Akun Sosial Media..." value="{{ old('socialMedia') }}">
             </div>
 

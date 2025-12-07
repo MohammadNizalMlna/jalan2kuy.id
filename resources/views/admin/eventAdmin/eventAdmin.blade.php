@@ -41,14 +41,14 @@
     
     <form action="{{ url('/admin/event') }}" method="GET" class="date-inputs">
       
-      <input type="text" name="start_date" class="date-field" placeholder="00/00/0000"
+      <input type="text" name="start_date" class="date-field" placeholder="DD/MM/YYYY"
              onfocus="(this.type='date')" 
              onblur="if(!this.value)this.type='text'"
              value="{{ request('start_date') }}">
 
       <span class="dash">-</span>
       
-      <input type="text" name="end_date" class="date-field" placeholder="00/00/0000"
+      <input type="text" name="end_date" class="date-field" placeholder="DD/MM/YYYY"
              onfocus="(this.type='date')" 
              onblur="if(!this.value)this.type='text'"
              value="{{ request('end_date') }}">
@@ -58,7 +58,7 @@
       </button>
 
       @if(request('start_date'))
-        <a href="{{ url('/admin/event') }}" style="color: red; margin-left: 5px; font-size: 12px; text-decoration: none;">Reset</a>
+        <a href="{{ url('/admin/Event') }}" style="color: red; margin-left: 5px; font-size: 12px; text-decoration: none;">Reset</a>
       @endif
     </form>
   </div>
@@ -72,10 +72,10 @@
   <div class="event-cards" id="eventList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
       @forelse($events as $event)
         
-        <div class="modern-card" onclick="window.location.href='{{ url('/admin/event/detail/' . $event->eventID) }}'">
+        <div class="modern-card" onclick="window.location.href='{{ url('/admin/Event/Detail/' . $event->eventID) }}'">
             
             <div class="card-image-wrapper">
-                <img src="{{ $event->imagePath ? asset('storage/' . $event->imagePath) : asset('assets/gambar/raja-ampat-dikeruk.jpeg') }}" 
+                <img src="{{ asset('storage/' . $event->imagePath) }}" 
                     alt="{{ $event->name }}">
                 
                 <div class="date-badge">

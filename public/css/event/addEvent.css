@@ -119,3 +119,66 @@ html, body {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Style Tambahan Khusus Edit */
+.split-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.split-inputs > div {
+    flex: 1;
+}
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* CONTAINER UTAMA (Wajib position: relative) */
+.item-image {
+    position: relative; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Tambahkan tinggi dan lebar pasti agar area klik jelas */
+    min-height: 200px; 
+    border: 2px dashed #ccc; /* Visual bantu batas area */
+        border-radius: 10px;
+}
+
+/* 1. LAYER PALING BELAKANG (Gambar Lama) */
+.image-preview-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.4; /* Transparan biar teks terbaca */
+    z-index: 1;
+}
+
+/* 2. LAYER TENGAH (Teks & Icon) */
+.upload-content {
+    position: relative;
+    z-index: 2; 
+    text-align: center;
+    pointer-events: none; /* PENTING: Agar klik tembus ke input file di belakang/depannya */
+}
+
+/* 3. LAYER PALING DEPAN (Input File - INI KUNCINYA) */
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;   /* Memenuhi lebar kotak */
+    height: 100%;  /* Memenuhi tinggi kotak */
+    opacity: 0;    /* TRANSPARAN (Tak terlihat tapi ada) */
+    z-index: 10;   /* Layer paling atas! */
+     cursor: pointer; /* Ubah kursor jadi telunjuk */
+}

@@ -51,10 +51,10 @@ Route::prefix('admin')->group(function () {
     Route::delete('/delete-account', [AdminController::class, 'deleteAccount']);
 
     // HALAMAN EDIT PROFILE (GET)
-    Route::get('/Edit-Profile', [AdminController::class, 'editProfile']);
+    Route::get('/Edit-Profile', [AdminController::class, 'tampilFormEditProfile']);
 
     // PROSES UPDATE PROFILE (PUT)
-    Route::put('/Update-Profile', [AdminController::class, 'updateProfile']);
+    Route::put('/Update-Profile', [AdminController::class, 'editProfile']);
 
     // Halaman List Event (GET)
     Route::get('/Event', [EventController::class, 'index']);
@@ -71,6 +71,12 @@ Route::prefix('admin')->group(function () {
     
     // Route Delete (Sudah ada di jawaban sebelumnya, pastikan ada)
     Route::delete('/Event/Delete/{id}', [EventController::class, 'hapusEvent']);
+
+    // HALAMAN EDIT Event (GET)
+    Route::get('/Event/Edit/{id}', [EventController::class, 'tampilFormEditEvent']);
+
+    // PROSES UPDATE PROFILE (PUT)
+    Route::put('/Event/Update/{id}', [EventController::class, 'editEvent']);
 });
 
 // Route Logout (Bisa ditaruh di luar group admin)

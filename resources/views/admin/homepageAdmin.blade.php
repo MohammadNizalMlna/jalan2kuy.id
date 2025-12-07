@@ -15,7 +15,7 @@
             <div class="hero-content">
                 <h1>Temukan Petualanganmu</h1>
                 <h2>Bersama <span>Jalan2Kuy.id</span></h2>
-                <button class="cta-btn" onclick="window.location.href='{{ url('/admin/destinasi') }}'">Kelola Destinasi</button>
+                <button class="cta-btn" onclick="window.location.href='{{ url('/admin/Destination') }}'">Kelola Destinasi</button>
             </div>
         </div>
         
@@ -23,7 +23,7 @@
             <div class="hero-content">
                 <h1>Jelajahi Budaya Lewat</h1>
                 <h2>Event Unik Nusantara <span>Jalan2Kuy.id</span></h2>
-                <button class="cta-btn" onclick="window.location.href='{{ url('/admin/event') }}'">Kelola Event</button>
+                <button class="cta-btn" onclick="window.location.href='{{ url('/admin/Event') }}'">Kelola Event</button>
             </div>
         </div>
         

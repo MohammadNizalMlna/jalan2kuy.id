@@ -198,50 +198,50 @@ class AdminController extends Controller
     }
 
     // A. TAMPILKAN FORM EDIT
-public function editProfile()
-{
-    $adminID = Session::get('admin_id');
-    $admin = Admin::find($adminID);
+    public function tampilFormEditProfile()
+    {
+        $adminID = Session::get('admin_id');
+        $admin = Admin::find($adminID);
 
-    if (!$admin) {
-        return redirect('/login');
+        if (!$admin) {
+            return redirect('/login');
+        }
+
+        return view('akun.editAkun', ['admin' => $admin]);
     }
 
-    return view('akun.editAkun', ['admin' => $admin]);
-}
+    // B. PROSES UPDATE DATA
+    public function editProfile(Request $request)
+    {
+        $adminID = Session::get('admin_id');
+        $admin = Admin::find($adminID);
 
-// B. PROSES UPDATE DATA
-public function updateProfile(Request $request)
-{
-    $adminID = Session::get('admin_id');
-    $admin = Admin::find($adminID);
+        // 1. Validasi Input
+        $request->validate([
+            'name' => 'required',
+            // Rule Unique: Cek unik di tabel admin kolom username, TAPI abaikan ID milik admin yang sedang login ini
+            'username' => 'required|unique:admin,username,' . $adminID . ',adminID',
+            'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
+            'gender' => 'required',
+            'password' => 'nullable|min:4' // Password boleh kosong (nullable)
+        ]);
 
-    // 1. Validasi Input
-    $request->validate([
-        'name' => 'required',
-        // Rule Unique: Cek unik di tabel admin kolom username, TAPI abaikan ID milik admin yang sedang login ini
-        'username' => 'required|unique:admin,username,' . $adminID . ',adminID',
-        'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
-        'gender' => 'required',
-        'password' => 'nullable|min:4' // Password boleh kosong (nullable)
-    ]);
+        // 2. Update Data
+        $admin->name = $request->input('name');
+        $admin->username = $request->input('username');
+        $admin->email = $request->input('email');
+        $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
 
-    // 2. Update Data
-    $admin->name = $request->input('name');
-    $admin->username = $request->input('username');
-    $admin->email = $request->input('email');
-    $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
+        // 3. Cek apakah user mengisi password baru?
+        if ($request->filled('password')) {
+            $admin->password = $request->input('password'); // Simpan password baru
+        }
 
-    // 3. Cek apakah user mengisi password baru?
-    if ($request->filled('password')) {
-        $admin->password = $request->input('password'); // Simpan password baru
+        $admin->save();
+
+        // 4. Update Session Nama (jika nama berubah)
+        Session::put('admin_name', $admin->name);
+
+        return redirect('/admin/Account')->with('success', 'Profil berhasil diperbarui!');
     }
-
-    $admin->save();
-
-    // 4. Update Session Nama (jika nama berubah)
-    Session::put('admin_name', $admin->name);
-
-    return redirect('/admin/Account')->with('success', 'Profil berhasil diperbarui!');
-}
 }
