@@ -9,45 +9,16 @@ class Event extends Model
 {
     use HasFactory;
 
-    // ==========================================
-    // 1. KONFIGURASI TABEL & PRIMARY KEY
-    // ==========================================
-
-    /**
-     * Nama tabel di database.
-     * Default Laravel: 'events'.
-     * Jika nama tabel Anda tunggal ('event'), aktifkan baris di bawah ini:
-     */
+    //konfigurasi tabel event dan primary key eventID
+    //kolom primary ke selalu diawali dengan nama tabelnya + ID dan bertipe data string (incrementing false karena string)
+    //timestamps false karena tidak ada kolom created_at, updated_at dalam tabel event
     protected $table = 'event';
-
-    /**
-     * Menentukan Primary Key.
-     * Karena di Java Anda pakai 'eventID', kita set manual di sini.
-     */
     protected $primaryKey = 'eventID';
-
-    /**
-     * Matikan auto-increment karena ID berupa String.
-     */
     public $incrementing = false;
-
-    /**
-     * Tentukan tipe data Primary Key adalah string.
-     */
     protected $keyType = 'string';
-
-    /**
-     * Matikan timestamps (created_at, updated_at) karena tidak ada di class Java.
-     */
     public $timestamps = false;
 
-    // ==========================================
-    // 2. MASS ASSIGNMENT (FILLABLE)
-    // ==========================================
-
-    /**
-     * Daftar kolom yang boleh diisi datanya secara massal.
-     */
+    //atribut atau kolom yang ada pada tabel event
     protected $fillable = [
         'eventID',
         'name',
@@ -66,9 +37,8 @@ class Event extends Model
     // 3. CASTING TIPE DATA
     // ==========================================
 
-    /**
-     * Mengubah format data database menjadi tipe data PHP native.
-     */
+
+    //Mengubah format data database menjadi tipe data PHP native (casting tipe data)
     protected $casts = [
         'entranceFee' => 'integer',
 
