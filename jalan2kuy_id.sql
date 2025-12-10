@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Des 2025 pada 15.55
+-- Waktu pembuatan: 10 Des 2025 pada 13.38
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `jalan2kuy.id`
+-- Database: `jalan2kuy_id`
 --
 
 -- --------------------------------------------------------
@@ -75,8 +75,21 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `destcategory` (
   `destCategoryID` varchar(6) NOT NULL,
-  `categoryName` varchar(20) NOT NULL
+  `categoryName` varchar(20) NOT NULL,
+  `categoryImage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `destcategory`
+--
+
+INSERT INTO `destcategory` (`destCategoryID`, `categoryName`, `categoryImage`) VALUES
+('ctg001', 'Nature', 'destcategories/Nature.png'),
+('ctg002', 'History', 'destcategories/History.jpg'),
+('ctg003', 'Ecotourism', 'destcategories/Ecotourism.png'),
+('ctg004', 'Beach', 'destcategories/Beach.jpg'),
+('ctg005', 'Culture', 'destcategories/Culture.jpg'),
+('ctg006', 'Education', 'destcategories/Education.jpg');
 
 -- --------------------------------------------------------
 
@@ -87,18 +100,27 @@ CREATE TABLE `destcategory` (
 CREATE TABLE `destination` (
   `destinationID` varchar(6) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `location` int NOT NULL,
+  `location` varchar(255) NOT NULL,
   `openingHours` time NOT NULL,
   `closingHours` time NOT NULL,
+  `timezone` varchar(15) NOT NULL,
   `openingDay` varchar(15) NOT NULL,
   `closingDay` varchar(15) NOT NULL,
-  `entrenceFee` int NOT NULL,
+  `entranceFee` int NOT NULL,
   `description` text NOT NULL,
   `imagePath` varchar(255) NOT NULL,
   `thumbnailImagePath` varchar(255) NOT NULL,
   `destCategoryID` varchar(6) NOT NULL,
   `adminID` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `destination`
+--
+
+INSERT INTO `destination` (`destinationID`, `name`, `location`, `openingHours`, `closingHours`, `timezone`, `openingDay`, `closingDay`, `entranceFee`, `description`, `imagePath`, `thumbnailImagePath`, `destCategoryID`, `adminID`) VALUES
+('dst001', 'tes nautere', 'tes natire', '08:00:00', '09:00:00', 'WIB', 'senin', 'minggu', 25000, 'tes nature', 'destinations/image/ZnRrlW5QxyeH8vJREiNUtIRk1QylK3P5EUoPkX8b.png', 'destinations/thumbnailImage/B3Y1Y1Ru6UsTypxWY070dCOvWhR5TjqAa2PE3sYE.png', 'ctg001', 'adm001'),
+('dst002', 'TES HISTORY', 'history', '06:00:00', '18:00:00', 'WIB', 'senin', 'MINGGU', 20000, 'tes histiry', 'destinations/image/TkPpsbsvycFQG1Bf6o2LBqUsgtPIbeG9BfsHxTje.jpg', 'destinations/thumbnailImage/0wINsdacdTThY8otdZ9lyWrOsb6qIA2DO2HaNhnE.png', 'ctg002', 'adm001');
 
 -- --------------------------------------------------------
 
@@ -127,8 +149,9 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`eventID`, `name`, `startDate`, `endDate`, `location`, `description`, `entranceFee`, `startTime`, `endTime`, `socialMedia`, `imagePath`, `destinationID`, `adminID`) VALUES
-('evt001', 'tes event', '2025-12-01', '2025-12-05', 'tes lokasi event', 'test nambah event', 5000, '08:30:00', '09:30:00', 'dhmzz._375', 'events/Nvl7TfpReXhyckyUjlBFfPqnJw5L8pcNHM84S7u9.png', NULL, 'adm001'),
-('evt003', 'baru', '4444-04-04', '7744-04-04', 'aasasas', 'asasas', 12, '12:12:00', '13:13:00', 'sasas', 'events/3sviv8SUuq6aCtZ7i912FZx2BiSPtaNlLiZPiwqu.png', NULL, 'adm001');
+('evt001', 'tes event', '2025-12-01', '2025-12-05', 'tes lokasi event', 'test nambah event', 5000, '08:30:00', '09:30:00', 'dhmzz._375', 'events/Nvl7TfpReXhyckyUjlBFfPqnJw5L8pcNHM84S7u9.png', 'dst002', 'adm001'),
+('evt003', 'baru', '4444-04-04', '7744-04-04', 'aasasas', 'asasas', 12, '12:12:00', '13:13:00', 'sasas', 'events/3sviv8SUuq6aCtZ7i912FZx2BiSPtaNlLiZPiwqu.png', NULL, 'adm001'),
+('evt004', 'tes event biat destination', '1111-11-11', '2222-02-22', 'destination', 'tes event biat destination', 11, '09:00:00', '11:00:00', 'iuhicuef', 'events/cKhsXKwSCikRViico1gb1PqkCtt336N2PhnmNyWd.png', 'dst001', 'adm001');
 
 -- --------------------------------------------------------
 
@@ -234,7 +257,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('R6jzRf6mfeXgsvYHLKUJKOurDjyCSmhTY7X16SgM', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoicjk2dGkxWVYyejl3SEtqZlU2U3F6VGlTSXE0aklLZ1VBcjViYVkwZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9ldmVudC9jcmVhdGUiO3M6NToicm91dGUiO047fXM6ODoiYWRtaW5faWQiO3M6NjoiYWRtMDAxIjtzOjEwOiJhZG1pbl9uYW1lIjtzOjk6IkRoaW1hcyBIUCI7fQ==', 1765253106);
+('FJg7XaBJowIEeyEFiJDjHoAv6EyKtuU7XKS0ACA3', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoibnBXVkFCMEZQNkNYNjhPMjlMa3o1MEhrWm1qWHZ6RHFNVXlIc0EwSSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NjQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9EZXN0aW5hdGlvbi9DYXRlZ29yeT9DYXRlZ29yeT1jdGcwMDIiO3M6NToicm91dGUiO047fXM6ODoiYWRtaW5faWQiO3M6NjoiYWRtMDAxIjtzOjEwOiJhZG1pbl9uYW1lIjtzOjk6IkRoaW1hcyBIUCI7fQ==', 1765369900);
 
 -- --------------------------------------------------------
 
