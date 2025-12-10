@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController; //WAJIB TAMBAHIN INI UNTUK SETIAP CONT
 use App\Http\Controllers\DestCategoryController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EventController;
+
 //ROUTING NANTI DISINI
 //HTML nya taro di folder resources/views belakangnya dikasih ekstensi .blade.php (contoh homepage.blade.php)
 
@@ -84,7 +85,19 @@ Route::prefix('admin')->group(function () {
 
     // PROSES UPDATE PROFILE (PUT)
     Route::put('/Event/Update/{id}', [EventController::class, 'editEvent']);
+
+    // Halaman Utama Destinasi Admin
+    Route::get('/Destination', [DestinationController::class, 'tampilCategoryAdmin']);
+
+    // Halaman Kategori Destinasi
+    Route::get('/Destination/Category', [DestinationController::class, 'categoryAdmin']);
 });
+
+// Halaman Utama Destinasi
+Route::get('/Destination', [DestinationController::class, 'tampilCategory']);
+
+// Halaman Kategori Destinasi
+Route::get('/Destination/Category', [DestinationController::class, 'category']);
 
 // Route Logout (Bisa ditaruh di luar group admin)
 Route::post('/logout', [AdminController::class, 'logout']);
