@@ -91,6 +91,13 @@ Route::prefix('admin')->group(function () {
 
     // Halaman Kategori Destinasi
     Route::get('/Destination/Category', [DestinationController::class, 'categoryAdmin']);
+
+    // 1. Route untuk MENAMPILKAN Form Tambah Destinasi (Method: GET)
+    // URL: http://website.com/admin/destination/create?Category=Nature
+    Route::get('Destination/AddDestination', [DestinationController::class, 'addDestination']);
+    // 2. Route untuk MENYIMPAN Data ke Database (Method: POST)
+    // URL: http://website.com/admin/destination/store
+    Route::post('/Destination/Store', [DestinationController::class, 'storeDestinationData']);
 });
 
 // Halaman Utama Destinasi

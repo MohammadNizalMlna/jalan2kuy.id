@@ -59,6 +59,7 @@ class Destination extends Model
         'closingDay',
         'openingHours',
         'closingHours',
+        'timezone',
         'imagePath',
         'thumbnailImagePath',
     ];
@@ -73,11 +74,6 @@ class Destination extends Model
     protected $casts = [
         // 'entranceFee' otomatis jadi integer, tidak perlu di-cast khusus kecuali ingin format lain.
         'entranceFee' => 'integer',
-
-        // Mengubah 'openingDay' & 'closingDay' (Java Date) menjadi instance Carbon (Date)
-        // Ini memungkinkan Anda memformat tanggal dengan mudah di Blade: $dest->openingDay->format('d F Y')
-        'openingDay' => 'date',
-        'closingDay' => 'date',
         
         // Untuk 'openingHours' & 'closingHours' (Java LocalTime / SQL TIME):
         // Laravel biasanya membacanya sebagai String (contoh: "08:00:00").

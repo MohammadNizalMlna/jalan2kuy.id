@@ -14,6 +14,7 @@ class DestCategory extends Model
     protected $fillable = [
         'destCategoryID',
         'categoryName',
+        'categoryImage',
     ];
 
     public $timestamps = false; 

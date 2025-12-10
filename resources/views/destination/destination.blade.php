@@ -22,17 +22,17 @@
         </div>
         
         <div class="categori-container">
-            {{-- 
-               CATATAN ROUTE:
-               Pastikan kamu membuat Route di web.php untuk menangani link ini.
-               Contoh: Route::get('/destination/category', [DestinasiController::class, 'category']);
-            --}}
-            <a href="{{ url('/Destination/Category?Category=Nature') }}" class="categori nature"><span>Nature</span></a>
-            <a href="{{ url('/Destination/Category?Category=History') }}" class="categori history"><span>History</span></a>
-            <a href="{{ url('/Destination/Category?Category=Ecotourism') }}" class="categori ecotourism"><span>Ecotourism</span></a>
-            <a href="{{ url('/Destination/Category?Category=Beach') }}" class="categori beach"><span>Beach</span></a>
-            <a href="{{ url('/Destination/Category?Category=Culture') }}" class="categori culture"><span>Culture</span></a>
-            <a href="{{ url('/Destination/Category?Category=Education') }}" class="categori education"><span>Education</span></a>
+            
+            @foreach($categories as $cat)
+                <a href="{{ url('/Destination/Category?Category=' . $cat->destCategoryID) }}" 
+                class="categori"
+                {{-- PERUBAHAN DISINI --}}
+                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ asset('storage/' . $cat->categoryImage) }}');">
+                
+                <span>{{ $cat->categoryName }}</span>
+                </a>
+            @endforeach
+
         </div>
     </section>
 
