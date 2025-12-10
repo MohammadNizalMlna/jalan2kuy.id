@@ -40,5 +40,5 @@
   {{-- Pastikan menggunakan JS untuk Admin (category.js), bukan categoryUser.js --}}
   <script src="{{ asset('js/category.js') }}"></script>
 
-</body>
+</body> 
 </html>
