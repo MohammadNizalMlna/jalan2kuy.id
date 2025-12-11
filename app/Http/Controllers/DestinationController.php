@@ -158,19 +158,23 @@ class DestinationController extends Controller
 
             $destination->save();
 
-            // --- LOGIKA TAMBAHAN: UPDATE EVENT TERKAIT ---
-            // Cek apakah Admin memilih Event di dropdown?
-            if ($request->filled('eventID')) {
-                // Cari Event berdasarkan ID yang dipilih
-                $relatedEvent = \App\Models\Event::find($request->eventID);
+            /// --- UPDATE LOGIKA EVENT (ARRAY) ---
+            // Cek apakah ada input eventID dan pastikan dia Array
+            if ($request->filled('eventID') && is_array($request->eventID)) {
                 
-                if ($relatedEvent) {
-                    // Update kolom destinationID di tabel Event
-                    // agar menunjuk ke Destinasi yang baru saja dibuat ini
-                    $relatedEvent->destinationID = $destination->destinationID;
+                // Loop setiap ID event yang dipilih
+                foreach ($request->eventID as $singleEventID) {
                     
-                    // Simpan perubahan pada Event
-                    $relatedEvent->save();
+                    // Pastikan ID tidak kosong (karena dropdown terakhir biasanya kosong)
+                    if (!empty($singleEventID)) {
+                        $relatedEvent = \App\Models\Event::find($singleEventID);
+                        
+                        // Jika event ketemu, update destinationID-nya
+                        if ($relatedEvent) {
+                            $relatedEvent->destinationID = $destination->destinationID;
+                            $relatedEvent->save();
+                        }
+                    }
                 }
             }
 
@@ -185,6 +189,140 @@ class DestinationController extends Controller
             DB::rollBack();
             // Kembalikan ke form dengan pesan error (bukan dd)
             return back()->with('error', 'Gagal menyimpan destination: ' . $e->getMessage())->withInput();
+        }
+    }
+
+    public function detailDestinationAdmin($id)
+    {
+        // 1. Ambil Data Destinasi (Tanpa 'with')
+        $destination = Destination::where('destinationID', $id)->first();
+
+        if (!$destination) {
+            return redirect()->back()->with('error', 'Destinasi tidak ditemukan.');
+        }
+
+        // 2. Ambil Data Event SECARA MANUAL
+        // "Cari di tabel Event, yang destinationID-nya sama dengan ID destinasi ini"
+        $relatedEvents = Event::where('destinationID', $id)->get();
+
+        // 3. Kirim KEDUA variabel ($destination dan $relatedEvents) ke View
+        return view('admin.destination.detailDestinationAdmin', [
+            'destination' => $destination,
+            'events'      => $relatedEvents // Kita namakan 'events' biar mudah dipanggil di Blade
+        ]);
+    }
+
+    // Function Delete
+    public function deleteDestination($id)
+    {
+        $destination = Destination::where('destinationID', $id)->first();
+        
+        if ($destination) {
+            // 1. LEPASKAN RELASI EVENT DULU (PENTING!)
+            // Cari semua event yang punya destinationID ini, lalu set jadi NULL
+            \App\Models\Event::where('destinationID', $id)->update(['destinationID' => null]);
+
+            // 2. Hapus file gambar (Kode lama kamu)
+            if ($destination->imagePath) Storage::disk('public')->delete($destination->imagePath);
+            if ($destination->thumbnailImagePath) Storage::disk('public')->delete($destination->thumbnailImagePath);
+
+            // 3. Baru Hapus Destinasinya
+            $destination->delete();
+
+            return redirect('/admin/Destination/Category?Category=' . $destination->destCategoryID)->with('success', 'Destinasi berhasil dihapus (Event terkait telah di-unassign).');
+        }
+
+        return back()->with('error', 'Gagal menghapus data.');
+    }
+
+    public function tampilFormEditDestination($id)
+    {
+        $destination = Destination::where('destinationID', $id)->first();
+        
+        if (!$destination) {
+            return back()->with('error', 'Destinasi tidak ditemukan.');
+        }
+
+        // 1. Ambil SEMUA event (untuk opsi dropdown menambah event baru/ganti event)
+        $allEvents = Event::all(); 
+
+        // 2. Ambil EVENT MILIK DESTINASI INI (Manual Query pengganti $destination->events)
+        // "Cari di tabel Event, yang destinationID-nya sama dengan ID destinasi ini"
+        $currentEvents = Event::where('destinationID', $id)->get();
+        
+        // 3. Kirim ke View (perhatikan variabel 'currentEvents')
+        return view('admin.destination.editDestinationAdmin', [
+            'destination'   => $destination,
+            'events'        => $allEvents,     // List semua event
+            'currentEvents' => $currentEvents  // List event milik destinasi ini saja
+        ]);
+    }
+
+    // PROSES UPDATE
+    public function editDestination(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'entranceFee' => 'required|numeric',
+            'openingDay' => 'required',
+            'closingDay' => 'required',
+            'openingHours' => 'required',
+            'closingHours' => 'required',
+            'timezone' => 'required',
+            'image' => 'nullable|image|max:10240',          // Nullable (karena edit)
+            'thumbnailImage' => 'nullable|image|max:10240', // Nullable (karena edit)
+        ]);
+
+        try {
+            $destination = Destination::where('destinationID', $id)->first();
+            
+            // Update Gambar (Hanya jika ada upload baru)
+            if ($request->hasFile('image')) {
+                if ($destination->imagePath) Storage::disk('public')->delete($destination->imagePath);
+                $destination->imagePath = $request->file('image')->store('destinations/image', 'public');
+            }
+            if ($request->hasFile('thumbnailImage')) {
+                if ($destination->thumbnailImagePath) Storage::disk('public')->delete($destination->thumbnailImagePath);
+                $destination->thumbnailImagePath = $request->file('thumbnailImage')->store('destinations/thumbnailImage', 'public');
+            }
+
+            // Update Data Teks
+            $destination->name = $request->name;
+            $destination->description = $request->description;
+            $destination->location = $request->location;
+            $destination->openingDay = $request->openingDay;
+            $destination->closingDay = $request->closingDay;
+            $destination->openingHours = $request->openingHours;
+            $destination->closingHours = $request->closingHours;
+            $destination->timezone = $request->timezone;
+            $destination->entranceFee = $request->entranceFee;
+            
+            $destination->save();
+
+            // --- UPDATE LOGIKA EVENT (RESET & RE-ASSIGN) ---
+            // 1. Lepaskan (Detach) semua event yang sebelumnya nempel ke destinasi ini
+            //    (Set destinationID mereka jadi NULL dulu)
+            \App\Models\Event::where('destinationID', $id)->update(['destinationID' => null]);
+
+            // 2. Pasang kembali event-event yang dipilih di form
+            if ($request->filled('eventID') && is_array($request->eventID)) {
+                foreach ($request->eventID as $evID) {
+                    if (!empty($evID)) {
+                        $event = \App\Models\Event::find($evID);
+                        if ($event) {
+                            $event->destinationID = $id; // Pasang lagi
+                            $event->save();
+                        }
+                    }
+                }
+            }
+
+            return redirect('/admin/Destination/Detail/' . $id)->with('success', 'Destinasi berhasil diperbarui!');
+
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal update: ' . $e->getMessage());
         }
     }
 }

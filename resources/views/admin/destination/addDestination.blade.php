@@ -3,194 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jalan2Kuy.id - Add Destination (Admin)</title>
+    <title>Jalan2Kuy.id - Add Destination</title>
 
-    {{-- Asset CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/admin/addDestinasi.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/addDestination.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        /* CSS Tambahan untuk Preview Gambar */
-        .image-preview-box {
-            width: 100%;
-            height: 150px;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            background: #f9f9f9;
-            margin-bottom: 10px;
-        }
-        .image-preview-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none; 
-        }
-        .error-text {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
 
 @include('partials.navbarAdmin')
 
-{{-- SCRIPT PENCARI NAMA KATEGORI --}}
 @php
     $catName = '';
-    // Jika ada parameter Category di URL (isinya ID)
     if(request('Category')){
-        // Cari data kategori berdasarkan ID tersebut
         $catData = \App\Models\DestCategory::find(request('Category'));
-        // Jika ketemu, ambil namanya. Jika tidak, kosongkan.
         $catName = $catData ? $catData->categoryName : '';
     }
 @endphp
 
-<h1 class="page-title">Add Destination @if($catName) - {{ $catName }} @endif</h1>
-
-<div class="form-container">
+<main>
     @if(session('error'))
-        <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+        <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; width: 80%; margin: 0 auto;">
             {{ session('error') }}
         </div>
     @endif
 
-    <form class="destination-form" action="{{ url('/admin/Destination/Store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/admin/Destination/Store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        
-        {{-- Input Hidden tetap menyimpan ID untuk dikirim ke Controller --}}
         <input type="hidden" name="category" value="{{ request('Category') }}">
 
-        <div class="form-item item-thumbnail">
-            <label>Thumbnail Image</label>
-            <div class="image-preview-box">
-                <img id="previewThumbnail" src="#" alt="Preview">
-                <div id="placeholderThumbnail" style="text-align: center; color: #888;">
-                    <i class="fas fa-image fa-2x"></i><br>Preview
-                </div>
+        <h1 class="edit-title">
+            Add Destination @if($catName) - {{ $catName }} @endif<br>
+            <div class="title-edit-box">
+                <input type="text" name="name" id="titleField" class="title-input" placeholder="Nama Destinasi..." value="{{ old('name') }}" required>
+                <i class="fas fa-pen title-icon"></i>
             </div>
-            
-            <input type="file" name="thumbnailImage" accept="image/*" class="file-input" required onchange="previewImage(this, 'previewThumbnail', 'placeholderThumbnail')">
-            @error('thumbnailImage') <small class="error-text">{{ $message }}</small> @enderror
-        </div>
+            @error('name') <small class="error-text" style="text-align: center;">{{ $message }}</small> @enderror
+        </h1>
 
-        <div class="form-item">
-            <label for="name">Nama Destinasi</label>
-            <input type="text" name="name" id="name" placeholder="Masukkan nama destinasi..." required value="{{ old('name') }}" 
-                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px; box-sizing: border-box;">
-            @error('name') <small class="error-text">{{ $message }}</small> @enderror
-        </div>
+        <section class="edit-grid">
 
-        <div class="form-item item-deskripsi">
-            <label for="description">Deskripsi</label>
-            <textarea name="description" id="description" placeholder="Masukkan deskripsi panjang destinasi..." required>{{ old('description') }}</textarea>
-            @error('description') <small class="error-text">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-item item-add-image">
-             <label>Main Image</label>
-             <div class="image-preview-box">
-                <img id="previewMain" src="#" alt="Preview">
-                <div id="placeholderMain" style="text-align: center; color: #888;">
-                    <i class="fas fa-image fa-2x"></i><br>Preview
-                </div>
-            </div>
-
-            <input type="file" name="image" id="galleryImg" accept="image/*" class="file-input" required onchange="previewImage(this, 'previewMain', 'placeholderMain')">
-            @error('image') <small class="error-text">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="form-item item-info">
-            
-            <div class="info-row">
-                <label for="location">Lokasi Tempat</label>
-                <input type="text" name="location" id="lokasi" placeholder="Masukkan lokasi destinasi..." required value="{{ old('location') }}">
-                @error('location') <small class="error-text">{{ $message }}</small> @enderror
-            </div>
-
-            <div class="info-row">
-                <label>Hari Operasional</label>
-                <div style="display: flex; gap: 10px;">
-                    <div style="flex:1">
-                        <input type="text" name="openingDay" placeholder="Hari Mulai (ex: Senin)" required value="{{ old('openingDay') }}">
+            <div class="thumb-box">
+                <label class="image-label">Thumbnail Image</label>
+                {{-- Pakai class box-thumbnail --}}
+                <div class="image-upload-box box-thumbnail">
+                    <div id="thumbPlaceholder" class="placeholder">
+                        <i class="far fa-image"></i>
+                        <span>Preview</span>
                     </div>
-                    <div style="flex:1">
-                        <input type="text" name="closingDay" placeholder="Hari Selesai (ex: Minggu)" required value="{{ old('closingDay') }}">
-                    </div>
+                    <img id="thumbPreview" class="preview-img">
+                    <input type="file" name="thumbnailImage" class="file-input-overlay" accept="image/*" onchange="previewImage(this, 'thumbPreview', 'thumbPlaceholder')" required>
                 </div>
-                @error('openingDay') <small class="error-text">{{ $message }}</small> @enderror
-                @error('closingDay') <small class="error-text">{{ $message }}</small> @enderror
+                 @error('thumbnailImage') <small class="error-text">{{ $message }}</small> @enderror
             </div>
 
-            <div class="info-row">
+            <div class="desc-box">
+                <label>Deskripsi</label>
+                <textarea name="description" id="descField" placeholder="Masukkan deskripsi lengkap..." required>{{ old('description') }}</textarea>
+                @error('description') <small class="error-text">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="image-box">
+                <label class="image-label">Main Image</label>
+                 {{-- Pakai class box-main-image --}}
+                 <div class="image-upload-box box-main-image">
+                    <div id="mainPlaceholder" class="placeholder">
+                         <i class="far fa-image" style="font-size: 50px;"></i>
+                        <span>Preview Main Image</span>
+                    </div>
+                    <img id="mainPreview" class="preview-img">
+                    <input type="file" name="image" class="file-input-overlay" accept="image/*" onchange="previewImage(this, 'mainPreview', 'mainPlaceholder')" required>
+                </div>
+                @error('image') <small class="error-text">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="info-box">
+                <label>Lokasi Tempat</label>
+                <input type="text" name="location" id="locField" placeholder="Alamat lengkap..." value="{{ old('location') }}" required>
+                
+                <label>Hari Buka</label>
+                <div class="split-day">
+                    <input type="text" name="openingDay" placeholder="Hari Mulai" value="{{ old('openingDay') }}" required>
+                    <input type="text" name="closingDay" placeholder="Hari Selesai" value="{{ old('closingDay') }}" required>
+                </div>
+
                 <label>Jam Operasional</label>
                 <div class="jam-operasional">
-                    <input type="time" name="openingHours" id="jam-buka" required value="{{ old('openingHours') }}">
+                    <input type="time" name="openingHours" id="openField" value="{{ old('openingHours') }}" required>
                     <span>-</span>
-                    <input type="time" name="closingHours" id="jam-tutup" required value="{{ old('closingHours') }}">
+                    <input type="time" name="closingHours" id="closeField" value="{{ old('closingHours') }}" required>
                 </div>
-                @error('openingHours') <small class="error-text">{{ $message }}</small> @enderror
-            </div>
 
-            <div class="info-row">
                 <label>Zona Waktu</label>
-                <input type="text" name="timezone" id="timezone" placeholder="WIB / WITA / WIT" required value="{{ old('timezone') }}">
-                @error('timezone') <small class="error-text">{{ $message }}</small> @enderror
+                <input type="text" name="timezone" id="timezoneField" placeholder="WIB / WITA / WIT" value="{{ old('timezone') }}" required>
+
+                <label>Harga Tiket Masuk (Rp)</label>
+                <input type="number" name="entranceFee" id="priceField" placeholder="0" value="{{ old('entranceFee') }}" required>
             </div>
 
-            <div class="info-row">
-                <label for="harga">Harga Tiket Masuk (Rp)</label>
-                <input type="number" name="entranceFee" id="harga" placeholder="contoh: 25000" min="0" required value="{{ old('entranceFee') }}">
-                @error('entranceFee') <small class="error-text">{{ $message }}</small> @enderror
-            </div>
-        </div>
-
-        <div class="form-item item-event">
-            <label for="eventSelect">Event Terkait (Opsional)</label>
-            <div class="event-row">
-                <select name="eventID" id="eventSelect">
-                    <option value="">-- Pilih Event (Jika Ada) --</option>
-                    @foreach($events as $event)
-                        <option value="{{ $event->eventID }}">{{ $event->name }}</option>
-                    @endforeach
-                </select>
+            <div class="event-box">
+                <label>Event Terkait (Opsional)</label>
                 
-                <a href="{{ url('/admin/event/create') }}" class="add-event-btn" title="Buat Event Baru" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-plus"></i>
-                </a>
-            </div>
-        </div>
+                <div id="event-container">
+                    <div class="dynamic-event-wrapper">
+                        {{-- Perhatikan name="eventID[]" menggunakan array agar bisa kirim banyak --}}
+                        <select name="eventID[]" class="event-select" onchange="addNewDropdown(this)">
+                            <option value="">-- Pilih Event --</option>
+                            @foreach($events as $event)
+                                <option value="{{ $event->eventID }}">{{ $event->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
-        <button type="submit" class="submit-button">Tambah Destinasi</button>
+                <div style="text-align: right; margin-top: 5px;">
+                    <a href="{{ url('/admin/event/create') }}" style="color: #3aa6a6; text-decoration: none; font-size: 12px;">
+                        <i class="fas fa-plus-circle"></i> Buat Event Baru
+                    </a>
+                </div>
+            </div>
+
+            <button type="submit" class="save-button" id="saveBtn">Tambah Destinasi</button>
+
+        </section>
     </form>
-</div>
+</main>
 
 @include('partials.footer')
 
 <script>
+    // FUNGSI PREVIEW GAMBAR
     function previewImage(input, imgId, placeholderId) {
         const preview = document.getElementById(imgId);
         const placeholder = document.getElementById(placeholderId);
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
-            
             reader.onload = function(e) {
                 preview.src = e.target.result;
-                preview.style.display = 'block';
-                placeholder.style.display = 'none';
+                preview.style.display = 'block'; 
+                if(placeholder) placeholder.style.display = 'none'; 
             }
-            
             reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // FUNGSI NAMBAH DROPDOWN EVENT OTOMATIS
+    function addNewDropdown(selectElement) {
+        // Cek apakah user memilih value (bukan kosong)
+        if (selectElement.value !== "") {
+            // Cek apakah ini dropdown terakhir? Kita cuma mau nambah kalau yg terakhir dipilih
+            const container = document.getElementById('event-container');
+            const allSelects = container.querySelectorAll('select');
+            const lastSelect = allSelects[allSelects.length - 1];
+
+            // Jika elemen yang diubah adalah yang terakhir, baru tambah bawahnya
+            if (selectElement === lastSelect) {
+                
+                // Buat wrapper baru
+                const newWrapper = document.createElement('div');
+                newWrapper.className = 'dynamic-event-wrapper';
+
+                // Clone dropdown pertama
+                // Kita clone node pertama biar opsinya sama persis
+                const firstSelect = allSelects[0];
+                const newSelect = firstSelect.cloneNode(true);
+
+                // Reset valuenya jadi kosong
+                newSelect.value = "";
+                
+                // Tambahkan event listener lagi ke clone yang baru
+                newSelect.onchange = function() { addNewDropdown(this) };
+
+                // Masukkan ke DOM
+                newWrapper.appendChild(newSelect);
+                container.appendChild(newWrapper);
+            }
         }
     }
 </script>

@@ -98,6 +98,18 @@ Route::prefix('admin')->group(function () {
     // 2. Route untuk MENYIMPAN Data ke Database (Method: POST)
     // URL: http://website.com/admin/destination/store
     Route::post('/Destination/Store', [DestinationController::class, 'storeDestinationData']);
+
+    // Route Detail
+    Route::get('/Destination/Detail/{id}', [DestinationController::class, 'detailDestinationAdmin']);
+    
+    // Route Edit (Form) - Buat nanti
+    Route::get('/Destination/Edit/{id}', [DestinationController::class, 'tampilFormEditDestination']);
+
+    // Proses Update
+    Route::put('/Destination/Update/{id}', [DestinationController::class, 'editDestination']);
+
+    // Route Delete
+    Route::delete('/Destination/Delete/{id}', [DestinationController::class, 'deleteDestination']);
 });
 
 // Halaman Utama Destinasi
