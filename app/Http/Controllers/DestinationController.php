@@ -192,7 +192,7 @@ class DestinationController extends Controller
         }
     }
 
-    public function detailDestinationAdmin($id)
+    public function tampilkanDetailDestinationAdmin($id)
     {
         // 1. Ambil Data Destinasi (Tanpa 'with')
         $destination = Destination::where('destinationID', $id)->first();
@@ -324,5 +324,25 @@ class DestinationController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal update: ' . $e->getMessage());
         }
+    }
+
+    public function tampilkanDetailDestination($id)
+    {
+        // 1. Ambil Data Destinasi (Tanpa 'with')
+        $destination = Destination::where('destinationID', $id)->first();
+
+        if (!$destination) {
+            return redirect()->back()->with('error', 'Destinasi tidak ditemukan.');
+        }
+
+        // 2. Ambil Data Event SECARA MANUAL
+        // "Cari di tabel Event, yang destinationID-nya sama dengan ID destinasi ini"
+        $relatedEvents = Event::where('destinationID', $id)->get();
+
+        // 3. Kirim KEDUA variabel ($destination dan $relatedEvents) ke View
+        return view('destination.detailDestination', [
+            'destination' => $destination,
+            'events'      => $relatedEvents // Kita namakan 'events' biar mudah dipanggil di Blade
+        ]);
     }
 }
