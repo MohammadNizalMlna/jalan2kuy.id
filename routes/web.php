@@ -112,6 +112,8 @@ Route::prefix('admin')->group(function () {
 
     // Route Delete
     Route::delete('/Destination/Delete/{id}', [DestinationController::class, 'deleteDestination']);
+
+    Route::get('/Gallery', [DestinationController::class, 'tampilGaleriAdmin']);
 });
 
 // Halaman Utama Destinasi
@@ -122,6 +124,8 @@ Route::get('/Destination/Category', [DestinationController::class, 'category']);
 
 // Route Logout (Bisa ditaruh di luar group admin)
 Route::post('/logout', [AdminController::class, 'logout']);
+
+Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
 
 // Route::get('/destinasi', [DestinationController::class, 'index']);
 // Route::get('/event', [EventController::class, 'index']);

@@ -132,7 +132,7 @@ body {
         <a href="{{ url('/admin/Homepage') }}"><i class="home"></i> Home</a>
         <a href="{{ url('/admin/Destination') }}"><i class="destinasi"></i> Destination</a>
         <a href="{{ url('/admin/Event') }}"><i class="event"></i> Event</a>
-        <a href="{{ url('/Gallery') }}"><i class="gallery"></i> Gallery</a>
+        <a href="{{ url('/admin/Gallery') }}"><i class="gallery"></i> Gallery</a>
     </div>
 
     <div class="admin">

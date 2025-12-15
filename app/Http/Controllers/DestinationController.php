@@ -345,4 +345,22 @@ class DestinationController extends Controller
             'events'      => $relatedEvents // Kita namakan 'events' biar mudah dipanggil di Blade
         ]);
     }
+
+    public function tampilGaleri()
+    {
+        // Ambil semua data destinasi dari database
+        $destinations = Destination::all();
+
+        // Kirim data ke view galeri.blade.php
+        return view('gallery.gallery', compact('destinations'));
+    }
+
+    public function tampilGaleriAdmin()
+    {
+        // Ambil semua data destinasi dari database
+        $destinations = Destination::all();
+
+        // Kirim data ke view galeri.blade.php
+        return view('admin.gallery.galleryAdmin', compact('destinations'));
+    }
 }
