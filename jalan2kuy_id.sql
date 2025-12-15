@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Des 2025 pada 03.33
+-- Waktu pembuatan: 11 Des 2025 pada 05.24
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -114,6 +114,13 @@ CREATE TABLE `destination` (
   `adminID` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data untuk tabel `destination`
+--
+
+INSERT INTO `destination` (`destinationID`, `name`, `location`, `openingHours`, `closingHours`, `timezone`, `openingDay`, `closingDay`, `entranceFee`, `description`, `imagePath`, `thumbnailImagePath`, `destCategoryID`, `adminID`) VALUES
+('dst001', 'raja ampat', 'raja ampat', '08:00:00', '17:00:00', 'WIB', 'Senin', 'Minggu', 25000, 'destination nature', 'destinations/image/gXwUOQscYPMOkA9NC2YVMblHZ3cKKLCkByzgt0cg.jpg', 'destinations/thumbnailImage/EN4f4Mh7iY1vliYnanOQKSW33EMQVx7yIiPr0UkP.jpg', 'ctg001', 'adm001');
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +142,13 @@ CREATE TABLE `event` (
   `destinationID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `adminID` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `event`
+--
+
+INSERT INTO `event` (`eventID`, `name`, `startDate`, `endDate`, `location`, `description`, `entranceFee`, `startTime`, `endTime`, `socialMedia`, `imagePath`, `destinationID`, `adminID`) VALUES
+('evt001', 'event raja ampat', '2025-12-12', '2026-01-30', 'raja ampat', 'event raja ampat', 15000, '08:00:00', '17:00:00', 'dhmzz._375', 'events/fFsmISC9L5hEOzSwSECNjzyBpsGnX5BisUgP7B8Y.png', 'dst001', 'adm001');
 
 -- --------------------------------------------------------
 
@@ -240,7 +254,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('S5jUG0hxJzQhzKaGEIexUomE9AOQdcXHvWwaeuNc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoieTlka3hFNXB5SGpzZ0c5MXdpSXcydUlqWU90ZFJlQjA3T281emhJWSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9ldmVudC9jcmVhdGUiO3M6NToicm91dGUiO047fXM6ODoiYWRtaW5faWQiO3M6NjoiYWRtMDAxIjtzOjEwOiJhZG1pbl9uYW1lIjtzOjk6IkRoaW1hcyBIUCI7fQ==', 1765420318);
+('S5jUG0hxJzQhzKaGEIexUomE9AOQdcXHvWwaeuNc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiRE5uN29zSWJDV0FKZXZyZWl3ZzczVXh5ZENkdjMwZk92REFwdWZtdSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9FdmVudC9EZXRhaWwvZXZ0MDAxIjtzOjU6InJvdXRlIjtOO319', 1765427078);
 
 -- --------------------------------------------------------
 

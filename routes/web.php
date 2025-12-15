@@ -40,6 +40,8 @@ Route::get('/Event', [EventController::class, 'tampilEvent']);
 // URL: /admin/event/detail/evt001
 Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent']);
 
+Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestination']);
+
 
 // Route Group Admin (Hanya bisa diakses jika sudah login)
 Route::prefix('admin')->group(function () {
@@ -100,7 +102,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/Destination/Store', [DestinationController::class, 'storeDestinationData']);
 
     // Route Detail
-    Route::get('/Destination/Detail/{id}', [DestinationController::class, 'detailDestinationAdmin']);
+    Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestinationAdmin']);
     
     // Route Edit (Form) - Buat nanti
     Route::get('/Destination/Edit/{id}', [DestinationController::class, 'tampilFormEditDestination']);
