@@ -1,67 +1,79 @@
-body {
+/* ================= RESET GLOBAL ================= */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
 }
 
-/* 1. KONTENER UTAMA SLIDESHOW */
-.hero {
-    width: 100%;
-    height: 100vh;
-    position: relative; 
+/* ================= NAVBAR ================= */
+/* navbar dari partial, diasumsikan tinggi ±80px */
+.navbar,
+header,
+nav {
     margin: 0;
     padding: 0;
-    overflow: hidden; 
 }
 
-.main-content-wrapper{
-    flex-grow: 1;
-}
-
-/* 2. STYLE UNTUK SETIAP SLIDE */
-.myslides {
-    display: none; 
+/* ================= HERO / SLIDESHOW ================= */
+.hero {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 80px);   /* 🔥 POTONG TINGGI NAVBAR */
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================= SLIDES ================= */
+.myslides {
+    display: none;
+    width: 100%;
+    height: calc(100vh - 80px);   /* 🔥 WAJIB SAMA */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    text-align: center;
-    color: white;
-    padding: 0 20px;
-    position: absolute; 
-    top: 0;
-    left: 0;
-    
-    transition: transform 0.7s ease-in-out; 
-    transform: translateX(100%); 
-}
 
-.myslides::before {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
-    z-index: 1; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in-out;
 }
 
-/* 3. STYLE KONTEN HERO (agar di atas overlay) */
+/* overlay gelap */
+.myslides::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+/* ================= HERO CONTENT ================= */
 .hero-content {
     position: relative;
-    z-index: 2; 
+    z-index: 2;
 }
 
 .hero h1 {
     font-size: 100px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
     margin: 0;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
 .hero h2 {
@@ -71,10 +83,11 @@ body {
 }
 
 .hero span {
-    color: #27e391; 
+    color: #27e391;
     font-weight: bold;
 }
 
+/* ================= CTA BUTTON ================= */
 .cta-btn {
     margin-top: 50px;
     padding: 24px 44px;
@@ -86,7 +99,6 @@ body {
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-    position: relative;
     z-index: 2;
 }
 
@@ -96,43 +108,40 @@ body {
     transition: 0.3s;
 }
 
-/* 4. NAVIGASI PANAH (PREV/NEXT) */
+/* ================= NAVIGATION ARROWS ================= */
 .prev, .next {
-    cursor: pointer;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); 
-    
+    transform: translateY(-50%);
     width: 50px;
     height: 70px;
-    line-height: 70px; 
+    line-height: 70px;
     text-align: center;
-    
-    color: white; 
+    color: white;
+    font-size: 30px;
     font-weight: bold;
-    font-size: 30px; 
-    background-color: rgba(0, 0, 0, 0.4); 
-    
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
     user-select: none;
-    z-index: 10; 
-}
-
-.next {
-    right: 0;
-    border-radius: 5px 0 0 5px; 
 }
 
 .prev {
     left: 0;
-    border-radius: 0 5px 5px 0; 
+    border-radius: 0 6px 6px 0;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.7); 
+.next {
+    right: 0;
+    border-radius: 6px 0 0 6px;
 }
 
-/* 5. INDIKATOR TITIK (DOTS) */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ================= DOT INDICATOR ================= */
 .dot-indicator {
     position: absolute;
     bottom: 20px;
@@ -142,16 +151,71 @@ body {
 }
 
 .dot {
-    cursor: pointer;
-    height: 12px;
     width: 12px;
+    height: 12px;
     margin: 0 4px;
-    background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    background-color: #bbb;
+    cursor: pointer;
+    transition: background-color 0.4s;
 }
 
-.active, .dot:hover {
-    background-color: #27e391; 
+.dot:hover,
+.active {
+    background-color: #27e391;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+
+    .cta-btn {
+        font-size: 26px;
+        padding: 20px 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: calc(100vh - 70px);
+    }
+
+    .myslides {
+        height: calc(100vh - 70px);
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .cta-btn {
+        font-size: 20px;
+        padding: 16px 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .cta-btn {
+        font-size: 18px;
+        padding: 14px 24px;
+    }
 }
