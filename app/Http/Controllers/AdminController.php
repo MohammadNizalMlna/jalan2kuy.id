@@ -23,8 +23,8 @@ class AdminController extends Controller {
                 
                 // [UBAHAN DISINI]: Jangan langsung set admin_id (login penuh).
                 // Simpan ID sementara untuk verifikasi passkey
-                Session::put('temp_admin_id', $admin->adminID);
-                Session::put('temp_admin_name', $admin->name);
+                Session::put('temp_admin_id', $usernameAdmin->adminID);
+                Session::put('temp_admin_name', $usernameAdmin->name);
                 
                 // Redirect ke halaman Passkey
                 return redirect('/verifikasi-login');
@@ -143,12 +143,8 @@ class AdminController extends Controller {
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        // //ambil adminID dari session 
-        // $adminID = Session::get('admin_id');
-    
-        // if (!$adminID) {
-        //     return redirect('/login')->with('error', 'Sesi habis, silakan login kembali.');
-        // }
+        //ambil adminID dari session 
+        $adminID = Session::get('admin_id');
 
         //Cari data admin lengkap di database
         $admin = Admin::find($adminID);
@@ -200,7 +196,7 @@ class AdminController extends Controller {
         $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
         //Cek apakah user mengisi password baru?
         if ($request->filled('password')) {
-            $admin->password = $request->input('password');
+            $admin->password = Hash::make($request->input('password'));
         }
         $admin->save();
 
