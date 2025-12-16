@@ -301,24 +301,21 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function tampilGaleri()
-    {
-        // Ambil semua data destinasi dari database
+    public function tampilGaleri() {
+        //Ambil semua data destination dari database
         $destinations = Destination::all();
-
-        // Kirim data ke view galeri.blade.php
+        // Kirim data destination ke view 
         return view('gallery.gallery', compact('destinations'));
     }
 
-    public function tampilGaleriAdmin()
-    {
+    public function tampilGaleriAdmin() {
+        //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        // Ambil semua data destinasi dari database
+        //Ambil semua data destination dari database
         $destinations = Destination::all();
-
-        // Kirim data ke view galeri.blade.php
+        // Kirim data destination ke view 
         return view('admin.gallery.galleryAdmin', compact('destinations'));
     }
 }
