@@ -77,77 +77,73 @@ class AdminController extends Controller
 
     public function register(Request $request)
     {
-        // 1. VALIDASI INPUT (Opsional tapi sangat disarankan)
+        // 1. VALIDASI INPUT (DIPERBARUI)
         $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:admin,username', // Pastikan username unik
-            'password' => 'required',
-            'email' => 'required|email|unique:admin,email',
-            'gender' => 'required',
+            'name'     => 'required',
+            // Username: alpha_num memastikan hanya huruf dan angka (tidak boleh ada spasi atau simbol aneh)
+            'username' => 'required|alpha_num|unique:admin,username', 
+            'email'    => 'required|email|unique:admin,email',
+            'gender'   => 'required',
+            // Password:
+            // - min:8 (Minimal 8 karakter)
+            // - regex (Harus ada huruf kapital, angka, dan simbol)
+            // - confirmed (Harus cocok dengan input 'password_confirmation')
+            'password' => [
+                'required',
+                'confirmed', 
+                'min:8',
+                'regex:/[A-Z]/',      // Minimal 1 Huruf Kapital
+                'regex:/[0-9]/',      // Minimal 1 Angka
+                'regex:/[@$!%*#?&]/', // Minimal 1 Simbol
+            ],
+        ], [
+            // Pesan Error Custom (Opsional, agar lebih jelas bagi user)
+            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka (tanpa simbol).',
+            'password.min'       => 'Password minimal harus 8 karakter.',
+            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
         // 2. MEMULAI TRANSACTION
-        // Sama seperti connection.setAutoCommit(false) di Java
         DB::beginTransaction();
 
         try {
             // --- LOGIKA GENERATE ID (adm001, adm002, dst) ---
-        
-            // A. Ambil admin terakhir berdasarkan adminID (lockForUpdate untuk mencegah tabrakan data saat 2 orang daftar bersamaan)
             $lastAdmin = Admin::orderBy('adminID', 'desc')->lockForUpdate()->first();
-
-            $newAdminID = 'adm001'; // Default jika belum ada admin sama sekali
+            $newAdminID = 'adm001'; 
 
             if ($lastAdmin) {
-                // Ambil ID terakhir, misal "adm015"
                 $lastID = $lastAdmin->adminID;
-            
-                // Ambil angkanya saja: substring dari indeks ke-3 ("015") -> diubah ke int (15)
-                // PHP: substr($string, start)
                 $number = (int) substr($lastID, 3);
-            
-                // Tambah 1
                 $number++;
-            
-                // Format ulang jadi "adm" + 3 digit angka ("adm016")
-                // PHP: sprintf('%03d', angka) sama dengan String.format("%03d", num) di Java
                 $newAdminID = 'adm' . sprintf("%03d", $number);
             }
 
-        // --- SIMPAN DATA KE DATABASE ---
-        
+            // --- SIMPAN DATA KE DATABASE ---
             $admin = new Admin();
             $admin->adminID = $newAdminID;
             $admin->name = $request->input('name');
             $admin->username = $request->input('username');
-        
-            // Catatan: Sebaiknya password di-Hash menggunakan: Hash::make($request->input('password'))
-            // Tapi kita ikuti logika Java Anda (Plain Text) dulu:
+            
+            // Catatan: Disarankan menggunakan Hash::make($request->input('password')) untuk keamanan.
+            // Namun sesuai kode asli Anda, ini tetap Plain Text:
             $admin->password = $request->input('password'); 
-        
+
             $admin->email = $request->input('email');
-        
-            // Konversi input gender (misal dari radio button "1" atau "0") ke boolean
             $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
         
-            $admin->save(); // Eksekusi INSERT
+            $admin->save(); 
 
             // 3. COMMIT TRANSACTION
-            // Sama seperti connection.commit()
             DB::commit();
 
-            // Redirect jika sukses
             return redirect('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
 
         } catch (\Exception $e) {
             // 4. ROLLBACK TRANSACTION
-            // Sama seperti connection.rollback()
             DB::rollBack();
 
-            // Log error untuk developer (cek di storage/logs/laravel.log)
             Log::error("Gagal Register: " . $e->getMessage());
-
-            // Kembali ke form register dengan pesan error
             return back()->with('error', 'Terjadi kesalahan saat mendaftar: ' . $e->getMessage())->withInput();
         }
     }
