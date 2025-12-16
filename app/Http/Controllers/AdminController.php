@@ -7,7 +7,6 @@ use App\Models\Admin;
 use \App\Models\Event;
 use \App\Models\Destination;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -101,11 +100,11 @@ class AdminController extends Controller {
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
-        //MEMULAI TRANSACTION
+        //Memulai Transaction
         DB::beginTransaction();
 
         try {
-            //geberate adminID baru
+            //generate adminID baru
             $lastAdmin = Admin::orderBy('adminID', 'desc')->lockForUpdate()->first();
             $newAdminID = 'adm001'; 
 
@@ -135,8 +134,7 @@ class AdminController extends Controller {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
 
-            Log::error("Gagal Register: " . $e->getMessage());
-            return back()->with('error', 'Terjadi kesalahan saat mendaftar: ' . $e->getMessage())->withInput();
+            return back()->with('error', 'Gagal register : ' . $e->getMessage())->withInput();
         }
     }
 
@@ -216,32 +214,35 @@ class AdminController extends Controller {
         $adminID = Session::get('admin_id');
     
         if ($adminID) {
+            //Memulai Transaction
             DB::beginTransaction();
             try {
-                // 1. UPDATE EVENT (Putuskan Hubungan)
-                // Ubah adminID jadi NULL, jangan di-delete datanya
+                //ubah foreign key adminID disetiap event menjadi null
                 Event::where('adminID', $adminID)->update(['adminID' => null]);
                 
-                // 2. UPDATE DESTINATION (Putuskan Hubungan)
-                // Ubah adminID jadi NULL, jangan di-delete datanya
+                //ubah foreign key adminID disetiap destination menjadi null
                 Destination::where('adminID', $adminID)->update(['adminID' => null]);
 
-                // 3. HAPUS ADMIN SEKARANG
-                // Karena anak-anaknya sudah tidak menunjuk ke admin ini (sudah null),
-                // maka admin bisa dihapus tanpa error foreign key.
+                //delete adminnya berdasarkan adminID
                 Admin::where('adminID', $adminID)->delete();
 
+                //commit transaction
                 DB::commit(); 
-                
+
+                //bersikah session
                 Session::flush();
-                return redirect('/')->with('success', 'Akun berhasil dihapus. Data destinasi & event tetap tersimpan (tanpa pemilik).');
+
+                //redirect ke homepage 
+                return redirect('/')->with('success', 'Akun berhasil dihapus!');
 
             } catch (\Exception $e) {
+                //Jika ada yang salah, rollback transaction
                 DB::rollBack();
-                // Pesan error jika kolom database ternyata tidak boleh NULL
-                return back()->with('error', 'Gagal: Pastikan database mengizinkan adminID bernilai NULL. Error: ' . $e->getMessage());
+                //tampilkan pesan error jika gagal
+                return back()->with('error', 'Error: ' . $e->getMessage());
             }
         }
+        //tampillkan pesan error jika $adminID tidak ditemukan di session
         return back()->with('error', 'Gagal menghapus akun.');
     }
 }

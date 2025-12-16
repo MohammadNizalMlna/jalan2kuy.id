@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2025 pada 09.49
+-- Waktu pembuatan: 16 Des 2025 pada 13.49
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`adminID`, `name`, `username`, `password`, `email`, `gender`) VALUES
 ('adm001', 'Dhimas HP', 'dhimas123', 'jalanDhimas', 'dhimas.hfzh375@gmail.com', 0),
-('adm002', 'Dhimas Hafizh', 'Masdim37', '$2y$12$E99j3dFuGtyZMYuAMyCfSud4b8Tz4wZloZ0tCKM7q.DR450NDLOwu', 'dhimas@gmail.com', 1);
+('adm002', 'dhimas', 'Dhimas', '$2y$12$JmoUiHY1CVO4KS2IFUIEa.O1TRBXzzCe4NkWUndpEnBzd.K8khdKK', 'dhimas@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +275,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('mOSsf6Dqt0vPi2u5JLHUrnmIzRjj9AqwE8WiG7fl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiTWFySVVhZWxtaDFscUIxZHdleHZNWXdEUGw4RlQzNEJSM2FvaG9iZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9FdmVudC9FZGl0L2V2dDAwMyI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDIiO3M6MTA6ImFkbWluX25hbWUiO3M6NjoiZGhpbWFzIjt9', 1765884420),
 ('ybemhQWmorK8rHUuCN7k13DRHPJxLyno69z9RdEf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiVWpVMGNpMHJtZDlGZTFSdHpXYVZqSHV0NWZBcTRqZzE5WEpUbEFuayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9HYWxsZXJ5IjtzOjU6InJvdXRlIjtOO319', 1765874123);
 
 -- --------------------------------------------------------

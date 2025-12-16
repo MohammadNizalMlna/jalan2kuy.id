@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     //konfigurasi tabel event dan primary key eventID
     //kolom primary ke selalu diawali dengan nama tabelnya + ID dan bertipe data string (incrementing false karena string)

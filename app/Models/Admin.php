@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     //konfigurasi tabel admin dan primary key adminID
     //kolom primary ke selalu diawali dengan nama tabelnya + ID dan bertipe data string (incrementing false karena string)
