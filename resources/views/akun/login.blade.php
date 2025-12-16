@@ -70,13 +70,9 @@
 
 <script>
     // Logika tombol kembali tetap dipertahankan
+// Langsung arahkan ke homepage ("/") saat tombol diklik
     document.getElementById('backButton').addEventListener('click', function() {
-        if (document.referrer) {
-            window.history.back();
-        } else {
-            // Mengembalikan ke homepage utama Laravel
-            window.location.href = "{{ url('/') }}";
-        }
+        window.location.href = "{{ url('/') }}";
     });
 
     function togglePasswordLogin() {
