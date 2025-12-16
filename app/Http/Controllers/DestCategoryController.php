@@ -85,7 +85,7 @@ class DestCategoryController extends Controller
     // --- PENGGANTI CATEGORY.JS (VERSI USER) ---
     public function category(Request $request) {
         $destCategoryID = $request->query('Category'); 
-        $categoryName = $request->query('Category'); 
+        // $categoryName = $request->query('Category'); 
         
         $category = DestCategory::where('destCategoryID', $destCategoryID)->first();
         $destCategoryName = DestCategory::where('destCategoryID', $destCategoryID)->value('categoryName');

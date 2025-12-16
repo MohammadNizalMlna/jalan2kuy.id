@@ -169,7 +169,7 @@ class DestinationController extends Controller
         if ($destination) {
             // 1. LEPASKAN RELASI EVENT DULU (PENTING!)
             // Cari semua event yang punya destinationID ini, lalu set jadi NULL
-            \App\Models\Event::where('destinationID', $id)->update(['destinationID' => null]);
+            Event::where('destinationID', $id)->update(['destinationID' => null]);
 
             // 2. Hapus file gambar (Kode lama kamu)
             if ($destination->imagePath) Storage::disk('public')->delete($destination->imagePath);
