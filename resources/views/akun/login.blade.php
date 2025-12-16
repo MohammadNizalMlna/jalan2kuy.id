@@ -6,6 +6,18 @@
     <title>jalan2kuy.id - Login</title>
     
     <link rel="stylesheet" href="{{ asset('css/akun/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .password-wrapper { position: relative; width: 100%; }
+        .toggle-pass-login {
+            position: absolute;
+            right: 15px;
+            top: 35%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
 
@@ -35,12 +47,13 @@
         @endif
 
         <form action="{{ url('/login-proses') }}" method="POST">
-            
             @csrf
-
             <input type="text" name="username" id="username" placeholder="Username" required value="{{ old('username') }}">
-
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            
+            <div class="password-wrapper">
+                <input type="password" name="password" id="passwordLogin" placeholder="Password" required style="width: 100%;">
+                <i class="fa fa-eye toggle-pass-login" onclick="togglePasswordLogin()"></i>
+            </div>
 
             <button type="submit" class="btn-primary" id="loginButton">Masuk</button>
         </form>
@@ -66,8 +79,19 @@
         }
     });
 
-    // Note: Script validasi login JS dihapus karena sudah digantikan oleh validasi HTML (required) 
-    // dan validasi Server-side (Laravel Controller).
+    function togglePasswordLogin() {
+        const passInput = document.getElementById('passwordLogin');
+        const icon = document.querySelector('.toggle-pass-login');
+        if (passInput.type === "password") {
+            passInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
 </script>
 
 </body>

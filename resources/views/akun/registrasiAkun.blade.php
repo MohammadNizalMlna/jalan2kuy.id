@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jalan2kuy.id - Buat Akun Baru</title>
     <link rel="stylesheet" href="{{ asset('css/akun/register.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         .error-msg {
@@ -22,7 +23,21 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             background: #fff;
-            color: #757575; /* Agar mirip placeholder */
+            color: #757575;
+        }
+        
+        /* 2. Tambahkan CSS untuk posisi ikon mata */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%; /* Sesuaikan agar pas di tengah vertikal input */
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
         }
     </style>
 </head>
@@ -65,10 +80,16 @@
         </select>
         @error('gender') <span class="error-msg">{{ $message }}</span> @enderror
 
-        <input type="password" name="password" placeholder="Kata Sandi" required>
+        <div class="password-container">
+            <input type="password" name="password" id="password" placeholder="Kata Sandi" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
+        </div>
         @error('password') <span class="error-msg">{{ $message }}</span> @enderror
 
-        <input type="password" name="password_confirmation" placeholder="Konfirmasi Kata Sandi" required>
+        <div class="password-container" style="margin-top: 15px; margin-bottom: 15px;">
+            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi Kata Sandi" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('password_confirmation', this)"></i>
+        </div>
 
         <button type="submit">Daftar</button>
     </form>
@@ -77,13 +98,22 @@
 <script>
     // Tombol kembali
     document.getElementById('backButton').addEventListener('click', function () {
-        // Menggunakan URL Laravel agar lebih aman
         window.location.href = "{{ url('/login') }}";
     });
 
-    // NOTE: Script submit event listener dihapus.
-    // Biarkan form melakukan submit secara alami (POST) ke server Laravel.
-    // Jangan di-prevent default, karena kita butuh data dikirim ke Controller.
+    // 4. Tambahkan Script Toggle Password
+    function togglePassword(inputId, icon) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash"); // Ganti ikon jadi mata dicoret
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye"); // Kembali ke ikon mata biasa
+        }
+    }
 </script>
 
 </body>
