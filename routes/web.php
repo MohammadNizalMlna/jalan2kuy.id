@@ -42,17 +42,29 @@ Route::get('/Event/Detail/{id}', [EventController::class, 'tampilkanDetailEvent'
 
 Route::get('/Destination/Detail/{id}', [DestinationController::class, 'tampilkanDetailDestination']);
 
+// Halaman Utama Destinasi
+Route::get('/Destination', [DestinationController::class, 'tampilCategory']);
+
+// Halaman Kategori Destinasi
+Route::get('/Destination/Category', [DestinationController::class, 'category']);
+
+// Route Logout (Bisa ditaruh di luar group admin)
+Route::post('/logout', [AdminController::class, 'logout']);
+
+Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
+
+
+
 
 // Route Group Admin (Hanya bisa diakses jika sudah login)
-Route::prefix('admin')->group(function () {
-    // --- HOMEPAGE ADMIN (Hanya bisa akses jika sudah login penuh) ---
-    Route::get('/Homepage', function () {
-        // Cek keamanan sederhana (Middleware manual)
-        if (!session()->has('admin_id')) {
-            return redirect('/login')->with('error', 'Anda harus login dulu!');
-        }
-        return view('admin.homepageAdmin');
-    });
+Route::prefix('admin')->middleware(function ($request, $next) {
+    if (!Session::has('admin_id')) {
+        return redirect('/login')->with('error', 'Anda harus login untuk mengakses halaman admin.');
+    }
+    return $next($request);
+})->group(function () {
+    
+    Route::get('/Homepage', function () { return view('admin.homepageAdmin'); });
 
     // Menu Akun
     Route::get('/Account', [AdminController::class, 'showAccount']);
@@ -115,17 +127,3 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/Gallery', [DestinationController::class, 'tampilGaleriAdmin']);
 });
-
-// Halaman Utama Destinasi
-Route::get('/Destination', [DestinationController::class, 'tampilCategory']);
-
-// Halaman Kategori Destinasi
-Route::get('/Destination/Category', [DestinationController::class, 'category']);
-
-// Route Logout (Bisa ditaruh di luar group admin)
-Route::post('/logout', [AdminController::class, 'logout']);
-
-Route::get('/Gallery', [DestinationController::class, 'tampilGaleri']);
-
-// Route::get('/destinasi', [DestinationController::class, 'index']);
-// Route::get('/event', [EventController::class, 'index']);
