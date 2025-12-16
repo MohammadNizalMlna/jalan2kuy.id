@@ -49,6 +49,9 @@ class EventController extends Controller
     //ADMIN ONLY
     public function tampilEventAdmin(Request $request)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // Mulai Query
         $query = Event::query();
 
@@ -69,6 +72,9 @@ class EventController extends Controller
 
     public function tampilkanDetailEventAdmin($id)
     { 
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // Cari event berdasarkan eventID
         $event = Event::where('eventID', $id)->first();
 
@@ -84,12 +90,18 @@ class EventController extends Controller
     // A. TAMPILKAN FORM ADD
     public function addEvent()
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         return view('admin.eventAdmin.addEvent');
     }
 
     // B. PROSES SIMPAN DATA (STORE)
     public function storeEventData(Request $request)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // 1. Validasi
         $request->validate([
             'name' => 'required',
@@ -155,6 +167,9 @@ class EventController extends Controller
     // Tambahkan juga fungsi destroy jika belum ada (untuk delete)
     public function hapusEvent($id)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         $event = Event::where('eventID', $id)->first();
 
         if ($event) {
@@ -182,6 +197,9 @@ class EventController extends Controller
     // Menerima parameter $id dari route '/admin/Event/edit/{id}'
     public function tampilFormEditEvent($id)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // Cari event berdasarkan eventID
         $event = Event::where('eventID', $id)->first();
 
@@ -199,6 +217,9 @@ class EventController extends Controller
     // Menerima $request (inputan form) dan $id (event mana yang diedit)
     public function editEvent(Request $request, $id)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // 1. Validasi Input
         // Mirip dengan create, tapi 'image' kita buat nullable (tidak wajib diisi)
         // Karena user mungkin hanya ingin edit teks tanpa ganti gambar

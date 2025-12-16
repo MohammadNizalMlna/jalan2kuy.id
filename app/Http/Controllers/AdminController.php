@@ -151,6 +151,9 @@ class AdminController extends Controller
     // A. Menampilkan Halaman Akun
     public function showAccount()
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         // Ambil ID dari session login
         $adminID = Session::get('admin_id');
     
@@ -178,6 +181,9 @@ class AdminController extends Controller
     // C. Proses Hapus Akun
     public function deleteAccount()
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         $adminID = Session::get('admin_id');
     
         if ($adminID) {
@@ -196,6 +202,9 @@ class AdminController extends Controller
     // A. TAMPILKAN FORM EDIT
     public function tampilFormEditProfile()
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         $adminID = Session::get('admin_id');
         $admin = Admin::find($adminID);
 
@@ -209,6 +218,9 @@ class AdminController extends Controller
     // B. PROSES UPDATE DATA
     public function editProfile(Request $request)
     {
+        if (!Session::has('admin_id')) {
+            return redirect('/login')->with('error', 'Anda harus login dulu!');
+        }
         $adminID = Session::get('admin_id');
         $admin = Admin::find($adminID);
 
