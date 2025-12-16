@@ -11,6 +11,40 @@ use App\Models\Event;
 
 class EventController extends Controller {
 
+    public function tampilEvent(Request $request) {
+        //mulai query
+        $query = Event::query();
+
+        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal)
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereBetween('startDate', [
+                $request->input('start_date'), 
+                $request->input('end_date')
+            ]);
+        }
+
+        //Ambil data event (urutkan dari yang terbaru)
+        $events = $query->orderBy('startDate', 'desc')->get();
+
+        //kirim data $events ke view event
+        return view('event.event', ['events' => $events]);
+    }
+
+    public function tampilkanDetailEvent($id) { 
+        //cari data event berdasarkan eventID
+        $event = Event::where('eventID', $id)->first();
+
+        //Jika tidak ketemu, kembalikan ke URL /Event
+        if (!$event) {
+            return redirect('/Event')->with('error', 'Event tidak ditemukan.');
+        }
+
+        //kirim data $event ke view detailEvent
+        return view('event.detailEvent', ['event' => $event]);
+    }
+
+    //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
+
     public function addEvent() {
         //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
@@ -87,40 +121,6 @@ class EventController extends Controller {
         }
     }
 
-    public function tampilEvent(Request $request) { //menampilan semua event (untuk user biasa)
-        //mulai query
-        $query = Event::query();
-
-        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal)
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('startDate', [
-                $request->input('start_date'), 
-                $request->input('end_date')
-            ]);
-        }
-
-        //Ambil data event (urutkan dari yang terbaru)
-        $events = $query->orderBy('startDate', 'desc')->get();
-
-        //kirim data $events ke view event
-        return view('event.event', ['events' => $events]);
-    }
-
-    public function tampilkanDetailEvent($id) { 
-        //cari data event berdasarkan eventID
-        $event = Event::where('eventID', $id)->first();
-
-        //Jika tidak ketemu, kembalikan ke URL /Event
-        if (!$event) {
-            return redirect('/Event')->with('error', 'Event tidak ditemukan.');
-        }
-
-        //kirim data $event ke view detailEvent
-        return view('event.detailEvent', ['event' => $event]);
-    }
-
-    //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
-
     public function tampilEventAdmin(Request $request) {
         //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
@@ -186,16 +186,16 @@ class EventController extends Controller {
         
         //validasi input
         $request->validate([
-            'name'        => 'required',
-            'location'    => 'required',
+            'name' => 'required',
+            'location' => 'required',
             'description' => 'required',
-            'startDate'   => 'required|date',
-            'endDate'     => 'required|date|after_or_equal:startDate',
-            'startTime'   => 'required',
-            'endTime'     => 'required',
+            'startDate' => 'required|date',
+            'endDate' => 'required|date|after_or_equal:startDate',
+            'startTime' => 'required',
+            'endTime' => 'required',
             'entranceFee' => 'required|numeric',
             'socialMedia' => 'required',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg|max:10240', // Max 10MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', // Max 10MB
         ]);
 
         //Memulai Transaction
@@ -245,37 +245,37 @@ class EventController extends Controller {
         } catch (\Exception $e) {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
-            
+
             return back()->with('error', 'Gagal update event: ' . $e->getMessage())->withInput();
         }
     }
 
     // Tambahkan juga fungsi destroy jika belum ada (untuk delete)
-    public function hapusEvent($id)
-    {
+    public function hapusEvent($id) {
+        //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
+        //cari event yang mau dihapus berdasarkan eventID
         $event = Event::where('eventID', $id)->first();
 
         if ($event) {
-            // --- LOGIKA HAPUS GAMBAR ---
-            
-            // Perhatikan: Kita pakai $event->imagePath
-            // Kita sambung ke storage_path karena file asli ada di storage/app/public/...
+            //Hapus Gambar
+            //masukkan path gambar disimpan kedalam $gambarPath (mengambil dari storage_path)
             $gambarPath = storage_path('app/public/' . $event->imagePath); 
             
-            // Cek file ada & path tidak kosong
+            //cek apakah file ada dan path tidak kosong, jika valid maka hapus gambar
             if (!empty($event->imagePath) && File::exists($gambarPath)) {
                 File::delete($gambarPath);
             }
 
-            // --- HAPUS DATA ---
+            //hapus data event
             $event->delete();
             
             return redirect('/admin/Event')->with('success', 'Event berhasil dihapus.');
         }
         
+        //tampilkan pesan error "Gagal menghapus event" jika 
         return back()->with('error', 'Gagal menghapus event.');
     }
 }

@@ -21,13 +21,13 @@ class AdminController extends Controller {
         if ($usernameAdmin) {
             // Cek Password apakah sama dengan yang disimpan didalam database atau tidak
             if (Hash::Check($passwordInput, $usernameAdmin->password)) {
-                
-                // [UBAHAN DISINI]: Jangan langsung set admin_id (login penuh).
-                // Simpan ID sementara untuk verifikasi passkey
+
+                //simpan sementara adminID didalam temp_admin_id untuk dipakai pada verifikasi passkey
+                //simpan sementara name didalam temp_admin_name untuk dipakai pada verifikasi passkey
                 Session::put('temp_admin_id', $usernameAdmin->adminID);
                 Session::put('temp_admin_name', $usernameAdmin->name);
                 
-                // Redirect ke halaman Passkey
+                //Redirect ke URL halaman Passkey (/verifikasi-login)
                 return redirect('/verifikasi-login');
             }
         }
@@ -36,20 +36,22 @@ class AdminController extends Controller {
     }
 
     public function showVerifikasiLogin() {
-        // Cek apakah user sudah melewati tahap login awal?
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('temp_admin_id')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
+        //redirect ke halaman passkey
         return view('akun.passkey');
     }
 
     public function prosesVerifikasiLogin(Request $request) {
+        //simpan passkey yang diinputkan user kedalam $inputPassKey
         $inputPassKey = $request->input('passkey_code');
         $passKey = '123456'; //PassKey dibuat statis
 
         if ($inputPassKey === $passKey) {
-            //Ambil ID dari session sementara
+            //Ambil temp_admin_id dan temp_admin_name dari session sementara
             $adminID = Session::get('temp_admin_id');
             $adminName = Session::get('temp_admin_name');
 
@@ -57,11 +59,11 @@ class AdminController extends Controller {
             Session::put('admin_id', $adminID);
             Session::put('admin_name', $adminName);
 
-            //Hapus session sementara
+            //hapus session sementara
             Session::forget('temp_admin_id');
             Session::forget('temp_admin_name');
 
-            //Masuk ke Homepage Admin
+            //masuk ke Homepage Admin
             return redirect('admin/Homepage');
         } else {
             //jika salah, Kembali ke halaman passkey dengan pesan error
@@ -69,21 +71,13 @@ class AdminController extends Controller {
         }
     }
 
-    public function logout() {
-        // Hapus semua data session
-        Session::flush();
-        
-        // Redirect ke halaman utama/login
-        return redirect('/')->with('success', 'Berhasil Logout.');
-    }
-
     public function register(Request $request) {
-        //VALIDASI INPUT
+        //Validasi input
         $request->validate([
-            'name'     => 'required',
+            'name' => 'required',
             'username' => 'required|alpha_num|unique:admin,username', 
-            'email'    => 'required|email|unique:admin,email',
-            'gender'   => 'required',
+            'email' => 'required|email|unique:admin,email',
+            'gender' => 'required',
             'password' => [
                 'required', 
                 'confirmed', //passowrd yang diinputkan harus sesuai dengan yang diinputkan di form input ('password_confirmation')
@@ -138,6 +132,16 @@ class AdminController extends Controller {
         }
     }
 
+    //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
+
+    public function logout() {
+        //Hapus semua data session
+        Session::flush();
+        
+        //Redirect ke halaman utama/login
+        return redirect('/')->with('success', 'Berhasil Logout.');
+    }
+
     public function showAccount() {
         //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
@@ -154,11 +158,13 @@ class AdminController extends Controller {
     }
 
     public function tampilFormEditProfile() {
+        //cek di session apakah sudah ada admin_id yang login atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
         //ambil adminID dari session
         $adminID = Session::get('admin_id');
+
         //cari data $admin yang memiliki ID $adminID
         $admin = Admin::find($adminID);
 
@@ -177,6 +183,7 @@ class AdminController extends Controller {
         }
         //ambil adminID dari session
         $adminID = Session::get('admin_id');
+
         //cari data $admin yang memiliki ID $adminID
         $admin = Admin::find($adminID);
 

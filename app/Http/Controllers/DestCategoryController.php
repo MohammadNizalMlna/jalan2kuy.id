@@ -7,8 +7,52 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Destination; 
 use App\Models\DestCategory;
 
-class DestCategoryController extends Controller
-{
+class DestCategoryController extends Controller {
+    //Function untuk menampilkan halaman Utama Destinasi User
+    public function tampilCategory(Request $request) {
+        //logika jika user melakukan searching
+        if ($request->has('search')) {
+            $keyword = $request->search;
+            
+            //cari destination berdasarkan nama yang mengandung unsur seperti yang diinputkan oleh user (keyword)
+            $destinations = Destination::where('name', 'LIKE', '%'.$keyword.'%')->get();
+
+            //redirect ke tampilan destinationSearch dengan membawa data $destinations dan $keyword
+            return view('destination.destinationSearch', compact('destinations', 'keyword'));
+        }
+
+        //jika user tidak melakukan searching, ambil data kategori dan masukkan kedalam $categories
+        $categories = DestCategory::all();
+        //redirect ke halaman destination dengan membawa data $categories
+        return view('destination.destination', compact('categories'));
+    }
+
+    //function untuk menampilkan destinasi-destinasi yang ada dalam sebuah kategori
+    public function category(Request $request) {
+        //ambil parameter ?Category={$destCategoryID} dari URL
+        $destCategoryID = $request->query('Category'); 
+        
+        //ambil data kategori dimana ID nya sama dengan $destCategoryID, simpan kedalam $category
+        $category = DestCategory::where('destCategoryID', $destCategoryID)->first();
+
+        //ambil data nama kategori dimana ID nya sama dengan $destCategoryID, simpan kedalam $categoryName
+        $categoryName = DestCategory::where('destCategoryID', $destCategoryID)->value('categoryName');
+
+        if ($category) {
+            $destinations = Destination::where('destCategoryID', $category->destCategoryID)->get();
+        } else {
+            $destinations = collect();
+        }
+        
+        return view('destination.category', [
+            'categoryName' => $categoryName,
+            'destCategoryID' => $destCategoryID,
+            'destinations' => $destinations
+        ]);
+    }
+
+    //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
+
     // Halaman Utama Destinasi Admin (Mungkin list semua kategori)
     // Lakukan hal yang sama untuk 'tampilCategoryAdmin'
     public function tampilCategoryAdmin(Request $request){
@@ -33,26 +77,6 @@ class DestCategoryController extends Controller
         return view('admin.destination.destinationAdmin', compact('categories'));
     }
 
-    // Halaman Utama Destinasi User
-    public function tampilCategory(Request $request){
-        
-        // 1. Cek apakah user melakukan pencarian?
-        if ($request->has('search')) {
-            $keyword = $request->search;
-            
-            // Cari destinasi berdasarkan nama (gunakan LIKE)
-            $destinations = Destination::where('name', 'LIKE', '%'.$keyword.'%')->get();
-
-            // LEMPAR KE VIEW BARU (destinationSearch.blade.php)
-            // Kita kirim data $destinations dan $keyword
-            return view('destination.destinationSearch', compact('destinations', 'keyword'));
-        }
-
-        // 2. Jika TIDAK mencari (Tampilan Awal / Default)
-        $categories = DestCategory::all();
-        return view('destination.destination', compact('categories'));
-    }
-
     // --- PENGGANTI CATEGORY.JS (VERSI ADMIN) ---
     public function categoryAdmin(Request $request) {
         if (!Session::has('admin_id')) {
@@ -63,7 +87,7 @@ class DestCategoryController extends Controller
         
         // 2. Cari ID Kategori berdasarkan namanya di database
         $category = DestCategory::where('destCategoryID', $destCategoryID)->first();
-        $destCategoryName = DestCategory::where('destCategoryID', $destCategoryID)->value('categoryName');
+        $categoryName = DestCategory::where('destCategoryID', $destCategoryID)->value('categoryName');
 
         // 3. Logika Pengambilan Data
         if ($category) {
@@ -76,30 +100,9 @@ class DestCategoryController extends Controller
 
         // 4. Return view dengan membawa data destinasi
         return view('admin.destination.categoryAdmin', [
-            'categoryName' => $destCategoryName,
+            'categoryName' => $categoryName,
             'destCategoryID' => $destCategoryID,
             'destinations' => $destinations // <-- Data ini yang akan diloop di Blade
-        ]);
-    }
-
-    // --- PENGGANTI CATEGORY.JS (VERSI USER) ---
-    public function category(Request $request) {
-        $destCategoryID = $request->query('Category'); 
-        // $categoryName = $request->query('Category'); 
-        
-        $category = DestCategory::where('destCategoryID', $destCategoryID)->first();
-        $destCategoryName = DestCategory::where('destCategoryID', $destCategoryID)->value('categoryName');
-
-        if ($category) {
-            $destinations = Destination::where('destCategoryID', $category->destCategoryID)->get();
-        } else {
-            $destinations = collect();
-        }
-        
-        return view('destination.category', [
-            'categoryName' => $destCategoryName,
-            'destCategoryID' => $destCategoryID,
-            'destinations' => $destinations
         ]);
     }
 }
