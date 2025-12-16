@@ -14,12 +14,12 @@
     @include('partials.navbar')
 
     <section class="hero">
-        <div class="search">
-            <input type="text" placeholder="Searching....">
-            <button>
+        <form action="{{ url('/Destination') }}" method="GET" class="search">
+            <input type="text" name="search" placeholder="Cari destinasi..." value="{{ request('search') }}">
+            <button type="submit">
                 <img src="{{ asset('assets/gambar/icon/search.png') }}" alt="search">
             </button>
-        </div>
+        </form>
         
         <div class="categori-container">
             

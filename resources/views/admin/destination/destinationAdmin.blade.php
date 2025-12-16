@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jalan2kuy.id - Destination Admin</title>
+    <title>Jalan2kuy.id - Destination</title>
     
     {{-- Asset CSS --}}
     <link rel="stylesheet" href="{{ asset('css/destination/destinasi.css') }}">
@@ -14,12 +14,12 @@
     @include('partials.navbarAdmin')
 
     <section class="hero">
-        <div class="search">
-            <input type="text" placeholder="Searching....">
-            <button>
+        <form action="{{ url('/admin/Destination') }}" method="GET" class="search">
+            <input type="text" name="search" placeholder="Cari destinasi..." value="{{ request('search') }}">
+            <button type="submit">
                 <img src="{{ asset('assets/gambar/icon/search.png') }}" alt="search">
             </button>
-        </div>
+        </form>
         
         <div class="categori-container">
             

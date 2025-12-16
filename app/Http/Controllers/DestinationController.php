@@ -14,18 +14,43 @@ use App\Models\Event; // Tambahkan ini agar tidak error saat addDestination
 class DestinationController extends Controller
 {
     // Halaman Utama Destinasi Admin (Mungkin list semua kategori)
-    public function tampilCategoryAdmin() {
-        // 1. Ambil semua data kategori dari database
-        $categories = DestCategory::all();
+    // Lakukan hal yang sama untuk 'tampilCategoryAdmin'
+    public function tampilCategoryAdmin(Request $request){
+        
+        // 1. Cek apakah user melakukan pencarian?
+        if ($request->has('search')) {
+            $keyword = $request->search;
+            
+            // Cari destinasi berdasarkan nama (gunakan LIKE)
+            $destinations = Destination::where('name', 'LIKE', '%'.$keyword.'%')->get();
 
-        return view('admin.destination.destinationAdmin', compact('categories')); 
+            // LEMPAR KE VIEW BARU (destinationSearch.blade.php)
+            // Kita kirim data $destinations dan $keyword
+            return view('admin.destination.destinationSearchAdmin', compact('destinations', 'keyword'));
+        }
+
+        // 2. Jika TIDAK mencari (Tampilan Awal / Default)
+        $categories = DestCategory::all();
+        return view('admin.destination.destinationAdmin', compact('categories'));
     }
 
     // Halaman Utama Destinasi User
-    public function tampilCategory(){
-        // 1. Ambil semua data kategori dari database
-        $categories = DestCategory::all();
+    public function tampilCategory(Request $request){
+        
+        // 1. Cek apakah user melakukan pencarian?
+        if ($request->has('search')) {
+            $keyword = $request->search;
+            
+            // Cari destinasi berdasarkan nama (gunakan LIKE)
+            $destinations = Destination::where('name', 'LIKE', '%'.$keyword.'%')->get();
 
+            // LEMPAR KE VIEW BARU (destinationSearch.blade.php)
+            // Kita kirim data $destinations dan $keyword
+            return view('destination.destinationSearch', compact('destinations', 'keyword'));
+        }
+
+        // 2. Jika TIDAK mencari (Tampilan Awal / Default)
+        $categories = DestCategory::all();
         return view('destination.destination', compact('categories'));
     }
 
