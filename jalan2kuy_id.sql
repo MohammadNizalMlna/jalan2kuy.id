@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2025 pada 05.58
+-- Waktu pembuatan: 16 Des 2025 pada 09.49
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`adminID`, `name`, `username`, `password`, `email`, `gender`) VALUES
 ('adm001', 'Dhimas HP', 'dhimas123', 'jalanDhimas', 'dhimas.hfzh375@gmail.com', 0),
-('adm002', 'nizal', 'nizal123', 'Nizal123@', 'nizal@gmail.com', 1);
+('adm002', 'Dhimas Hafizh', 'Masdim37', '$2y$12$E99j3dFuGtyZMYuAMyCfSud4b8Tz4wZloZ0tCKM7q.DR450NDLOwu', 'dhimas@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `destination` (
   `imagePath` varchar(255) NOT NULL,
   `thumbnailImagePath` varchar(255) NOT NULL,
   `destCategoryID` varchar(6) NOT NULL,
-  `adminID` varchar(6) NOT NULL
+  `adminID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `event` (
   `socialMedia` varchar(50) NOT NULL,
   `imagePath` varchar(10000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `destinationID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `adminID` varchar(6) NOT NULL
+  `adminID` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -275,7 +275,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ybemhQWmorK8rHUuCN7k13DRHPJxLyno69z9RdEf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiaE5sa1hiTm1uMHQzWkdoQXVhdVZ4TnpzbGtzWmUwbzlxMm1lZVQyZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9Ib21lcGFnZSI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDIiO3M6MTA6ImFkbWluX25hbWUiO3M6NToibml6YWwiO30=', 1765860926);
+('ybemhQWmorK8rHUuCN7k13DRHPJxLyno69z9RdEf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiVWpVMGNpMHJtZDlGZTFSdHpXYVZqSHV0NWZBcTRqZzE5WEpUbEFuayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9HYWxsZXJ5IjtzOjU6InJvdXRlIjtOO319', 1765874123);
 
 -- --------------------------------------------------------
 

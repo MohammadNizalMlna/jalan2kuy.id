@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use \App\Models\Event;
+use \App\Models\Destination;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -214,14 +216,32 @@ class AdminController extends Controller {
         $adminID = Session::get('admin_id');
     
         if ($adminID) {
-            //hapus objek admin dimana ID nya sesuai dengan $adminID dari database
-            Admin::where('adminID', $adminID)->delete();
-            //Hapus session
-            Session::flush();
-            //redirect ke homepage
-            return redirect('/')->with('success', 'Akun berhasil dihapus.');
+            DB::beginTransaction();
+            try {
+                // 1. UPDATE EVENT (Putuskan Hubungan)
+                // Ubah adminID jadi NULL, jangan di-delete datanya
+                Event::where('adminID', $adminID)->update(['adminID' => null]);
+                
+                // 2. UPDATE DESTINATION (Putuskan Hubungan)
+                // Ubah adminID jadi NULL, jangan di-delete datanya
+                Destination::where('adminID', $adminID)->update(['adminID' => null]);
+
+                // 3. HAPUS ADMIN SEKARANG
+                // Karena anak-anaknya sudah tidak menunjuk ke admin ini (sudah null),
+                // maka admin bisa dihapus tanpa error foreign key.
+                Admin::where('adminID', $adminID)->delete();
+
+                DB::commit(); 
+                
+                Session::flush();
+                return redirect('/')->with('success', 'Akun berhasil dihapus. Data destinasi & event tetap tersimpan (tanpa pemilik).');
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                // Pesan error jika kolom database ternyata tidak boleh NULL
+                return back()->with('error', 'Gagal: Pastikan database mengizinkan adminID bernilai NULL. Error: ' . $e->getMessage());
+            }
         }
-        //jika gagal, kembali ke halaman sebelumnya dengan pesan gagal menghapus akun
         return back()->with('error', 'Gagal menghapus akun.');
-    } 
+    }
 }
