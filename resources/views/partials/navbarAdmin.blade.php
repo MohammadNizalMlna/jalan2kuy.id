@@ -123,7 +123,7 @@ body {
 <nav class="navbar">
 
     <div class="logo">
-        <a href="{{ url('/Homepage-Admin') }}">
+        <a href="{{ url('/admin/Homepage') }}">
             <img src="{{ asset('assets/gambar/icon/logo.png') }}" alt="jalan2kuy.id logo">
         </a>
     </div>
