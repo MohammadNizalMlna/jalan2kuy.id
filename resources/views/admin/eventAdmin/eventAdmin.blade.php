@@ -29,30 +29,31 @@
 <body>
 
 @include('partials.navbarAdmin')
-
+<!-- Tombol floating untuk menambahkan event baru -->
 <button class="add-event-floating" onclick="window.location.href='{{ url('/admin/event/create') }}'">
   <i class="fa-solid fa-plus"></i> Add Event
 </button>
 
+<!-- Section utama untuk menampilkan dan mengelola daftar event -->
 <section class="event-section">
-  
+  <!-- Header berisi judul halaman dan filter berdasarkan tanggal -->
   <div class="event-header">
     <h2>Date Event</h2>
-    
+    <!-- Form filter event berdasarkan rentang tanggal -->
     <form action="{{ url('/admin/Event') }}" method="GET" class="date-inputs">
       
       <input type="text" name="start_date" class="date-field" placeholder="DD/MM/YYYY"
-             onfocus="(this.type='date')" 
-             onblur="if(!this.value)this.type='text'"
-             value="{{ request('start_date') }}">
+              onfocus="(this.type='date')" 
+              onblur="if(!this.value)this.type='text'"
+              value="{{ request('start_date') }}">
 
       <span class="dash">-</span>
       
       <input type="text" name="end_date" class="date-field" placeholder="DD/MM/YYYY"
-             onfocus="(this.type='date')" 
-             onblur="if(!this.value)this.type='text'"
-             value="{{ request('end_date') }}">
-      
+              onfocus="(this.type='date')" 
+              onblur="if(!this.value)this.type='text'"
+              value="{{ request('end_date') }}">
+      <!-- Tombol submit filter -->
       <button type="submit" style="background: transparent; border: none; cursor: pointer; color: #15514A; font-weight: bold; font-size: 16px;">
           <i class="fa-solid fa-filter"></i>
       </button>
@@ -63,15 +64,18 @@
     </form>
   </div>
 
+  <!-- Menampilkan pesan sukses dari session Laravel -->
   @if(session('success'))
     <div style="background: #d4edda; color: #155724; padding: 10px; margin: 10px auto; width: 90%; border-radius: 5px; text-align: center;">
         {{ session('success') }}
     </div>
   @endif
 
+  <!-- Grid daftar event yang diambil dari database -->
   <div class="event-cards" id="eventList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
       @forelse($events as $event)
         
+        <!-- Card event admin (klik untuk menuju halaman detail) -->
         <div class="modern-card" onclick="window.location.href='{{ url('/admin/Event/Detail/' . $event->eventID) }}'">
             
             <div class="card-image-wrapper">
@@ -105,8 +109,9 @@
 
         </div>
 
+        <!-- Tampilan jika belum ada event -->
       @empty
-        <div style="grid-column: 1 / -1; text-align: center; color: #666; margin-top: 50px;">
+        <div style="grid-column: 1 / -1; text-align: center; color: #ffff; margin-top: 50px;">
             <i class="fa-regular fa-calendar-xmark" style="font-size: 40px; margin-bottom: 10px;"></i>
             <p>Belum ada event yang tersedia.</p>
         </div>

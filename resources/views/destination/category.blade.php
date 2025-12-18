@@ -17,12 +17,14 @@
   @include('partials.navbar')
 
   <section class="hero">
+    <!-- Section utama untuk menampilkan destinasi berdasarkan kategori -->
     <div class="category-header">
+      <!-- Header berisi judul kategori yang diambil dari controller -->
       {{-- 1. JUDUL DINAMIS: Mengambil dari variable controller --}}
       <h1 id="category-title">{{ strtoupper($categoryName) }}</h1>
     </div> 
 
-    {{-- 3. RENDER KARTU DENGAN PHP BLADE (Bukan JS lagi) --}}
+    {{-- 3. RENDER KARTU DESTINASI --}}
     <div class="destination-container" id="destination-list">
         
         @forelse($destinations as $dest)

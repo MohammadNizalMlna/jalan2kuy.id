@@ -16,26 +16,32 @@
   {{-- Navbar Admin --}}
   @include('partials.navbarAdmin')
 
+  <!-- Section utama untuk menampilkan daftar destinasi berdasarkan kategori -->
   <section class="hero">
     
     {{-- Tampilkan Pesan Sukses jika ada (setelah add destination) --}}
+    <!-- Menampilkan pesan sukses setelah menambah destinasi -->
     @if(session('success'))
         <div style="background: #d4edda; color: #155724; padding: 10px; margin: 10px auto; width: 80%; border-radius: 5px; text-align: center;">
             {{ session('success') }}
         </div>
     @endif
 
+    <!-- Header berisi judul kategori dan tombol tambah destinasi -->
     <div class="category-header">
       {{-- 1. JUDUL DINAMIS: Mengambil dari variable controller --}}
+      <!-- Judul kategori diambil dari controller dan ditampilkan uppercase -->
       <h1 id="category-title">{{ strtoupper($categoryName) }}</h1>
 
+      <!-- Tombol untuk menambahkan destinasi baru pada kategori ini -->
       {{-- 2. TOMBOL ADD: Link sudah benar --}}
       <a href="{{ url('/admin/Destination/AddDestination?Category=' . $destCategoryID) }}" id="addBtn" class="add-btn">
         + Add Destination
       </a>
     </div>
 
-    {{-- 3. RENDER KARTU DENGAN PHP BLADE (Bukan JS lagi) --}}
+    <!-- Setiap card menuju halaman detail destinasi -->
+    {{-- 3. RENDER KARTU --}}
     <div class="destination-container" id="destination-list">
         
         @forelse($destinations as $dest)
@@ -48,6 +54,7 @@
                     <div class="overlay">{{ $dest->name }}</div>
                 </div>
             </a>
+            <!-- Tampilan jika belum ada destinasi pada kategori ini -->
         @empty
             {{-- Tampilan jika belum ada data di database --}}
             <div style="width: 100%; text-align: center; color: white; margin-top: 50px;">
@@ -61,9 +68,6 @@
   {{-- Footer --}}
   @include('partials.footer')
 
-  <!-- {{-- Script JS --}}
-  {{-- HAPUS category.js KARENA SUDAH DIGANTI BLADE --}}
-  {{-- <script src="{{ asset('js/category.js') }}"></script> --}} -->
 
 </body> 
 </html>

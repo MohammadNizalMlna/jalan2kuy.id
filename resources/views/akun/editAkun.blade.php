@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!-- Header halaman edit akun dengan tombol kembali, ikon user, dan judul -->
 <header class="header">
     <a href="{{ url('/admin/Account') }}" style="color: inherit; text-decoration: none;">
         <i class="fa-solid fa-arrow-left back"></i>
@@ -18,9 +19,11 @@
     <h1>Edit Account</h1>
 </header>
 
+    <!-- Container utama untuk form edit data akun admin -->
 <main class="form-container">
-    
-    @if ($errors->any())
+
+        <!-- Menampilkan pesan error validasi Laravel jika input tidak valid -->
+    @if ($errors->any())    
         <div style="color: red; margin-bottom: 15px; text-align: center;">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -30,25 +33,30 @@
         </div>
     @endif
 
+    <!-- Form untuk memperbarui data akun admin -->
     <form id="editForm" class="form-box" action="{{ url('/admin/Update-Profile') }}" method="POST">
         @csrf
         @method('PUT') <div class="input-group">
             <input type="text" name="name" placeholder="Name" required value="{{ old('name', $admin->name) }}">
         </div>
 
+        <!-- Input username admin -->
         <div class="input-group">
             <input type="text" name="username" placeholder="Username" required value="{{ old('username', $admin->username) }}">
         </div>
 
+        <!-- Input email admin -->
         <div class="input-group">
             <input type="email" name="email" placeholder="Email" required value="{{ old('email', $admin->email) }}">
         </div>
 
+        <!-- Input password admin -->
         <div class="input-group">
             <input type="password" name="password" placeholder="Password Baru (Kosongkan jika tidak ingin ubah)">
             <small style="font-size: 11px; color: #666; display:block; margin-top: 5px;">*Isi hanya jika ingin mengganti password</small>
         </div>
 
+        <!-- Radio button untuk memilih jenis kelamin admin -->
         <div class="gender-section">
             <label>Jenis Kelamin</label>
             <div class="radio-group">
@@ -64,6 +72,7 @@
             </div>
         </div>
 
+        <!-- Tombol simpan perubahan -->
         <button type="submit" class="save-btn">Save Changes</button>
     </form>
 </main>

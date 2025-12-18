@@ -14,16 +14,20 @@
 {{-- Navbar --}}
 @include('partials.navbar')
 
+<!-- Section utama untuk menampilkan detail lengkap event -->
 <section class="event-detail">
   <div class="event-box" id="eventBox">
 
+    <!-- Menampilkan nama event sebagai judul utama -->
     {{-- Judul Event --}}
     <h2 class="event-title">{{ $event->name }}</h2>
 
+    <!-- Container isi detail event -->
     {{-- Konten Detail Event --}}
     <div id="eventDetailContent">
       <div class="event-content">
         
+      <!-- Bagian kiri berisi deskripsi event dalam bentuk teks -->
         {{-- Bagian Kiri: Deskripsi Teks --}}
         <div class="event-text">
             {{-- Menampilkan deskripsi dengan format baris baru --}}
@@ -31,9 +35,12 @@
         </div>
 
         {{-- Bagian Kanan: Gambar & Info Singkat --}}
+        <!-- Bagian kanan berisi gambar event dan informasi singkat -->
         <div class="event-side">
+          <!-- Gambar event -->
           <img src="{{ asset('storage/' . $event->imagePath) }}" alt="{{ $event->name }}">
           <div class="event-info">
+            <!-- Informasi detail seperti lokasi, media sosial, tanggal, jam, dan harga tiket -->
             {{-- Lokasi --}}
             <p><i class="fa-solid fa-location-dot"></i> {{ $event->location }}</p>
             <br>

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/akun/akunmenu.css') }}"> 
 </head>
 <body>
+
+    <!-- ================= HEADER / TOP BAR ================= -->
     <header class="header-bar">
         <button class="icon-btn back-btn" onclick="window.location.href='{{ url('admin/Homepage') }}'">
             <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="Kembali">
@@ -22,16 +24,19 @@
         </div>
     </header>
 
+    <!-- KONTEN UTAMA -->
     <div class="main-wrapper-content">
         <div class="content-area">
             
+            <!-- menampilkan pesan sukses atau error dari session laravel -->
             @if(session('success'))
                 <div style="color: green; text-align: center; margin-bottom: 15px;">{{ session('success') }}</div>
             @endif
             @if(session('error'))
                 <div style="color: red; text-align: center; margin-bottom: 15px;">{{ session('error') }}</div>
             @endif
-
+            
+            <!-- Menampilkan data akun admin yang sedang login -->
             <div class="profile-card">
                 <div class="info-item"><strong>Nama:</strong> {{ $admin->name }}</div>
                 <div class="info-item"><strong>Username:</strong> {{ $admin->username }}</div>
@@ -41,6 +46,8 @@
                 
                 <div class="info-item"><strong>Jenis Kelamin:</strong> {{ $admin->gender ? 'Laki-laki' : 'Perempuan' }}</div>
 
+
+                <!-- Tombol aksi akun -->
                 <button class="action-btn edit-btn" id="editProfileButton" onclick="window.location.href='{{ url('/admin/Edit-Profile') }}'">Edit Profile</button>
                 <button class="action-btn logout-btn" id="logoutButton">Logout</button>
                 <button class="action-btn delete-btn" id="deleteButton">Delete Account</button>
@@ -48,6 +55,7 @@
         </div>
     </div>
 
+    <!-- Modal konfirmasi sebelum logout akun -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <p>Apakah anda yakin untuk logout Akun?</p>
@@ -62,6 +70,7 @@
         </div>
     </div>
 
+    <!-- Modal konfirmasi penghapusan akun admin -->
     <div id="deleteModal" class="modal">
         <div class="modal-content">
             <p>Apakah anda yakin ingin menghapus akun anda?</p>

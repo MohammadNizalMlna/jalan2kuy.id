@@ -41,8 +41,10 @@
 
   @include('partials.navbarAdmin')
 
+  <!-- Section utama yang menampilkan detail lengkap destinasi -->
   <section class="hero">
     
+    <!-- Menampilkan notifikasi sukses dari session Laravel -->
     {{-- Notifikasi Sukses/Error --}}
     @if(session('success'))
         <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
@@ -53,6 +55,7 @@
     <div class="hero-top">
       <h1 id="title">{{ $destination->name }}</h1>
       
+      <!-- Menampilkan nama destinasi dan tombol edit/delete -->
       <div class="action-btn">
         {{-- Tombol Edit: Mengarah ke Route Edit (Perlu dibuat nanti) --}}
         <a href="{{ url('/admin/Destination/Edit/' . $destination->destinationID) }}" class="edit-btn" style="text-decoration: none; display:inline-block; text-align:center;">Edit</a>
@@ -61,32 +64,36 @@
       </div>
     </div>
 
+    <!-- Container berisi deskripsi, gambar, info destinasi, dan event terkait -->
     <div class="content-box">
       
+      <!-- Menampilkan deskripsi dengan format baris tetap -->
       <div class="description">
         <h2>Deskripsi</h2>
         {{-- nl2br agar enter/baris baru di textarea tetap muncul --}}
         <p>{!! nl2br(e($destination->description)) !!}</p>
       </div>
 
+      <!-- Menampilkan gambar utama dan informasi destinasi -->
       <div class="image-box">
         <img id="img" src="{{ asset('storage/' . $destination->imagePath) }}" alt="{{ $destination->name }}">
-        
+        <!-- lokasi -->
         <p id="loc">
             <i class="fas fa-map-marker-alt"></i> {{ $destination->location }}
         </p>
-        
+        <!-- jam operasional -->
         <p id="time">
             <i class="fas fa-clock"></i> 
             {{ $destination->openingDay }} - {{ $destination->closingDay }} <br>
             ({{ \Carbon\Carbon::parse($destination->openingHours)->format('H:i') }} - {{ \Carbon\Carbon::parse($destination->closingHours)->format('H:i') }} {{ $destination->timezone }})
         </p>
-        
+        <!-- harga tiket -->
         <p id="price">
             <i class="fas fa-tag"></i> 
             Rp {{ number_format($destination->entranceFee, 0, ',', '.') }}
         </p>
 
+        <!-- Menampilkan daftar event yang berelasi dengan destinasi -->
         <h3>Event Terkait</h3>
         <div id="eventBox">
             {{-- Cek variabel $events yang dikirim Controller --}}
@@ -101,7 +108,8 @@
                 @endforeach
 
             @else
-                <p style="color: #666; font-style: italic;">Tidak ada event di destinasi ini.</p>
+            <!-- Jika tidak ada event -->
+                <p style="color: #ffff; font-style: italic;">Tidak ada event di destinasi ini.</p>
             @endif
         </div>
       </div>

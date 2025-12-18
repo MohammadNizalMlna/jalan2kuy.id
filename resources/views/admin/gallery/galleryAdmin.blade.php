@@ -10,12 +10,15 @@
 
 <body>
 
+    <!-- enyertakan navbar dari partials Laravel agar konsisten di seluruh halaman -->
     {{-- Include Navbar dari partials Laravel --}}
     @include('partials.navbarAdmin')
 
+    <!-- Section utama untuk menampilkan galeri destinasi wisata -->
     <section class="gallery-container" id="gallery">
         
         {{-- Loop data destinasi dari database --}}
+        <!-- Melakukan looping data destinasi yang dikirim dari controller -->
         @foreach($destinations as $destination)
             <div class="gallery-card">
                 {{-- 

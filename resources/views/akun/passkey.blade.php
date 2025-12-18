@@ -19,6 +19,7 @@
 </head>
 <body>
 
+<!-- Navbar berisi tombol kembali ke halaman login dan logo aplikasi -->
 <header class="navbar">
     <a href="{{ url('/login') }}" class="back-btn">
         <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="kembali">
@@ -28,21 +29,25 @@
     </div>
 </header>
 
+<!-- Container utama untuk proses verifikasi login menggunakan kode autentikasi -->
 <div class="container">
     <h2>Verifikasi Login</h2>
     <p style="text-align: center; color: #666; font-size: 14px;">Masukkan 6 digit kode keamanan.</p>
 
+    <!-- Menampilkan pesan error jika kode verifikasi salah -->
     @if(session('error'))
         <div class="alert-error">
             {{ session('error') }}
         </div>
     @endif
 
+    <!-- Form untuk mengirim kode verifikasi ke server Laravel -->
     <form id="passkeyForm" action="{{ url('/verifikasi-login-proses') }}" method="POST">
         @csrf
         
         <input type="hidden" name="passkey_code" id="full_code">
 
+        <!-- Input OTP 6 digit (satu digit per kotak) -->
         <div class="input-group">
             <input type="text" maxlength="1" class="otp-input" required>
             <input type="text" maxlength="1" class="otp-input" required>
@@ -52,6 +57,7 @@
             <input type="text" maxlength="1" class="otp-input" required>
         </div>
 
+        <!-- Tombol verifikasi -->
         <button type="button" class="submit-btn" id="submitBtn">Verifikasi</button>
     </form>
 </div>

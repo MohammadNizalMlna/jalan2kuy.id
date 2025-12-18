@@ -48,16 +48,19 @@
 @include('partials.navbarAdmin')
 
 <main>
+    <!-- Menampilkan pesan error dari session Laravel -->
     @if(session('error'))
         <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; width: 80%; margin: 0 auto;">
             {{ session('error') }}
         </div>
     @endif
 
+    <!-- Form update destinasi menggunakan method PUT -->
     <form action="{{ url('/admin/Destination/Update/' . $destination->destinationID) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
+        <!-- Edit nama destinasi secara langsung -->
         <h1 class="edit-title">
             Edit<br>
             <div class="title-edit-box">
@@ -67,8 +70,9 @@
             @error('name') <small class="error-text" style="font-size: 14px; font-weight: normal;">{{ $message }}</small> @enderror
         </h1>
 
+        <!-- Layout utama edit destinasi -->
         <section class="edit-grid">
-
+            <!-- Edit dan preview thumbnail destinasi -->
             <div class="thumb-box">
                 <img id="thumbPreview" class="thumb-img" src="{{ asset('storage/' . $destination->thumbnailImagePath) }}">
                 <label class="edit-thumb-btn">
@@ -77,11 +81,13 @@
                 </label>
             </div>
 
+            <!-- Edit deskripsi destinasi -->
             <div class="desc-box">
                 <label>Deskripsi</label>
                 <textarea name="description" id="descField" required>{{ old('description', $destination->description) }}</textarea>
             </div>
 
+            <!-- Edit dan preview gambar utama destinasi -->
             <div class="image-box">
                 <img id="imagePreview" class="main-img" src="{{ asset('storage/' . $destination->imagePath) }}">
                 <label class="edit-img-btn">
@@ -90,6 +96,7 @@
                 </label>
             </div>
 
+            <!-- Lokasi, hari buka, jam operasional, zona waktu, dan harga -->
             <div class="info-box">
                 <label>Lokasi Tempat</label>
                 <input type="text" name="location" id="locField" value="{{ old('location', $destination->location) }}" required>
@@ -114,6 +121,7 @@
                 <input type="number" name="entranceFee" id="priceField" value="{{ old('entranceFee', $destination->entranceFee) }}" required>
             </div>
 
+            <!-- Mengelola relasi event: edit, hapus, dan tambah event -->
             <div class="event-box">
                 <label>Event Terkait</label>
                 <div id="event-container">
@@ -142,6 +150,7 @@
                     @endforeach
 
                     {{-- 2. DROPDOWN KOSONG UNTUK NAMBAH BARU (Sama seperti Add Page) --}}
+                    <!-- Dropdown kosong untuk menambah event baru -->
                     <div class="dynamic-event-wrapper" id="template-dropdown">
                         <select name="eventID[]" class="event-select" onchange="addNewDropdown(this)">
                             <option value="">-- Tambah Event Baru --</option>
@@ -155,11 +164,11 @@
 
                 </div>
                 
-                <small style="color: #666; font-size: 11px; display:block; margin-top:5px;">
+                <small style="color: #ffff; font-size: 11px; display:block; margin-top:5px;">
                     *Klik ikon (-) untuk menghapus relasi event. Pilih event baru di bawah untuk menambah.
                 </small>
             </div>
-
+            <!-- Simpan perubahan destinasi -->
             <button type="submit" class="save-button" id="saveBtn">Simpan Perubahan</button>
 
         </section>

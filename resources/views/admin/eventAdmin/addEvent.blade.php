@@ -11,22 +11,26 @@
 
 <body>
 
+<!-- Wrapper utama halaman admin -->
 <div class="page-wrapper"> 
 
     @include('partials.navbarAdmin')
 
+    <!-- Section utama berisi form penambahan event baru -->
     <section class="form-container">
         <h1 class="title">Add Event</h1>
     
+        <!-- Menampilkan pesan error dari session Laravel (jika ada) -->
         @if(session('error'))
             <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
                 {{ session('error') }}
             </div>
         @endif
-
+        <!-- Form untuk menyimpan data event baru ke database -->
         <form id="eventForm" class="event-form" action="{{ url('/admin/Event/store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
+            <!-- Area upload gambar utama event -->
             <div class="form-item item-image area-image">
                 <i class="fas fa-plus" id="uploadIcon"></i>
                 <p id="uploadText">Add Image</p>
@@ -34,32 +38,38 @@
                 @error('image') <div class="error-text">{{ $message }}</div> @enderror
             </div>
 
+            <!-- Input judul/nama event -->
             <div class="form-item item-info area-judul">
                 <label>Judul Event</label>
                 <input type="text" name="name" placeholder="Judul Event" required value="{{ old('name') }}">
                 @error('name') <div class="error-text">{{ $message }}</div> @enderror
             </div>
 
+            <!-- Input lokasi event -->
             <div class="form-item item-info area-lokasi">
                 <label>Lokasi Event</label>
                 <input type="text" name="location" placeholder="Masukkan lokasi event..." required value="{{ old('location') }}">
             </div>
 
+            <!-- Input harga tiket masuk event -->
             <div class="form-item item-info area-harga">
                 <label>Harga Tiket (Rp)</label>
                 <input type="number" name="entranceFee" placeholder="0" required value="{{ old('entranceFee') }}">
             </div>
 
+            <!-- Input akun sosial media event -->
             <div class="form-item item-info area-sosmed">
                 <label>Social Media (ketikkan tanpa @)</label>
                 <input type="text" name="socialMedia" placeholder="Akun Sosial Media..." value="{{ old('socialMedia') }}">
             </div>
 
+            <!-- Textarea untuk deskripsi lengkap event -->
             <div class="form-item item-full area-deskripsi">
                 <label>Deskripsi Lengkap</label>
                 <textarea name="description" placeholder="Masukkan deskripsi lengkap event..." required>{{ old('description') }}</textarea>
             </div>
 
+            <!-- Input tanggal dan jam pelaksanaan event -->
             <div class="form-item item-info area-waktu">
                 <label>Waktu Pelaksanaan</label>
                 
@@ -86,6 +96,7 @@
                 </div>
             </div>
 
+            <!-- Tombol untuk menyimpan event -->
             <button type="submit" class="submit-btn">Simpan Event</button>
         </form>
     </section>

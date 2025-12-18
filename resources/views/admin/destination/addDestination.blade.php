@@ -12,7 +12,7 @@
 <body>
 
 @include('partials.navbarAdmin')
-
+<!-- Mengambil nama kategori berdasarkan parameter Category dari URL -->
 @php
     $catName = '';
     if(request('Category')){
@@ -22,6 +22,7 @@
 @endphp
 
 <main>
+    <!-- Menampilkan pesan error jika proses sebelumnya gagal -->
     @if(session('error'))
         <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; width: 80%; margin: 0 auto;">
             {{ session('error') }}
@@ -32,6 +33,7 @@
         @csrf
         <input type="hidden" name="category" value="{{ request('Category') }}">
 
+        <!-- Input nama destinasi + tampilkan nama kategori jika ada -->
         <h1 class="edit-title">
             Add Destination @if($catName) - {{ $catName }} @endif<br>
             <div class="title-edit-box">
@@ -40,9 +42,9 @@
             </div>
             @error('name') <small class="error-text" style="text-align: center;">{{ $message }}</small> @enderror
         </h1>
-
+        <!-- Grid utama berisi thumbnail, deskripsi, gambar utama, info, dan event terkait -->
         <section class="edit-grid">
-
+            <!-- Upload dan preview thumbnail destinasi -->
             <div class="thumb-box">
                 <label class="image-label">Thumbnail Image</label>
                 {{-- Pakai class box-thumbnail --}}
@@ -54,21 +56,22 @@
                     <img id="thumbPreview" class="preview-img">
                     <input type="file" name="thumbnailImage" class="file-input-overlay" accept="image/*" onchange="previewImage(this, 'thumbPreview', 'thumbPlaceholder')" required>
                 </div>
-                 @error('thumbnailImage') <small class="error-text">{{ $message }}</small> @enderror
+                    @error('thumbnailImage') <small class="error-text">{{ $message }}</small> @enderror
             </div>
-
+            <!-- Textarea untuk deskripsi lengkap destinasi -->
             <div class="desc-box">
                 <label>Deskripsi</label>
                 <textarea name="description" id="descField" placeholder="Masukkan deskripsi lengkap..." required>{{ old('description') }}</textarea>
                 @error('description') <small class="error-text">{{ $message }}</small> @enderror
             </div>
 
+            <!-- Upload dan preview gambar utama destinasi -->
             <div class="image-box">
                 <label class="image-label">Main Image</label>
-                 {{-- Pakai class box-main-image --}}
-                 <div class="image-upload-box box-main-image">
+                    {{-- Pakai class box-main-image --}}
+                    <div class="image-upload-box box-main-image">
                     <div id="mainPlaceholder" class="placeholder">
-                         <i class="far fa-image" style="font-size: 50px;"></i>
+                        <i class="far fa-image" style="font-size: 50px;"></i>
                         <span>Preview Main Image</span>
                     </div>
                     <img id="mainPreview" class="preview-img">
@@ -77,6 +80,7 @@
                 @error('image') <small class="error-text">{{ $message }}</small> @enderror
             </div>
 
+            <!-- Lokasi, hari buka, jam operasional, zona waktu, dan harga tiket -->
             <div class="info-box">
                 <label>Lokasi Tempat</label>
                 <input type="text" name="location" id="locField" placeholder="Alamat lengkap..." value="{{ old('location') }}" required>
@@ -101,6 +105,7 @@
                 <input type="number" name="entranceFee" id="priceField" placeholder="0" value="{{ old('entranceFee') }}" required>
             </div>
 
+            <!-- Pilihan event terkait (bisa lebih dari satu, dropdown dinamis) -->
             <div class="event-box">
                 <label>Event Terkait (Opsional)</label>
                 
@@ -123,6 +128,7 @@
                 </div>
             </div>
 
+            <!-- Tombol simpan destinasi -->
             <button type="submit" class="save-button" id="saveBtn">Tambah Destinasi</button>
 
         </section>

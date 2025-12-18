@@ -10,7 +10,9 @@
 
     @include('partials.navbarAdmin')
     
+    <!-- Section hero berisi slideshow utama sebagai highlight website -->
     <section class="hero slideshow-container">
+        <!-- slide promosi destinasi wisata -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/bgfix.jpg') }}');">
             <div class="hero-content">
                 <h1>Temukan Petualanganmu</h1>
@@ -19,6 +21,7 @@
             </div>
         </div>
         
+        <!-- slide promosi event -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/bgswap.jpg') }}');">
             <div class="hero-content">
                 <h1>Jelajahi Budaya Lewat</h1>
@@ -27,6 +30,7 @@
             </div>
         </div>
         
+        <!--  Slide kampanye sosial dan edukasi lingkungan -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/raja-ampat-dikeruk.jpeg') }}');">
             <div class="hero-content">
                 <h1>Ayo Kita Suarakan</h1>

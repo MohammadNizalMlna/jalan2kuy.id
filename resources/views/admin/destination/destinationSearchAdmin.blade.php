@@ -28,6 +28,7 @@
 
     @include('partials.navbarAdmin')
 
+    <!-- Section utama untuk menampilkan hasil pencarian destinasi admin -->
     <section class="hero">
         {{-- Form Search (Tetap ditampilkan agar user bisa cari lagi) --}}
         <form action="{{ url('/admin/Destination') }}" method="GET" class="search">
@@ -37,20 +38,23 @@
             </button>
         </form>
         
+        <!-- Menampilkan keyword yang sedang dicari -->
         <h2 style="color: white; margin-bottom: 30px; text-shadow: 2px 2px 4px #000;">
             Menampilkan hasil untuk: "{{ $keyword }}"
         </h2>
 
+        <!-- Container untuk menampilkan daftar destinasi hasil pencarian -->
         {{-- Container Hasil --}}
         <div class="categori-container">
             
+            <!-- Card destinasi admin -->
             @if($destinations->count() > 0)
                 @foreach($destinations as $dest)
                     {{-- Card Destinasi --}}
                     {{-- Menggunakan class 'categori' agar styling kotak dan gambarnya sama --}}
                     <a href="{{ url('/admin/Destination/Detail/' . $dest->destinationID) }}" 
-                       class="categori"
-                       style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ asset('storage/' . $dest->thumbnailImagePath) }}');">
+                        class="categori"
+                        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ asset('storage/' . $dest->thumbnailImagePath) }}');">
                         
                         <span>{{ $dest->name }}</span>
                     </a>
@@ -61,6 +65,7 @@
 
         </div>
 
+        <!-- Pesan khusus jika tidak ada destinasi yang ditemukan -->
         @if($destinations->count() == 0)
             <div class="no-result">
                 Destinasi "{{ $keyword }}" tidak ditemukan.

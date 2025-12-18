@@ -40,9 +40,11 @@
 <body>
 
   @include('partials.navbar')
-
+  
+  <!-- Section utama untuk menampilkan detail lengkap destinasi -->
   <section class="hero">
     
+      <!-- Menampilkan notifikasi sukses atau error dari session -->
     {{-- Notifikasi Sukses/Error --}}
     @if(session('success'))
         <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
@@ -50,10 +52,12 @@
         </div>
     @endif
 
+    <!-- Menampilkan nama destinasi sebagai judul utama -->
     <div class="hero-top">
       <h1 id="title">{{ $destination->name }}</h1>
     </div>
 
+    <!-- Container berisi deskripsi, gambar, info, dan event terkait -->
     <div class="content-box">
       
       <div class="description">
@@ -80,9 +84,11 @@
             Rp {{ number_format($destination->entranceFee, 0, ',', '.') }}
         </p>
 
+        <!-- Menampilkan daftar event yang terkait dengan destinasi ini -->
         <h3>Event Terkait</h3>
         <div id="eventBox">
             {{-- Cek variabel $events yang dikirim Controller --}}
+            <!-- Jika terdapat event terkait -->
             @if($events->count() > 0)
                 
                 {{-- Loop variabel $events --}}
@@ -93,8 +99,9 @@
                     </a>
                 @endforeach
 
+            <!-- Jika tidak ada event terkait -->
             @else
-                <p style="color: #666; font-style: italic;">Tidak ada event di destinasi ini.</p>
+                <p style="color: #ffff; font-style: italic;">Tidak ada event di destinasi ini.</p>
             @endif
         </div>
       </div>

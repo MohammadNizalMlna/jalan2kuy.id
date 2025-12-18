@@ -10,7 +10,9 @@
 
     @include('partials.navbar')
     
+    <!-- Section hero berisi slideshow utama sebagai highlight website -->
     <section class="hero slideshow-container">
+        <!-- slide promosi destinasi wisata -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/bgfix.jpg') }}');">
             <div class="hero-content">
                 <h1>Temukan Petualanganmu</h1>
@@ -19,6 +21,7 @@
             </div>
         </div>
         
+        <!-- slide promosi event -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/bgswap.jpg') }}');">
             <div class="hero-content">
                 <h1>Jelajahi Budaya Lewat</h1>
@@ -27,6 +30,7 @@
             </div>
         </div>
         
+        <!--  Slide kampanye sosial dan edukasi lingkungan -->
         <div class="myslides" style="background-image: url('{{ asset('assets/gambar/raja-ampat-dikeruk.jpeg') }}');">
             <div class="hero-content">
                 <h1>Ayo Kita Suarakan</h1>
@@ -35,9 +39,11 @@
             </div>
         </div>
 
+        <!-- Tombol navigasi slide sebelumnya dan berikutnya -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
+        <!-- Indicator titik untuk berpindah ke slide tertentu -->
         <div class="dot-indicator">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>

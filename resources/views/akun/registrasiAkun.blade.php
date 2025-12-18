@@ -43,6 +43,7 @@
 </head>
 <body>
 
+<!-- Navbar berisi tombol kembali ke halaman login dan logo -->
 <header class="navbar">
     <button class="back-btn" id="backButton" type="button">
         <img src="{{ asset('assets/gambar/icon/return.png') }}" alt="kembali">
@@ -52,27 +53,34 @@
     </div>
 </header>
 
+<!-- Container utama untuk form pembuatan akun baru -->
 <div class="form-container">
     <h1>Buat Akun Baru</h1>
 
+    <!-- Menampilkan pesan error dari session Laravel -->
     @if(session('error'))
         <div style="background-color: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
             {{ session('error') }}
         </div>
     @endif
 
+    <!-- Form registrasi akun admin baru -->
     <form id="registerForm" action="{{ url('/register-proses') }}" method="POST">
         @csrf
 
+        <!-- input nama lengkap -->
         <input type="text" name="name" placeholder="Nama Lengkap" required value="{{ old('name') }}">
         @error('name') <span class="error-msg">{{ $message }}</span> @enderror
 
+        <!-- Input email -->
         <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}">
         @error('email') <span class="error-msg">{{ $message }}</span> @enderror
 
+        <!-- Input username -->
         <input type="text" name="username" placeholder="Username" required value="{{ old('username') }}">
         @error('username') <span class="error-msg">{{ $message }}</span> @enderror
 
+        <!-- Dropdown untuk memilih jenis kelamin pengguna -->
         <select name="gender" required>
             <option value="" disabled selected>Pilih Jenis Kelamin</option>
             <option value="1" {{ old('gender') == '1' ? 'selected' : '' }}>Laki-laki</option>
@@ -80,17 +88,20 @@
         </select>
         @error('gender') <span class="error-msg">{{ $message }}</span> @enderror
 
+        <!-- Input password dengan fitur show/hide -->
         <div class="password-container">
             <input type="password" name="password" id="password" placeholder="Kata Sandi" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
         </div>
         @error('password') <span class="error-msg">{{ $message }}</span> @enderror
 
+        <!-- Input konfirmasi password dengan toggle -->
         <div class="password-container" style="margin-top: 15px; margin-bottom: 15px;">
             <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi Kata Sandi" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('password_confirmation', this)"></i>
         </div>
 
+        <!-- Tombol submit registrasi -->
         <button type="submit">Daftar</button>
     </form>
 </div>

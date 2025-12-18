@@ -13,7 +13,9 @@
     {{-- Navbar Partial --}}
     @include('partials.navbar')
 
+    <!-- Section utama berisi fitur pencarian dan daftar kategori destinasi -->
     <section class="hero">
+        <!-- Form pencarian destinasi berdasarkan keyword -->
         <form action="{{ url('/Destination') }}" method="GET" class="search">
             <input type="text" name="search" placeholder="Cari destinasi..." value="{{ request('search') }}">
             <button type="submit">
@@ -21,13 +23,15 @@
             </button>
         </form>
         
+        <!-- Container untuk menampilkan kategori destinasi -->
         <div class="categori-container">
             
+            <!-- Loop data kategori destinasi dari database -->
             @foreach($categories as $cat)
                 <a href="{{ url('/Destination/Category?Category=' . $cat->destCategoryID) }}" 
                 class="categori"
                 {{-- PERUBAHAN DISINI --}}
-                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ asset('storage/' . $cat->categoryImage) }}');">
+                style="background-image: url('{{ asset('storage/' . $cat->categoryImage) }}');">
                 
                 <span>{{ $cat->categoryName }}</span>
                 </a>

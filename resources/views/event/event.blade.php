@@ -30,46 +30,53 @@
 
 @include('partials.navbar')
 
+<!-- Section utama untuk menampilkan daftar event -->
 <section class="event-section">
   
+  <!-- Header berisi judul halaman dan filter tanggal event -->
   <div class="event-header">
     <h2>Date Event</h2>
     
+    <!-- Form filter event berdasarkan rentang tanggal -->
     <form action="{{ url('/Event') }}" method="GET" class="date-inputs">
       
       <input type="text" name="start_date" class="date-field" placeholder="DD/MM/YYYY"
-             onfocus="(this.type='date')" 
-             onblur="if(!this.value)this.type='text'"
-             value="{{ request('start_date') }}">
+            onfocus="(this.type='date')" 
+            onblur="if(!this.value)this.type='text'"
+            value="{{ request('start_date') }}">
 
       <span class="dash">-</span>
       
       <input type="text" name="end_date" class="date-field" placeholder="DD/MM/YYYY"
-             onfocus="(this.type='date')" 
-             onblur="if(!this.value)this.type='text'"
-             value="{{ request('end_date') }}">
+            onfocus="(this.type='date')" 
+            onblur="if(!this.value)this.type='text'"
+            value="{{ request('end_date') }}">
       
+      <!-- Tombol submit filter -->
       <button type="submit" style="background: transparent; border: none; cursor: pointer; color: #15514A; font-weight: bold; font-size: 16px;">
           <i class="fa-solid fa-filter"></i>
       </button>
-
+      <!-- Tombol reset filter -->
       @if(request('start_date'))
         <a href="{{ url('/Event') }}" style="color: red; margin-left: 5px; font-size: 12px; text-decoration: none;">Reset</a>
       @endif
     </form>
   </div>
 
+  <!-- Menampilkan pesan sukses dari session Laravel -->
   @if(session('success'))
     <div style="background: #d4edda; color: #155724; padding: 10px; margin: 10px auto; width: 90%; border-radius: 5px; text-align: center;">
         {{ session('success') }}
     </div>
   @endif
-
+      <!-- Grid daftar event yang diambil dari database -->
   <div class="event-cards" id="eventList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+    <!-- Loop data event dari controller -->
       @forelse($events as $event)
         
         <div class="modern-card" onclick="window.location.href='{{ url('/Event/Detail/' . $event->eventID) }}'">
             
+          <!-- Gambar dan tanggal event -->
             <div class="card-image-wrapper">
                 <img src="{{ asset('storage/' . $event->imagePath) }}" 
                     alt="{{ $event->name }}">
@@ -82,6 +89,7 @@
                 </div>
             </div>
 
+            <!-- Konten utama card -->
             <div class="card-content">
                 <h3 class="card-title">{{ $event->name }}</h3>
                 
@@ -100,9 +108,9 @@
             </div>
 
         </div>
-
+            <!-- Tampilan jika tidak ada event -->
       @empty
-        <div style="grid-column: 1 / -1; text-align: center; color: #666; margin-top: 50px;">
+        <div style="grid-column: 1 / -1; text-align: center; color: #ffff; margin-top: 50px;">
             <i class="fa-regular fa-calendar-xmark" style="font-size: 40px; margin-bottom: 10px;"></i>
             <p>Belum ada event yang tersedia.</p>
         </div>

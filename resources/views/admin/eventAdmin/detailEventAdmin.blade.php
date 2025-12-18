@@ -14,28 +14,34 @@
 {{-- Navbar --}}
 @include('partials.navbarAdmin')
 
+<!-- Section utama untuk menampilkan detail event versi admin -->
 <section class="event-detail">
   <div class="event-box" id="eventBox">
     
+    <!-- Tombol edit dan delete event (floating button) -->
     {{-- Tombol Edit & Delete (Floating) --}}
     <div class="event-actions-floating">
       <button class="edit-btn" onclick="window.location.href='{{ url('/admin/Event/Edit/' . $event->eventID) }}'">Edit</button>
       <button class="delete-btn" id="deleteBtn">Delete</button>
     </div>
 
+    <!-- Menampilkan nama event -->
     {{-- Judul Event --}}
     <h2 class="event-title">{{ $event->name }}</h2>
 
+    <!-- Container isi detail event (deskripsi, gambar, dan informasi) -->
     {{-- Konten Detail Event --}}
     <div id="eventDetailContent">
       <div class="event-content">
         
+        <!-- Bagian kiri berisi deskripsi event -->
         {{-- Bagian Kiri: Deskripsi Teks --}}
         <div class="event-text">
             {{-- Menampilkan deskripsi dengan format baris baru --}}
             <p>{!! nl2br(e($event->description)) !!}</p>
         </div>
 
+        <!-- Bagian kanan berisi gambar event dan informasi singkat -->
         {{-- Bagian Kanan: Gambar & Info Singkat --}}
         <div class="event-side">
           <img src="{{ asset('storage/' . $event->imagePath) }}" alt="{{ $event->name }}">
@@ -57,14 +63,14 @@
 
               {{-- Jam --}}
               <li>
-                 <strong>Jam :</strong> 
-                 {{ \Carbon\Carbon::parse($event->startTime)->format('H:i') }} - 
-                 {{ \Carbon\Carbon::parse($event->endTime)->format('H:i') }}
+                  <strong>Jam :</strong> 
+                  {{ \Carbon\Carbon::parse($event->startTime)->format('H:i') }} - 
+                  {{ \Carbon\Carbon::parse($event->endTime)->format('H:i') }}
               </li>
 
               {{-- Harga --}}
               <li>
-                 <strong>Tiket Masuk :</strong> Rp {{ number_format($event->entranceFee, 0, ',', '.') }}
+                  <strong>Tiket Masuk :</strong> Rp {{ number_format($event->entranceFee, 0, ',', '.') }}
               </li>
             </ul>
             
@@ -81,6 +87,7 @@
 @include('partials.footer')
 
 {{-- POPUP KONFIRMASI DELETE --}}
+<!-- Popup konfirmasi sebelum event dihapus -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-box">
     <p>Apakah Anda yakin ingin menghapus event <strong>"{{ $event->name }}"</strong>?</p>

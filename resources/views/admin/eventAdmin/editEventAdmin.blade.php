@@ -15,19 +15,22 @@
 
     @include('partials.navbarAdmin')
 
+    <!-- Section utama berisi form untuk mengedit data event -->
     <section class="form-container">
         <h1 class="title">Edit Event</h1>
 
+        <!-- Menampilkan pesan error dari session Laravel (jika ada) -->
         @if(session('error'))
             <div style="background: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
                 {{ session('error') }}
             </div>
         @endif
-        
+        <!-- Form update event (method PUT) -->
         <form id="eventForm" class="event-form" action="{{ url('/admin/Event/Update/' . $event->eventID) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') 
 
+            <!-- Menampilkan preview gambar lama dan memungkinkan upload gambar baru -->
             <div class="form-item item-image">
                 @if($event->imagePath)
                     <img src="{{ asset('storage/' . $event->imagePath) }}" id="imgPreview" class="image-preview-bg">
@@ -43,28 +46,32 @@
                 <input type="file" name="image" id="eventImage" accept="image/*" class="file-input" onchange="previewNewImage(this)">
                 @error('image') <div class="error-text">{{ $message }}</div> @enderror
             </div>
-
+            <!-- Input judul/nama event -->
             <div class="form-item item-info">
                 <label>Judul Event</label>
                 <input type="text" name="name" placeholder="Masukkan Judul Event..." required value="{{ old('name', $event->name) }}">
                 @error('name') <div class="error-text">{{ $message }}</div> @enderror
             </div>
 
+            <!-- Input lokasi event -->
             <div class="form-item item-info">
                 <label>Lokasi Event</label>
                 <input type="text" name="location" placeholder="Masukkan Lokasi Event..." required value="{{ old('location', $event->location) }}">
             </div>
 
+            <!-- Input akun sosial media event -->
             <div class="form-item item-info">
                 <label>Social Media (ketikkan tanpa @)</label>
                 <input type="text" name="socialMedia" placeholder="Akun Sosmen Event..." required value="{{ old('socialMedia', $event->socialMedia) }}">
             </div>
 
+            <!-- Textarea untuk deskripsi lengkap event -->
             <div class="form-item item-full">
                 <label>Deskripsi Lengkap</label>
                 <textarea name="description" placeholder="Masukkan Deskripsi Lengkap Event..." style="height: 150px;" required>{{ old('description', $event->description) }}</textarea>
             </div>
 
+            <!-- Input tanggal dan jam pelaksanaan event -->
             <div class="form-item item-info">
                 <label>Waktu Pelaksanaan</label>
                 
@@ -91,6 +98,7 @@
                 </div>
             </div>
 
+            <!-- Input harga tiket masuk event -->
             <div class="form-item item-info">
                 <label>Harga Tiket (Rp)</label>
                 <input type="number" name="entranceFee" placeholder="0" required value="{{ old('entranceFee', $event->entranceFee) }}">
