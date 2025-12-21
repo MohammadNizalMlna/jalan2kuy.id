@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2025 pada 13.49
+-- Waktu pembuatan: 21 Des 2025 pada 06.31
 -- Versi server: 8.0.43
 -- Versi PHP: 8.2.12
 
@@ -41,32 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`adminID`, `name`, `username`, `password`, `email`, `gender`) VALUES
-('adm001', 'Dhimas HP', 'dhimas123', 'jalanDhimas', 'dhimas.hfzh375@gmail.com', 0),
-('adm002', 'dhimas', 'Dhimas', '$2y$12$JmoUiHY1CVO4KS2IFUIEa.O1TRBXzzCe4NkWUndpEnBzd.K8khdKK', 'dhimas@gmail.com', 1);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `cache`
---
-
-CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `cache_locks`
---
-
-CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+('adm001', 'Dhimas HP', 'dhimas123', '$2y$12$GkZE8QL3APnlT13COURgfe72lHnD1qhhNTasDL6X3tV7mstcp0bDe', 'dhimas.hfzh375@gmail.com', 0),
+('adm002', 'dhimas', 'Dhimas', '$2y$12$mxO7zz9xsoyqgrVnmENFs.nUrUMnOWlBUWltvpLlWcciFP69oEdG6', 'dhimas@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +96,7 @@ CREATE TABLE `destination` (
 --
 
 INSERT INTO `destination` (`destinationID`, `name`, `location`, `openingHours`, `closingHours`, `timezone`, `openingDay`, `closingDay`, `entranceFee`, `description`, `imagePath`, `thumbnailImagePath`, `destCategoryID`, `adminID`) VALUES
-('dst001', 'Danau Weekuri', 'Kabupaten Sumba Barat Daya, Nusa Tenggara Timur', '08:00:00', '17:00:00', 'WITA', 'Senin', 'Minggu', 10000, 'Danau Weekuri adalah sebuah danau unik yang terletak di Desa Kelapa Lima, Kecamatan Kodi Utara, Kabupaten Sumba Barat Daya, Nusa Tenggara Timur (NTT). Dikenal juga dengan sebutan Danau Air Asin Weekuri, tempat ini merupakan salah satu keajaiban alam paling menakjubkan di Pulau Sumba. Berbeda dengan danau pada umumnya yang berisi air tawar, air di Danau Weekuri berasal dari air laut yang masuk melalui celah-celah batu karang, menjadikannya sebagai laguna alami dengan perpaduan warna biru muda, hijau toska, dan jernih transparan yang memanjakan mata. Pemandangan di sekitar danau sangat mempesona — airnya begitu tenang, dikelilingi batu karang tinggi dan vegetasi hijau yang menambah kesan alami serta menenangkan. Dengan kedalaman yang bervariasi, mulai dari sekitar satu meter di tepi hingga lebih dari lima meter di bagian tengah, Danau Weekuri menjadi tempat ideal untuk berenang, bersantai, atau sekadar menikmati keindahan alam. Cahaya matahari yang memantul di permukaan air menciptakan gradasi warna yang memukau, terutama pada siang hari saat langit cerah. Nama “Weekuri” sendiri berasal dari bahasa daerah Sumba yang berarti “air yang memercik”, menggambarkan proses alami masuknya air laut ke dalam danau melalui celah-celah batu karang di tepi pantai. Suara ombak yang menghantam karang dari laut lepas pun menjadi harmoni alami yang menambah suasana damai di tempat ini.\n    \n    Selain keindahan visualnya, Danau Weekuri juga memiliki daya tarik ekowisata dan budaya yang kuat. Kawasan ini masih sangat alami dan belum banyak tersentuh modernisasi, menjadikannya destinasi sempurna bagi wisatawan yang mencari ketenangan jauh dari keramaian kota. Dari atas tebing di sekitar danau, pengunjung dapat menikmati panorama spektakuler laut lepas Samudra Hindia di satu sisi dan ketenangan air biru Danau Weekuri di sisi lainnya. Di sore hari, suasana menjadi semakin magis dengan sinar matahari terbenam yang memantulkan warna keemasan di permukaan air. Selain sebagai tempat wisata, danau ini juga memiliki nilai penting bagi masyarakat sekitar, yang menjadikannya sebagai sumber kebanggaan dan simbol keharmonisan antara manusia dan alam. Warga setempat turut menjaga kebersihan serta kelestariannya agar keindahan Weekuri tetap terpelihara untuk generasi berikutnya. Akses menuju Danau Weekuri kini semakin mudah dengan adanya jalan beraspal dari Tambolaka, ibu kota Kabupaten Sumba Barat Daya, yang dapat ditempuh sekitar 1–1,5 jam perjalanan. Di sekitar kawasan danau juga sudah tersedia fasilitas sederhana seperti area parkir, tempat istirahat, gazebo bambu, serta tangga menuju air. Namun, suasana alami dan kesederhanaan inilah yang menjadi daya tarik utama Weekuri, membuat siapa pun yang datang merasa dekat dengan alam. Dengan pesona warna air yang luar biasa, udara yang segar, serta keramahan masyarakat lokal, Danau Weekuri adalah surga tersembunyi di Sumba Barat Daya — tempat di mana keindahan alam, ketenangan jiwa, dan keaslian budaya berpadu menjadi satu pengalaman tak terlupakan.', 'destinations/image/GxXfM0rt0mQeK9pdjsHN86t3JPNqwT4vbVFN5FKe.jpg', 'destinations/thumbnailImage/OkEpL8NHoapcX1k2tO80pouSNsSrpmTatzFoEUGG.jpg', 'ctg001', 'adm001'),
+('dst001', 'Danau Weekuri', 'Kabupaten Sumba Barat Daya, Nusa Tenggara Timur', '08:00:00', '17:00:00', 'WITA', 'Senin', 'Minggu', 10000, 'Danau Weekuri adalah sebuah danau unik yang terletak di Desa Kelapa Lima, Kecamatan Kodi Utara, Kabupaten Sumba Barat Daya, Nusa Tenggara Timur (NTT). Dikenal juga dengan sebutan Danau Air Asin Weekuri, tempat ini merupakan salah satu keajaiban alam paling menakjubkan di Pulau Sumba. Berbeda dengan danau pada umumnya yang berisi air tawar, air di Danau Weekuri berasal dari air laut yang masuk melalui celah-celah batu karang, menjadikannya sebagai laguna alami dengan perpaduan warna biru muda, hijau toska, dan jernih transparan yang memanjakan mata. Pemandangan di sekitar danau sangat mempesona — airnya begitu tenang, dikelilingi batu karang tinggi dan vegetasi hijau yang menambah kesan alami serta menenangkan. Dengan kedalaman yang bervariasi, mulai dari sekitar satu meter di tepi hingga lebih dari lima meter di bagian tengah, Danau Weekuri menjadi tempat ideal untuk berenang, bersantai, atau sekadar menikmati keindahan alam. Cahaya matahari yang memantul di permukaan air menciptakan gradasi warna yang memukau, terutama pada siang hari saat langit cerah. Nama “Weekuri” sendiri berasal dari bahasa daerah Sumba yang berarti “air yang memercik”, menggambarkan proses alami masuknya air laut ke dalam danau melalui celah-celah batu karang di tepi pantai. Suara ombak yang menghantam karang dari laut lepas pun menjadi harmoni alami yang menambah suasana damai di tempat ini.\r\n    \r\n    Selain keindahan visualnya, Danau Weekuri juga memiliki daya tarik ekowisata dan budaya yang kuat. Kawasan ini masih sangat alami dan belum banyak tersentuh modernisasi, menjadikannya destinasi sempurna bagi wisatawan yang mencari ketenangan jauh dari keramaian kota. Dari atas tebing di sekitar danau, pengunjung dapat menikmati panorama spektakuler laut lepas Samudra Hindia di satu sisi dan ketenangan air biru Danau Weekuri di sisi lainnya. Di sore hari, suasana menjadi semakin magis dengan sinar matahari terbenam yang memantulkan warna keemasan di permukaan air. Selain sebagai tempat wisata, danau ini juga memiliki nilai penting bagi masyarakat sekitar, yang menjadikannya sebagai sumber kebanggaan dan simbol keharmonisan antara manusia dan alam. Warga setempat turut menjaga kebersihan serta kelestariannya agar keindahan Weekuri tetap terpelihara untuk generasi berikutnya. Akses menuju Danau Weekuri kini semakin mudah dengan adanya jalan beraspal dari Tambolaka, ibu kota Kabupaten Sumba Barat Daya, yang dapat ditempuh sekitar 1–1,5 jam perjalanan. Di sekitar kawasan danau juga sudah tersedia fasilitas sederhana seperti area parkir, tempat istirahat, gazebo bambu, serta tangga menuju air. Namun, suasana alami dan kesederhanaan inilah yang menjadi daya tarik utama Weekuri, membuat siapa pun yang datang merasa dekat dengan alam. Dengan pesona warna air yang luar biasa, udara yang segar, serta keramahan masyarakat lokal, Danau Weekuri adalah surga tersembunyi di Sumba Barat Daya — tempat di mana keindahan alam, ketenangan jiwa, dan keaslian budaya berpadu menjadi satu pengalaman tak terlupakan.', 'destinations/image/GxXfM0rt0mQeK9pdjsHN86t3JPNqwT4vbVFN5FKe.jpg', 'destinations/thumbnailImage/OkEpL8NHoapcX1k2tO80pouSNsSrpmTatzFoEUGG.jpg', 'ctg001', 'adm001'),
 ('dst002', 'Gunung Rinjani', 'Pulau Lombok, Nusa Tenggara Barat', '07:00:00', '17:00:00', 'WITA', 'Senin', 'Minggu', 150000, 'Gunung Rinjani adalah salah satu gunung berapi tertinggi di Indonesia yang terletak di Pulau Lombok, Nusa Tenggara Barat, dengan ketinggian mencapai 3.726 meter di atas permukaan laut. Gunung ini merupakan bagian dari Taman Nasional Gunung Rinjani yang memiliki luas sekitar 41.330 hektare dan menjadi salah satu destinasi wisata alam paling populer di Indonesia maupun dunia. Keindahan alamnya yang memukau menjadikan Gunung Rinjani sebagai ikon kebanggaan masyarakat Lombok. Di kawasan gunung ini, wisatawan dapat menemukan beragam keajaiban alam seperti Danau Segara Anak, sebuah danau kawah berwarna biru kehijauan yang terbentuk akibat letusan besar pada masa lalu. Di tengah danau tersebut berdiri sebuah gunung kecil bernama Gunung Barujari, yang sering disebut “anak Rinjani”. Selain danau yang menakjubkan, panorama Rinjani juga dihiasi dengan hamparan padang rumput, hutan tropis yang lebat, air terjun yang mempesona, hingga jalur pendakian menantang dengan pemandangan matahari terbit dan terbenam yang spektakuler. Gunung Rinjani tidak hanya menawarkan pesona visual yang luar biasa, tetapi juga memiliki nilai spiritual dan budaya yang tinggi bagi masyarakat setempat. Bagi masyarakat Suku Sasak di Lombok dan sebagian masyarakat Bali, gunung ini dianggap sebagai tempat suci yang dihormati karena diyakini sebagai tempat bersemayamnya para dewa dan roh leluhur. Upacara keagamaan seperti Pekelan dan Mulang Pakelem sering diadakan di sekitar Danau Segara Anak sebagai bentuk rasa syukur dan penghormatan terhadap alam.\r\n\r\n    Selain keindahan alam dan nilai spiritualnya, Gunung Rinjani juga memiliki peran penting dalam aspek ekologi dan pariwisata. Ekosistem di kawasan ini menyimpan keanekaragaman hayati yang sangat tinggi. Berbagai jenis flora seperti edelweis, cemara gunung, dan beragam tanaman tropis tumbuh subur di lereng-lerengnya. Fauna seperti monyet ekor panjang, burung kakatua kecil jambul kuning, ayam hutan, hingga beberapa jenis reptil juga hidup di dalamnya. Karena keindahan dan keanekaragaman alam tersebut, kawasan Rinjani telah diakui secara internasional dengan masuk ke dalam jaringan geopark dunia UNESCO pada tahun 2018. Gunung ini juga menjadi magnet bagi pendaki dari seluruh penjuru dunia yang ingin menaklukkan jalur menantang namun memuaskan, terutama rute populer seperti Sembalun, Senaru, dan Torean. Pendakian ke puncak Gunung Rinjani menjadi pengalaman yang tidak hanya menguji fisik, tetapi juga memperkaya batin, karena setiap langkah disertai pemandangan luar biasa dari hutan, lembah, hingga puncak dengan panorama seluruh Lombok dan sebagian Bali di kejauhan. Di balik pesonanya, Gunung Rinjani juga menjadi simbol keseimbangan antara manusia dan alam. Pemerintah bersama masyarakat sekitar terus berupaya menjaga kelestarian lingkungan gunung ini agar tetap lestari dan berkelanjutan. Oleh karena itu, Gunung Rinjani bukan hanya sekadar objek wisata, tetapi juga warisan alam dan budaya Indonesia yang harus dijaga, dihormati, dan dilestarikan. Dengan pesonanya yang memikat, Rinjani menjadi bukti nyata keindahan dan kekayaan alam Nusantara yang tak ternilai harganya.', 'destinations/image/9G19cn2KNqscnTcfKmeMfUDPPhNJh3jS8yUfVyRE.jpg', 'destinations/thumbnailImage/Jru103JQPunexa2hZ07NjXkf38grIJbhEqiB1Skj.jpg', 'ctg001', 'adm001'),
 ('dst003', 'Bukit Merese', 'Kabupaten Lombok Tengah, Nusa Tenggara Barat', '05:00:00', '19:00:00', 'WITA', 'Senin', 'Minggu', 10000, 'Bukit Merese adalah salah satu destinasi wisata alam paling terkenal di Pulau Lombok, Nusa Tenggara Barat. Terletak di kawasan Pantai Tanjung Aan, Kecamatan Pujut, Kabupaten Lombok Tengah, Bukit Merese menjadi tempat favorit bagi wisatawan lokal maupun mancanegara untuk menikmati keindahan panorama alam dari ketinggian. Bukit ini menawarkan pemandangan yang luar biasa indah, berupa hamparan laut biru yang berpadu dengan perbukitan hijau serta garis pantai yang memanjang di sepanjang pesisir selatan Lombok. Dari puncak bukit, pengunjung dapat menyaksikan pemandangan 360 derajat yang mencakup Pantai Tanjung Aan di sebelah timur dan Pantai Seger di sebelah barat. Nama “Merese” sendiri berasal dari bahasa Sasak yang berarti “meres” atau “beristirahat”, menggambarkan suasana tenang dan damai yang dirasakan siapa pun yang datang ke tempat ini. Bukit Merese terkenal sebagai spot terbaik untuk menikmati matahari terbit (sunrise) maupun matahari terbenam (sunset), karena dari sini pengunjung dapat melihat mentari perlahan muncul atau tenggelam di balik cakrawala laut dengan latar langit berwarna oranye keemasan. Angin sejuk yang berhembus lembut, padang rumput luas, serta suara deburan ombak dari kejauhan menambah kesan magis dan romantis di bukit ini.\r\n\r\n    Selain keindahan alamnya, Bukit Merese juga memiliki nilai ekowisata dan budaya yang menarik. Kawasan ini masih sangat alami, dengan hamparan rumput hijau yang berubah warna menjadi kecokelatan di musim kemarau, menciptakan lanskap yang berbeda di setiap waktu. Bukit ini menjadi salah satu lokasi favorit fotografer dan pembuat konten karena keindahan alamnya yang fotogenik dan pemandangannya yang menenangkan. Di sekitar bukit, terdapat berbagai destinasi menarik seperti Pantai Batu Payung, Pantai Seger, serta Desa Adat Sade dan Ende, tempat wisatawan dapat mengenal lebih dalam budaya dan kehidupan masyarakat Suku Sasak. Bukit Merese juga sering menjadi lokasi acara pariwisata seperti Festival Bau Nyale, tradisi tahunan masyarakat Sasak yang mencari cacing laut sebagai simbol legenda Putri Mandalika. Akses menuju Bukit Merese sangat mudah — hanya sekitar 30 menit dari Bandara Internasional Lombok, dan sekitar 10 menit dari kawasan wisata Mandalika yang kini menjadi salah satu destinasi super prioritas nasional. Fasilitas di sekitar area juga cukup memadai, dengan tersedianya area parkir, warung makan sederhana, serta pemandu lokal yang siap membantu pengunjung. Meskipun begitu, keaslian alam dan suasana tenangnya tetap terjaga, menjadikan Bukit Merese tempat sempurna untuk melepas penat dan menikmati keindahan alam Lombok dalam ketenangan. Dengan perpaduan pesona laut, langit, dan padang hijau, Bukit Merese merupakan surga kecil di selatan Lombok — sebuah tempat di mana keindahan alam berpadu dengan budaya lokal, menghadirkan pengalaman wisata yang tak hanya indah dipandang mata, tetapi juga menenangkan hati.', 'destinations/image/FWQjn3D35MjH1HNRbMH7zUNuaFs5DyqgaKeYmAQG.jpg', 'destinations/thumbnailImage/x9mHJgSmPAkPzq2g0xz21k9M2ra2SAyK2xO7deId.jpg', 'ctg001', 'adm001'),
 ('dst004', 'Candi Borobudur', 'Magelang, Jawa Tengah', '06:00:00', '17:00:00', 'WIB', 'Senin', 'Minggu', 50000, 'Candi Borobudur adalah salah satu warisan budaya dan sejarah paling megah di dunia yang terletak di Magelang, Jawa Tengah, Indonesia. Candi ini merupakan candi Buddha terbesar di dunia dan menjadi salah satu simbol kejayaan peradaban Nusantara pada masa lampau. Dibangun pada masa Dinasti Syailendra sekitar abad ke-8 hingga ke-9 Masehi, Borobudur menggambarkan kebesaran arsitektur dan spiritualitas umat Buddha di masa itu. Struktur candi ini berbentuk piramida berundak yang terdiri dari sembilan tingkat, yakni enam teras berbentuk bujur sangkar di bagian bawah dan tiga teras melingkar di bagian atas. Di puncaknya terdapat satu stupa besar yang menjadi pusat dari keseluruhan bangunan. Secara keseluruhan, Borobudur memiliki 2.672 panel relief dan 504 arca Buddha, yang semuanya dipahat dengan detail luar biasa menggunakan batu andesit. Relief-relief tersebut menggambarkan ajaran moral, kehidupan manusia, serta perjalanan spiritual menuju pencerahan atau nirwana. Dari atas candi, pengunjung dapat menyaksikan panorama alam yang menakjubkan — deretan pegunungan seperti Gunung Merapi, Merbabu, Sindoro, dan Sumbing terlihat jelas mengelilingi kawasan candi, memberikan nuansa damai dan sakral yang seolah membawa pengunjung pada suasana masa lalu yang penuh makna.\r\n    \r\n    Selain nilai sejarah dan arsitekturnya yang menakjubkan, Candi Borobudur juga memiliki makna spiritual dan simbolisme yang mendalam. Setiap tingkat candi melambangkan tahapan kehidupan manusia dalam ajaran Buddha, mulai dari Kamadhatu (dunia nafsu), Rupadhatu (dunia bentuk), hingga Arupadhatu (dunia tanpa bentuk), yang menggambarkan perjalanan manusia menuju kesempurnaan batin. Candi ini sempat terlupakan selama berabad-abad setelah tertimbun abu vulkanik dan semak belukar, hingga akhirnya ditemukan kembali pada tahun 1814 oleh Thomas Stamford Raffles, Gubernur Jenderal Inggris di Jawa saat itu. Sejak saat itu, Borobudur mengalami beberapa tahap pemugaran besar, termasuk yang paling monumental dilakukan oleh pemerintah Indonesia dan UNESCO pada tahun 1975–1982. Kini, Borobudur telah ditetapkan sebagai Situs Warisan Dunia oleh UNESCO sejak tahun 1991 karena nilai sejarah, budaya, dan arsitekturnya yang luar biasa. Selain menjadi objek wisata unggulan Indonesia, Borobudur juga berfungsi sebagai tempat ibadah dan perayaan keagamaan, terutama pada Hari Raya Waisak, yang setiap tahunnya menarik ribuan umat Buddha dari seluruh dunia. Dengan kemegahan arsitektur, nilai spiritual, dan keindahan alam di sekitarnya, Candi Borobudur tidak hanya menjadi kebanggaan Indonesia, tetapi juga simbol perdamaian dan pencerahan bagi umat manusia. Keberadaannya menjadi bukti nyata bahwa peradaban Nusantara pernah mencapai tingkat kebudayaan tinggi yang sarat dengan filosofi, seni, dan kebijaksanaan spiritual yang tak lekang oleh waktu.', 'destinations/image/wKVMGKiZSh4eAo7NRgKYbNNELSImoYhDIu8IWLLr.jpg', 'destinations/thumbnailImage/Z6NOINhNtQgb0N3sWAGYSyNypnjBI3RAvw2DmbBD.jpg', 'ctg002', 'adm001'),
@@ -174,57 +150,6 @@ INSERT INTO `event` (`eventID`, `name`, `startDate`, `endDate`, `location`, `des
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `jobs`
---
-
-CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attempts` tinyint UNSIGNED NOT NULL,
-  `reserved_at` int UNSIGNED DEFAULT NULL,
-  `available_at` int UNSIGNED NOT NULL,
-  `created_at` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `job_batches`
---
-
-CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total_jobs` int NOT NULL,
-  `pending_jobs` int NOT NULL,
-  `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
-  `cancelled_at` int DEFAULT NULL,
-  `created_at` int NOT NULL,
-  `finished_at` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `migrations`
 --
 
@@ -246,18 +171,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `sessions`
 --
 
@@ -275,25 +188,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('mOSsf6Dqt0vPi2u5JLHUrnmIzRjj9AqwE8WiG7fl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiTWFySVVhZWxtaDFscUIxZHdleHZNWXdEUGw4RlQzNEJSM2FvaG9iZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9FdmVudC9FZGl0L2V2dDAwMyI7czo1OiJyb3V0ZSI7Tjt9czo4OiJhZG1pbl9pZCI7czo2OiJhZG0wMDIiO3M6MTA6ImFkbWluX25hbWUiO3M6NjoiZGhpbWFzIjt9', 1765884420),
-('ybemhQWmorK8rHUuCN7k13DRHPJxLyno69z9RdEf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiVWpVMGNpMHJtZDlGZTFSdHpXYVZqSHV0NWZBcTRqZzE5WEpUbEFuayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9HYWxsZXJ5IjtzOjU6InJvdXRlIjtOO319', 1765874123);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+('B8TJ3jeG574IZuyxt46fCEl4ixDd7d4TlaTEJIQ2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoic3VuQ0lSYVZVV1JJUGRFYkVPTENURmNDcGxFVjVOUWllUmhiSGRpayI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1766295070);
 
 --
 -- Indexes for dumped tables
@@ -304,18 +199,6 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminID`);
-
---
--- Indeks untuk tabel `cache`
---
-ALTER TABLE `cache`
-  ADD PRIMARY KEY (`key`);
-
---
--- Indeks untuk tabel `cache_locks`
---
-ALTER TABLE `cache_locks`
-  ADD PRIMARY KEY (`key`);
 
 --
 -- Indeks untuk tabel `destcategory`
@@ -340,36 +223,10 @@ ALTER TABLE `event`
   ADD KEY `destinationID` (`destinationID`);
 
 --
--- Indeks untuk tabel `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indeks untuk tabel `jobs`
---
-ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `jobs_queue_index` (`queue`);
-
---
--- Indeks untuk tabel `job_batches`
---
-ALTER TABLE `job_batches`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
 
 --
 -- Indeks untuk tabel `sessions`
@@ -380,39 +237,14 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indeks untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
-
---
--- AUTO_INCREMENT untuk tabel `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `jobs`
---
-ALTER TABLE `jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

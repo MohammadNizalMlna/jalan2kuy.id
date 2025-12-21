@@ -43,14 +43,14 @@
       <input type="text" name="start_date" class="date-field" placeholder="DD/MM/YYYY"
             onfocus="(this.type='date')" 
             onblur="if(!this.value)this.type='text'"
-            value="{{ request('start_date') }}">
+            value="{{ request('start_date') }}" required>
 
       <span class="dash">-</span>
       
       <input type="text" name="end_date" class="date-field" placeholder="DD/MM/YYYY"
             onfocus="(this.type='date')" 
             onblur="if(!this.value)this.type='text'"
-            value="{{ request('end_date') }}">
+            value="{{ request('end_date') }}" required>
       
       <!-- Tombol submit filter -->
       <button type="submit" style="background: transparent; border: none; cursor: pointer; color: #15514A; font-weight: bold; font-size: 16px;">
