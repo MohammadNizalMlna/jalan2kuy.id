@@ -22,38 +22,31 @@
     <!-- Container utama untuk form edit data akun admin -->
 <main class="form-container">
 
-        <!-- Menampilkan pesan error validasi Laravel jika input tidak valid -->
-    @if ($errors->any())    
-        <div style="color: red; margin-bottom: 15px; text-align: center;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <!-- Form untuk memperbarui data akun admin -->
     <form id="editForm" class="form-box" action="{{ url('/admin/Update-Profile') }}" method="POST">
         @csrf
         @method('PUT') <div class="input-group">
             <input type="text" name="name" placeholder="Name" required value="{{ old('name', $admin->name) }}">
+            @error('name') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
 
         <!-- Input username admin -->
         <div class="input-group">
             <input type="text" name="username" placeholder="Username" required value="{{ old('username', $admin->username) }}">
+            @error('username') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
 
         <!-- Input email admin -->
         <div class="input-group">
             <input type="email" name="email" placeholder="Email" required value="{{ old('email', $admin->email) }}">
+            @error('email') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
 
         <!-- Input password admin -->
         <div class="input-group">
             <input type="password" name="password" placeholder="Password Baru (Kosongkan jika tidak ingin ubah)">
             <small style="font-size: 11px; color: #666; display:block; margin-top: 5px;">*Isi hanya jika ingin mengganti password</small>
+            @error('password') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
 
         <!-- Radio button untuk memilih jenis kelamin admin -->
@@ -70,6 +63,7 @@
                     Perempuan
                 </label>
             </div>
+            @error('gender') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
 
         <!-- Tombol simpan perubahan -->

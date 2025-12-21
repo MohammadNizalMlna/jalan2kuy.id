@@ -190,10 +190,21 @@ class AdminController extends Controller {
         //Validasi Input
         $request->validate([
             'name' => 'required',
-            'username' => 'required|unique:admin,username,' . $adminID . ',adminID',
+            'username' => 'required|alpha_num|unique:admin,username,' . $adminID . ',adminID',
             'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
             'gender' => 'required',
-            'password' => 'nullable|min:8'
+            'password' => [
+                'required', 
+                'min:8', //password minimal 8 karakter
+                'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
+                'regex:/[0-9]/', //password harus ada angka (minimal 1)
+                'regex:/[@$!%*#?&]/', //password harus ada simbol (minimal 1)
+            ],
+        ], [
+            //Pesan Error Custom
+            'username.alpha_num' => 'Username hanya boleh berisi huruf dan angka (tanpa simbol).',
+            'password.min'       => 'Password minimal harus 8 karakter.',
+            'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
         ]);
 
         //Update Data dari input yang sudah divalidasi
@@ -201,6 +212,7 @@ class AdminController extends Controller {
         $admin->username = $request->input('username');
         $admin->email = $request->input('email');
         $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
+        // $admin->password = Hash::make($request->input('password'));
         //Cek apakah user mengisi password baru?
         if ($request->filled('password')) {
             $admin->password = Hash::make($request->input('password'));

@@ -60,7 +60,7 @@
             <!-- Input akun sosial media event -->
             <div class="form-item item-info area-sosmed">
                 <label>Social Media (ketikkan tanpa @)</label>
-                <input type="text" name="socialMedia" placeholder="Akun Sosial Media..." value="{{ old('socialMedia') }}">
+                <input type="text" name="socialMedia" placeholder="Akun Sosial Media..." required value="{{ old('socialMedia') }}">
             </div>
 
             <!-- Textarea untuk deskripsi lengkap event -->

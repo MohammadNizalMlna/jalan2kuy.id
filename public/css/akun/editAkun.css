@@ -85,6 +85,14 @@ body {
     box-shadow: 0 0 6px rgba(27, 122, 147, 0.7);
 }
 
+.error-msg {
+    color: #ff4d4d;
+    font-size: 12px;
+    text-align: left;
+    margin-top: 5px;
+    display: block;
+}
+
 /* ================= PASSWORD NOTE ================= */
 .form-box small {
     font-size: 11px;
