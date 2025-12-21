@@ -44,7 +44,7 @@
 
         <!-- Input password admin -->
         <div class="input-group">
-            <input type="password" name="password" placeholder="Password Baru (Kosongkan jika tidak ingin ubah)">
+            <input type="password" name="password" placeholder="Password Baru (Kosongkan jika tidak ingin ubah)" value="{{ old('password') }}">
             <small style="font-size: 11px; color: #666; display:block; margin-top: 5px;">*Isi hanya jika ingin mengganti password</small>
             @error('password') <span class="error-msg">{{ $message }}</span> @enderror
         </div>

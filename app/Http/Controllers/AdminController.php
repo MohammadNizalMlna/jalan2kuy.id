@@ -194,7 +194,7 @@ class AdminController extends Controller {
             'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
             'gender' => 'required',
             'password' => [
-                'required', 
+                'nullable', 
                 'min:8', //password minimal 8 karakter
                 'regex:/[A-Z]/', //password harus ada huruf besar (minimal 1)
                 'regex:/[0-9]/', //password harus ada angka (minimal 1)
@@ -212,7 +212,6 @@ class AdminController extends Controller {
         $admin->username = $request->input('username');
         $admin->email = $request->input('email');
         $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
-        // $admin->password = Hash::make($request->input('password'));
         //Cek apakah user mengisi password baru?
         if ($request->filled('password')) {
             $admin->password = Hash::make($request->input('password'));
