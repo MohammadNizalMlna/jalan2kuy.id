@@ -48,8 +48,8 @@
         <div class="categori-container">
             
             <!-- Card destinasi admin -->
-            @if($destinations->count() > 0)
-                @foreach($destinations as $dest)
+            @if($destination->count() > 0)
+                @foreach($destination as $dest)
                     {{-- Card Destinasi --}}
                     {{-- Menggunakan class 'categori' agar styling kotak dan gambarnya sama --}}
                     <a href="{{ url('/admin/Destination/Detail/' . $dest->destinationID) }}" 
@@ -66,7 +66,7 @@
         </div>
 
         <!-- Pesan khusus jika tidak ada destinasi yang ditemukan -->
-        @if($destinations->count() == 0)
+        @if($destination->count() == 0)
             <div class="no-result">
                 Destinasi "{{ $keyword }}" tidak ditemukan.
             </div>

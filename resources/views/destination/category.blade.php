@@ -27,7 +27,7 @@
     {{-- 3. RENDER KARTU DESTINASI --}}
     <div class="destination-container" id="destination-list">
         
-        @forelse($destinations as $dest)
+        @forelse($destination as $dest)
             {{-- Link ke Detail (Nanti buat route detailnya) --}}
             <a class="destination-card" href="{{ url('/Destination/Detail/' . $dest->destinationID) }}">
                 

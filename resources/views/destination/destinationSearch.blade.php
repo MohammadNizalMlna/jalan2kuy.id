@@ -48,8 +48,8 @@
         {{-- Container Hasil --}}
         <div class="categori-container">
             
-            @if($destinations->count() > 0)
-                @foreach($destinations as $dest)
+            @if($destination->count() > 0)
+                @foreach($destination as $dest)
                     {{-- Card Destinasi --}}
                     {{-- Menggunakan class 'categori' agar styling kotak dan gambarnya sama --}}
                     <!-- Card destinasi menggunakan style kategori agar konsisten -->
@@ -66,7 +66,7 @@
 
         </div>
 
-        @if($destinations->count() == 0)
+        @if($destination->count() == 0)
             <div class="no-result">
                 Destinasi "{{ $keyword }}" tidak ditemukan.
             </div>
