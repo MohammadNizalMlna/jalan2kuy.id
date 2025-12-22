@@ -94,7 +94,7 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         try {
             //generate adminID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
             $lastAdmin = Admin::orderBy('adminID', 'desc')->lockForUpdate()->first(); //ambil adminID terakhir yang ada pada tabel admin di database
-            $newAdminID = 'adm001'; //jika tida ditemukan adminID terakhir, gunakan $newAdminID
+            $newAdminID = 'adm001'; //jika tidak ditemukan adminID terakhir, gunakan $newAdminID
 
             if ($lastAdmin) { //jika ditemukan adminID terakhir, maka generate adminID baru
                 $lastID = $lastAdmin->adminID;
@@ -228,7 +228,7 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         $adminID = Session::get('admin_id'); //ambil adminID dari session
     
         if ($adminID) { //jika adminID ditemukan dari session
-            //Memulai Transaction
+            //Memulai Transaction ke database
             DB::beginTransaction();
             try {
                 //ubah foreign key adminID disetiap event menjadi null (query)

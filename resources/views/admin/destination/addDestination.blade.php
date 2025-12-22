@@ -31,7 +31,7 @@
 
     <form action="{{ url('/admin/Destination/Store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="category" value="{{ request('Category') }}">
+        <input type="hidden" name="destCategoryID" value="{{ request('Category') }}">
 
         <!-- Input nama destinasi + tampilkan nama kategori jika ada -->
         <h1 class="edit-title">
