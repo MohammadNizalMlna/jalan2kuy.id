@@ -2,24 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
-{
-    // use HasFactory;
-
-    //konfigurasi tabel event dan primary key eventID
-    //kolom primary ke selalu diawali dengan nama tabelnya + ID dan bertipe data string (incrementing false karena string)
-    //timestamps false karena tidak ada kolom created_at, updated_at dalam tabel event
-    protected $table = 'event';
-    protected $primaryKey = 'eventID';
-    public $incrementing = false;
-    protected $keyType = 'string';
-    public $timestamps = false;
+class Event extends Model {
+    protected $table = 'event'; //nama tabel memakai huruf kecil
+    protected $primaryKey = 'eventID'; //primary key diawali dengan nama tabelnya + ID dan bertipe data string 
+    protected $keyType = 'string'; //tipe data primary key selalu string
+    public $incrementing = false; //incrementing false karena primary key bertipe data string
+    public $timestamps = false; //timestamps false karena tidak ada kolom created_at, updated_at dalam tabel event
 
     //atribut atau kolom yang ada pada tabel event
-    protected $fillable = [
+    protected $fillable = [ //atribut diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         'eventID',
         'name',
         'location',
@@ -33,22 +26,10 @@ class Event extends Model
         'socialMedia',
     ];
 
-    // ==========================================
-    // 3. CASTING TIPE DATA
-    // ==========================================
-
-
-    //Mengubah format data database menjadi tipe data PHP native (casting tipe data)
+    //casting tipe data agar sesuai kebutuhan
     protected $casts = [
         'entranceFee' => 'integer',
-
-        // Mengubah startDate & endDate menjadi instance Carbon (Date Object)
-        // Memudahkan format tanggal di view: $event->startDate->format('d M Y')
         'startDate' => 'date',
         'endDate'   => 'date',
-
-        // Untuk startTime & endTime (LocalTime), Laravel membacanya sebagai string 'H:i:s'
-        // Anda juga bisa meng-cast ke 'datetime', tapi akan muncul tanggal dummy hari ini.
-        // Saran: Biarkan string agar sesuai format waktu MySQL (TIME).
     ];
 }
