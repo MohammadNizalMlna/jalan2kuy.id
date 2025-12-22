@@ -10,22 +10,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller {
-    
-    public function login(Request $request) {
-        $usernameInput = $request->input('username');
+class AdminController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
+    public function login(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        $usernameInput = $request->input('username'); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         $passwordInput = $request->input('password');
 
+        //query
         $usernameAdmin = Admin::where('username', $usernameInput)->first();
 
         if ($usernameAdmin) {
-            // Cek Password apakah sama dengan yang disimpan didalam database atau tidak
-            if (Hash::Check($passwordInput, $usernameAdmin->password)) {
-
-                //simpan sementara adminID didalam temp_admin_id untuk dipakai pada verifikasi passkey
-                //simpan sementara name didalam temp_admin_name untuk dipakai pada verifikasi passkey
-                Session::put('temp_admin_id', $usernameAdmin->adminID);
-                Session::put('temp_admin_name', $usernameAdmin->name);
+            if (Hash::Check($passwordInput, $usernameAdmin->password)) { // Cek Password apakah sama dengan yang disimpan didalam database atau tidak
+                Session::put('temp_admin_id', $usernameAdmin->adminID); //simpan sementara adminID didalam temp_admin_id untuk dipakai pada verifikasi passkey
+                Session::put('temp_admin_name', $usernameAdmin->name); //simpan sementara name didalam temp_admin_name untuk dipakai pada verifikasi passkey
                 
                 //Redirect ke URL halaman Passkey (/verifikasi-login)
                 return redirect('/verifikasi-login');
@@ -35,9 +31,9 @@ class AdminController extends Controller {
         return back()->with('error', 'Username atau Password salah!');
     }
 
-    public function showVerifikasiLogin() {
-        //Cek apakah user sudah melewati tahap login awal atau belum
-        if (!Session::has('temp_admin_id')) {
+    public function showVerifikasiLogin() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
+        if (!Session::has('temp_admin_id')) { 
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
@@ -45,34 +41,32 @@ class AdminController extends Controller {
         return view('akun.passkey');
     }
 
-    public function prosesVerifikasiLogin(Request $request) {
-        //simpan passkey yang diinputkan user kedalam $inputPassKey
-        $inputPassKey = $request->input('passkey_code');
-        $passKey = '123456'; //PassKey dibuat statis
+    public function prosesVerifikasiLogin(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        $inputPassKey = $request->input('passkey_code'); //simpan passkey yang diinputkan user kedalam $inputPassKey
+        $passKey = '123456'; //PassKey yang valid (dibuat statis)
 
-        if ($inputPassKey === $passKey) {
-            //Ambil temp_admin_id dan temp_admin_name dari session sementara
-            $adminID = Session::get('temp_admin_id');
-            $adminName = Session::get('temp_admin_name');
+        //cek apakah passkey yang diinputkan sesuai atau tidak
+        if ($inputPassKey === $passKey) { //jika passkey yang diinputkan sesuai
+            $adminID = Session::get('temp_admin_id'); //ambil temp_admin_id dari session sementara, masukkan kedalam $adminID
+            $adminName = Session::get('temp_admin_name'); //ambil temp_admin_name dari session sementara, masukkan kedalam $adminName
 
-            //resmikan Login (Set session asli)
-            Session::put('admin_id', $adminID);
-            Session::put('admin_name', $adminName);
+            //buat session yang resmi (query)
+            Session::put('admin_id', $adminID); //perbarui admin_id pada session menggunakan $adminID
+            Session::put('admin_name', $adminName); //perbarui admin_name pada session menggunakan $adminName
 
-            //hapus session sementara
+            //hapus session sementara (query)
             Session::forget('temp_admin_id');
             Session::forget('temp_admin_name');
 
-            //masuk ke Homepage Admin
+            //Redirect ke URL homepage admin (admin/Homepage)
             return redirect('admin/Homepage');
-        } else {
-            //jika salah, Kembali ke halaman passkey dengan pesan error
+        } else { //jika salah, Kembali ke halaman passkey dengan pesan error
             return back()->with('error', 'Passkey salah, silakan coba lagi.');
         }
     }
 
-    public function register(Request $request) {
-        //Validasi input
+    public function register(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //validasi input
         $request->validate([
             'name' => 'required',
             'username' => 'required|alpha_num|unique:admin,username', 
@@ -94,22 +88,22 @@ class AdminController extends Controller {
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
-        //Memulai Transaction
+        //memulai transaction ke database
         DB::beginTransaction();
 
         try {
-            //generate adminID baru
-            $lastAdmin = Admin::orderBy('adminID', 'desc')->lockForUpdate()->first();
-            $newAdminID = 'adm001'; 
+            //generate adminID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
+            $lastAdmin = Admin::orderBy('adminID', 'desc')->lockForUpdate()->first(); //ambil adminID terakhir yang ada pada tabel admin di database
+            $newAdminID = 'adm001'; //jika tida ditemukan adminID terakhir, gunakan $newAdminID
 
-            if ($lastAdmin) {
+            if ($lastAdmin) { //jika ditemukan adminID terakhir, maka generate adminID baru
                 $lastID = $lastAdmin->adminID;
                 $number = (int) substr($lastID, 3);
                 $number++;
                 $newAdminID = 'adm' . sprintf("%03d", $number);
             }
 
-            //buat objek Admin dan siimpan datanya ke database
+            //buat objek Admin dan simpan datanya ke database
             $admin = new Admin();
             $admin->adminID = $newAdminID;
             $admin->name = $request->input('name');
@@ -119,79 +113,78 @@ class AdminController extends Controller {
             $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
             $admin->save(); 
 
-            //commit transaction
+            //commit transaction ke database
             DB::commit();
-
+            //Redirect ke URL login (/login) dengan pesan sukses
             return redirect('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
-
         } catch (\Exception $e) {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
-
+            //jika salah, Kembali ke halaman register dengan pesan error
             return back()->with('error', 'Gagal register : ' . $e->getMessage())->withInput();
         }
     }
 
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
-    public function logout() {
-        //Hapus semua data session
-        Session::flush();
+    public function logout() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        Session::flush(); //Hapus semua data session
         
-        //Redirect ke halaman utama/login
+        //Redirect ke halaman homepage (/)
         return redirect('/')->with('success', 'Berhasil Logout.');
     }
 
-    public function showAccount() {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function showAccount() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //ambil adminID dari session 
-        $adminID = Session::get('admin_id');
+        
+        //query
+        $adminID = Session::get('admin_id'); //ambil adminID dari session
 
-        //Cari data admin lengkap di database
-        $admin = Admin::find($adminID);
+        //query
+        $admin = Admin::find($adminID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
 
         //Kirim data $admin ke view accountAdmin
         return view('akun.accountAdmin', ['admin' => $admin]);
     }
 
-    public function tampilFormEditProfile() {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function tampilFormEditProfile() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //ambil adminID dari session
-        $adminID = Session::get('admin_id');
 
-        //cari data $admin yang memiliki ID $adminID
-        $admin = Admin::find($adminID);
+        //query
+        $adminID = Session::get('admin_id'); //ambil adminID dari session
 
-        //kalau tidak ada $admin, kembalikan ke halaman login
-        if (!$admin) {
-            return redirect('/login');
-        }
+        //query
+        $admin = Admin::find($adminID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
+
         //kirim data $admin ke view editAkun
         return view('akun.editAkun', ['admin' => $admin]);
     }
 
-    public function editProfile(Request $request) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function editProfile(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //ambil adminID dari session
-        $adminID = Session::get('admin_id');
 
-        //cari data $admin yang memiliki ID $adminID
-        $admin = Admin::find($adminID);
+        //query
+        $adminID = Session::get('admin_id'); //ambil adminID dari session
+
+        //query
+        $admin = Admin::find($adminID); //Cari data admin lengkap bedasarkan adminID yang diambil pada database
 
         //Validasi Input
         $request->validate([
             'name' => 'required',
-            'username' => 'required|alpha_num|unique:admin,username,' . $adminID . ',adminID',
-            'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
+            'username' => 'required|alpha_num|unique:admin,username', 
+            'email' => 'required|email|unique:admin,email',
+            // 'username' => 'required|alpha_num|unique:admin,username,' . $adminID . ',adminID',
+            // 'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
             'gender' => 'required',
             'password' => [
                 'nullable', 
@@ -207,56 +200,59 @@ class AdminController extends Controller {
             'password.regex'     => 'Password harus mengandung setidaknya 1 huruf besar, 1 angka, dan 1 simbol (@ $ ! % * # ? &).',
         ]);
 
-        //Update Data dari input yang sudah divalidasi
+        //Update Data dari input yang sudah divalidasi dan simpan datanya ke database
         $admin->name = $request->input('name');
         $admin->username = $request->input('username');
         $admin->email = $request->input('email');
         $admin->gender = filter_var($request->input('gender'), FILTER_VALIDATE_BOOLEAN);
-        //Cek apakah user mengisi password baru?
-        if ($request->filled('password')) {
-            $admin->password = Hash::make($request->input('password'));
+        //Cek apakah user mengisi password baru
+        if ($request->filled('password')) { //jika user mengisi password baru
+            $admin->password = Hash::make($request->input('password')); //simpan password baru dalam bentuk hash
         }
         $admin->save();
 
-        //Update Session Nama (jika nama berubah)
+        //Update admin_name pada session  (jika nama berubah)
         Session::put('admin_name', $admin->name);
+
+        //Redirect ke halaman showAccount (/admin/Account)
         return redirect('/admin/Account')->with('success', 'Profil berhasil diperbarui!');
     }
 
-    public function deleteAccount() {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function deleteAccount() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum 
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //ambil adminID dari session
-        $adminID = Session::get('admin_id');
+
+        //query
+        $adminID = Session::get('admin_id'); //ambil adminID dari session
     
-        if ($adminID) {
+        if ($adminID) { //jika adminID ditemukan dari session
             //Memulai Transaction
             DB::beginTransaction();
             try {
-                //ubah foreign key adminID disetiap event menjadi null
+                //ubah foreign key adminID disetiap event menjadi null (query)
                 Event::where('adminID', $adminID)->update(['adminID' => null]);
                 
-                //ubah foreign key adminID disetiap destination menjadi null
+                //ubah foreign key adminID disetiap destination menjadi null (query)
                 Destination::where('adminID', $adminID)->update(['adminID' => null]);
 
-                //delete adminnya berdasarkan adminID
+                //delete adminnya berdasarkan adminID (query)
                 Admin::where('adminID', $adminID)->delete();
 
                 //commit transaction
                 DB::commit(); 
 
-                //bersikah session
+                //bersihkan session
                 Session::flush();
 
-                //redirect ke homepage 
+                //redirect ke homepage (/)
                 return redirect('/')->with('success', 'Akun berhasil dihapus!');
 
             } catch (\Exception $e) {
                 //Jika ada yang salah, rollback transaction
                 DB::rollBack();
-                //tampilkan pesan error jika gagal
+                //jika salah, Kembali ke halaman showAccount dengan pesan error
                 return back()->with('error', 'Error: ' . $e->getMessage());
             }
         }
