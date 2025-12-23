@@ -181,10 +181,8 @@ class AdminController extends Controller { //penamaan controller menggunakan hur
         //Validasi Input
         $request->validate([
             'name' => 'required',
-            'username' => 'required|alpha_num|unique:admin,username', 
-            'email' => 'required|email|unique:admin,email',
-            // 'username' => 'required|alpha_num|unique:admin,username,' . $adminID . ',adminID',
-            // 'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
+            'username' => 'required|alpha_num|unique:admin,username,' . $adminID . ',adminID',
+            'email' => 'required|email|unique:admin,email,' . $adminID . ',adminID',
             'gender' => 'required',
             'password' => [
                 'nullable', 
