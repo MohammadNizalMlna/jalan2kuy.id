@@ -109,7 +109,7 @@
 
             @else
             <!-- Jika tidak ada event -->
-                <p style="color: #ffff; font-style: italic;">Tidak ada event di destinasi ini.</p>
+                <p style="color:  #000000; font-style: italic;">Tidak ada event di destinasi ini.</p>
             @endif
         </div>
       </div>
