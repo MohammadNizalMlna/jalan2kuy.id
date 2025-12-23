@@ -9,56 +9,54 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use App\Models\Event; 
 
-class EventController extends Controller {
-
-    public function tampilEvent(Request $request) {
+class EventController extends Controller { //penamaan controller menggunakan huruf kapital pada awal masing-masing kata
+    public function tampilEvent(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
         //mulai query
-        $query = Event::query();
+        $query = Event::query(); //penamaan variabel diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
 
-        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal)
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('startDate', [
-                $request->input('start_date'), 
-                $request->input('end_date')
-            ]);
+        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal) (query)
+        if ($request->filled('start_date') && $request->filled('end_date')) { 
+            $query->whereBetween('startDate', [$request->input('start_date'), $request->input('end_date')]);
         }
 
-        //Ambil data event (urutkan dari yang terbaru)
-        $events = $query->orderBy('startDate', 'desc')->get();
+        //Ambil data event (urutkan dari yang terbaru), simpan kedalam $events
+        $events = $query->orderBy('startDate', 'desc')->get(); 
 
-        //kirim data $events ke view event
+        //redirect ke halaman event dengan membawa data $events
         return view('event.event', ['events' => $events]);
     }
 
-    public function tampilkanDetailEvent($id) { 
-        //cari data event berdasarkan eventID
+    public function tampilkanDetailEvent($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //cari data event yang eventID nya sesuai dengan $id
         $event = Event::where('eventID', $id)->first();
 
-        //Jika tidak ketemu, kembalikan ke URL /Event
-        if (!$event) {
+        if (!$event) { //jika $event tidak ketemu
+            //redirewct ke URL event (/Event) dengan pesan error
             return redirect('/Event')->with('error', 'Event tidak ditemukan.');
         }
 
-        //kirim data $event ke view detailEvent
+        //jika $event ketemu, redirect ke halaman detailEvent dengan membawa data $event
         return view('event.detailEvent', ['event' => $event]);
     }
 
     //===FUNCTION-FUNCTION DIBAWAH INI KHUSUS ADMIN ONLY===
 
-    public function addEvent() {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function addEvent() { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //redirect ke view addEvent
+
+        //redirect ke halaman addEvent
         return view('admin.eventAdmin.addEvent');
     }
 
-    public function storeEventData(Request $request) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function storeEventData(Request $request) {//penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
+
         //validasi input
         $request->validate([
             'name' => 'required',
@@ -70,29 +68,29 @@ class EventController extends Controller {
             'endTime' => 'required',
             'entranceFee' => 'required|numeric',
             'socialMedia' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:10240', // Max 10MB
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:10240',
         ]);
 
-        //Memulai Transaction
+        //Memulai Transaction ke database
         DB::beginTransaction();
         try {
-            //generate eventID baru
-            $lastEvent = Event::orderBy('eventID', 'desc')->lockForUpdate()->first();
-            $newEventID = 'evt001';
+            //generate eventID baru (ID-ID terdiri dari 6 karakter dengan 3 karakter pertama adalah alfabet dan 3 karakter sisanya adalah angka (mengurut))
+            $lastEvent = Event::orderBy('eventID', 'desc')->lockForUpdate()->first(); //ambil eventID terakhir yang ada pada tabel event di database
+            $newEventID = 'evt001'; //jika tidak ditemukan eventID terakhir, gunakan $newEventID
 
-            if ($lastEvent) {
+            if ($lastEvent) { //jika ditemukan destinationID terakhir, maka generate destinationID baru
                 $number = (int) substr($lastEvent->eventID, 3);
                 $number++;
                 $newEventID = 'evt' . sprintf("%03d", $number);
             }
 
-            //Logika Upload Gambar (yang disimpan pada database adalah imagePath, gambar asli disimpan didalam folder storage/app/public/events)
-            $imagePath = null;
-            if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('events', 'public');
+            //logika upload gambar (image)
+            $imagePath = null; //set variabel $imagePath ke NULL
+            if ($request->hasFile('image')) { //jika user mengupload image
+                $imagePath = $request->file('image')->store('events', 'public'); //simpan image tersebut kedalam folder storage/app/public/events menggunakan disk 'public', simpan string path nya kedalam variabel $imagePath
             }
 
-            //buat objek Event dan siimpan datanya ke database
+            //buat objek event dan simpan datanya ke database
             $event = new Event();
             $event->eventID = $newEventID;
             $event->name = $request->name;
@@ -105,31 +103,34 @@ class EventController extends Controller {
             $event->startTime = $request->startTime;
             $event->endTime = $request->endTime;
             $event->imagePath = $imagePath;
-            $event->adminID = Session::get('admin_id'); //foreign key adminID mengambil datanya dari session
+            $event->adminID = Session::get('admin_id'); //foreign key adminID mengambil dari admin_id yang ada di session
             $event->destinationID = null; //foreign key destinationID defaultnya di set NULL
             $event->save();
 
-            //commit transaction
+            //commit transaction ke database
             DB::commit();
 
+            //redirect ke URL /admin/Event dengan pesan sukses
             return redirect('/admin/Event')->with('success', 'Event berhasil ditambahkan!');
         } catch (\Exception $e) {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
 
+            //kembalikan ke form addEvent dengan pesan error
             return back()->with('error', 'Gagal menyimpan event: ' . $e->getMessage())->withInput();
         }
     }
 
-    public function tampilEventAdmin(Request $request) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function tampilEventAdmin(Request $request) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
+
         //mulai query
         $query = Event::query();
 
-        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal)
+        //Logika searching berdasarkan tanggal (Jika user mengisi input tanggal) (query)
         if ($request->filled('start_date') && $request->filled('end_date')) {
             $query->whereBetween('startDate', [
                 $request->input('start_date'), 
@@ -137,49 +138,51 @@ class EventController extends Controller {
             ]);
         }
 
-        //Ambil data event (urutkan dari yang terbaru)
+        //Ambil data event (urutkan dari yang terbaru), simpan kedalam $events
         $events = $query->orderBy('startDate', 'desc')->get();
 
-        //kirim data $events ke view eventAdmin
+        //redirect ke halaman eventAdmin dengan membawa data $events
         return view('admin.eventAdmin.eventAdmin', ['events' => $events]);
     }
 
-    public function tampilkanDetailEventAdmin($id) { 
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function tampilkanDetailEventAdmin($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //cari data event berdasarkan eventID
+
+        //cari data event yang eventID nya sesuai dengan $id
         $event = Event::where('eventID', $id)->first();
 
-        //Jika tidak ketemu, kembalikan ke URL /admin/Event
-        if (!$event) {
+        if (!$event) { //jika $event tidak ketemu
+            //redirewct ke URL event (/admin/Event) dengan pesan error
             return redirect('/admin/Event')->with('error', 'Event tidak ditemukan.');
         }
 
-        //kirim data $event ke view detailEventAdmin
+        //jika $event ketemu, redirect ke halaman detailEventAdmin dengan membawa data $event
         return view('admin.eventAdmin.detailEventAdmin', ['event' => $event]);
     }
 
-    public function tampilFormEditEvent($id) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function tampilFormEditEvent($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //cari data event berdasarkan eventID
+
+        //cari data event yang eventID nya sesuai dengan $id
         $event = Event::where('eventID', $id)->first();
 
-        // Jika event tidak ditemukan, kembalikan ke list atau tampilkan 404
-        if (!$event) {
+        if (!$event) { //jika $event tidak ketemu
+            //redirect ke URL event (/admin/Event) dengan pesan error
             return redirect('/admin/Event')->with('error', 'Event tidak ditemukan.');
         }
 
-        //kirim data $event ke view editEventAdmin
+        //jika $event ketemu, redirect ke halaman editEventAdmin dengan membawa data $event
         return view('admin.eventAdmin.editEventAdmin', ['event' => $event]);
     }
 
-    public function editEvent(Request $request, $id) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function editEvent(Request $request, $id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
@@ -195,36 +198,37 @@ class EventController extends Controller {
             'endTime' => 'required',
             'entranceFee' => 'required|numeric',
             'socialMedia' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', // Max 10MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
         ]);
 
-        //Memulai Transaction
+        //Memulai Transaction ke database
         DB::beginTransaction();
 
         try {
-            //cari event yang mau diedit berdasarkan eventID
+            //cari data event yang eventID nya sesuai dengan $id
             $event = Event::where('eventID', $id)->first();
 
             //kalo ngga ketemu tampilkan teks "Event tidak ditemukan"
-            if (!$event) {
+            if (!$event) { //jika $event tidak ketemu
+                //redirect ke halaman sebelumnya dengan pesan error event tidak ditemukan
                 return back()->with('error', 'Event tidak ditemukan.');
             }
 
-            //Logika Update Gambar (cek dulu apakah user mengupload gambar baru atau tidak)
-            if ($request->hasFile('image')) {
-                //hapus gambar lama (cek dulu apakah gambar lama masih disimpan di storage/app/public/events atau tidak)
-                if ($event->imagePath && Storage::disk('public')->exists($event->imagePath)) {
-                    Storage::disk('public')->delete($event->imagePath);
+             //logika update Gambar (Hanya jika ada user menguploadkan gambar baru)
+            //cek apakah user mengupload image baru atau tidak
+            if ($request->hasFile('image')) { //jika user mengupload image baru
+                if ($event->imagePath && Storage::disk('public')->exists($event->imagePath)) { //cek apakah gambar lama masih disimpan di storage/app/public/events atau tidak
+                    Storage::disk('public')->delete($event->imagePath); //jika masih tersimpan, maka hapus gambar tersebut
                 }
 
-                //upload gambar baru dan simpan didalam folder storage/app/public/events 
-                $path = $request->file('image')->store('events', 'public');
+                //simpan image baru yang diupload user kedalam folder storage/app/public/events menggunakan disk 'public', simpan string path nya kedalam $imagePath
+                $imagePath = $request->file('image')->store('events', 'public');
                 
-                //Update imagePath di database ($path dimasukkan ke imagePath)
-                $event->imagePath = $path;
+                //Update imagePath di database ($imagePath dimasukkan ke $event->imagePath)
+                $event->imagePath = $imagePath;
             }
 
-            //Update Data lainnya dari input yang sudah divalidasi
+            //update data event lainnya sesuai yang diinputkan user pada form editEventAdmin dan simpan datanya ke database
             $event->name = $request->input('name');
             $event->location = $request->input('location');
             $event->description = $request->input('description');
@@ -236,46 +240,47 @@ class EventController extends Controller {
             $event->endTime = $request->input('endTime');
             $event->save();
 
-            //commit transaction
+            //commit transaction ke database
             DB::commit();
 
-            //redirect kembali ke halaman /admin/Event
+            //redirect ke URL /admin/Event dengan membawa pesan sukses
             return redirect('/admin/Event')->with('success', 'Event berhasil diperbarui!');
 
         } catch (\Exception $e) {
             //Jika ada yang salah, rollback transaction
             DB::rollBack();
 
+            //kembalikan ke halaman sebelumnya dengan pesan error
             return back()->with('error', 'Gagal update event: ' . $e->getMessage())->withInput();
         }
     }
 
-    // Tambahkan juga fungsi destroy jika belum ada (untuk delete)
-    public function hapusEvent($id) {
-        //cek di session apakah sudah ada admin_id yang login atau belum
+    public function hapusEvent($id) { //penamaan function diawali huruf kecil pada kata pertama dan diawali huruf besar pada kata kedua dan selanjutnya (jika ada)
+        //Cek apakah user sudah melewati tahap login awal atau belum
         if (!Session::has('admin_id')) {
             return redirect('/login')->with('error', 'Anda harus login dulu!');
         }
-        //cari event yang mau dihapus berdasarkan eventID
+
+        //cari data event yang eventID nya sesuai dengan $id
         $event = Event::where('eventID', $id)->first();
 
-        if ($event) {
-            //Hapus Gambar
-            //masukkan path gambar disimpan kedalam $gambarPath (mengambil dari storage_path)
+        if ($event) { //jika event ketemu
+            //ambil path gambar yang disimpan di folder storage/app/public/events menggunakan fungsi storage_path, simpan kedalam $gambarPath
             $gambarPath = storage_path('app/public/' . $event->imagePath); 
             
-            //cek apakah file ada dan path tidak kosong, jika valid maka hapus gambar
+            //cek apakah file gambar tersebut ada dan $event->imagePath tidak kosong
             if (!empty($event->imagePath) && File::exists($gambarPath)) {
-                File::delete($gambarPath);
+                File::delete($gambarPath); //jika valid, hapus gambar tersebut (path nya ngambil dari $gambarPath)
             }
 
-            //hapus data event
+            //hapus event nya
             $event->delete();
             
+            //redirect ke URL /admin/Event dengan membawa pesan sukses
             return redirect('/admin/Event')->with('success', 'Event berhasil dihapus.');
         }
         
-        //tampilkan pesan error "Gagal menghapus event" jika 
+        //redirect ke halaman sebelunya jika terjadi kesalahan dengan membawa pesan error
         return back()->with('error', 'Gagal menghapus event.');
     }
 }
